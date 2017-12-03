@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "dask-distributed.scheduler-fullname" . }}
+  name: {{ template "dask.scheduler-fullname" . }}
   labels:
-    app: {{ template "dask-distributed.name" . }}
+    app: {{ template "dask.name" . }}
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -15,12 +15,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "dask-distributed.name" . }}
+        app: {{ template "dask.name" . }}
         release: {{ .Release.Name | quote }}
         component: "{{ .Release.Name }}-{{ .Values.scheduler.component }}"
     spec:
       containers:
-        - name: {{ template "dask-distributed.scheduler-fullname" . }}
+        - name: {{ template "dask.scheduler-fullname" . }}
           image: "{{ .Values.scheduler.image }}:{{ .Values.scheduler.imageTag }}"
           command: ["dask-scheduler", "--port", "{{ .Values.scheduler.servicePort }}", "--bokeh-port", "{{ .Values.webUI.containerPort }}"]
           ports:
