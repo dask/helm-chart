@@ -29,6 +29,11 @@ spec:
           volumeMounts:
           - name: config-volume
             mountPath: /home/jovyan/.jupyter
+          env: 
+          - name: EXTRA_CONDA_PACKAGES
+            value: {{ .Values.jupyter.condaPackages }}
+          - name: EXTRA_PIP_PACKAGES
+            value: {{ .Values.jupyter.pipPackages }}
       volumes:
       - name: config-volume
         configMap:

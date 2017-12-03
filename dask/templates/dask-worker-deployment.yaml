@@ -22,8 +22,12 @@ spec:
       containers:
         - name: {{ template "dask-distributed.worker-fullname" . }}
           image: "{{ .Values.worker.image }}:{{ .Values.worker.imageTag }}"
-          command: ["dask-worker", "{{ template "dask-distributed.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}"]
+          command: ["dask-worker", '{{ template "dask-distributed.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}']
           ports:
             - containerPort: {{ .Values.worker.containerPort }}
-          resources:
-{{ toYaml .Values.worker.resources | indent 12 }}
+          resources: {{ toYaml .Values.worker.resources | indent 12 }}
+          env: 
+          - name: EXTRA_CONDA_PACKAGES
+            value: {{ .Values.worker.condaPackages }}
+          - name: EXTRA_PIP_PACKAGES
+            value: {{ .Values.worker.pipPackages }}

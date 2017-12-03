@@ -26,5 +26,9 @@ spec:
           ports:
             - containerPort: {{ .Values.scheduler.containerPort }}
             - containerPort: {{ .Values.webUI.containerPort }}
-          resources:
-{{ toYaml .Values.scheduler.resources | indent 12 }}
+          resources: {{ toYaml .Values.scheduler.resources | indent 12 }}
+          env: 
+          - name: EXTRA_CONDA_PACKAGES
+            value: {{ .Values.scheduler.condaPackages }}
+          - name: EXTRA_PIP_PACKAGES
+            value: {{ .Values.scheduler.pipPackages }}
