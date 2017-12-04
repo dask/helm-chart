@@ -22,7 +22,7 @@ spec:
       containers:
         - name: {{ template "dask.scheduler-fullname" . }}
           image: "{{ .Values.scheduler.image }}:{{ .Values.scheduler.imageTag }}"
-          command: ["dask-scheduler", "--port", "{{ .Values.scheduler.servicePort }}", "--bokeh-port", "{{ .Values.webUI.containerPort }}"]
+          args: ["dask-scheduler", "--port", "{{ .Values.scheduler.servicePort }}", "--bokeh-port", "{{ .Values.webUI.containerPort }}"]
           ports:
             - containerPort: {{ .Values.scheduler.containerPort }}
             - containerPort: {{ .Values.webUI.containerPort }}

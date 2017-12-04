@@ -22,7 +22,7 @@ spec:
       containers:
         - name: {{ template "dask.worker-fullname" . }}
           image: "{{ .Values.worker.image }}:{{ .Values.worker.imageTag }}"
-          command: ["dask-worker", '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}']
+          args: ["dask-worker", '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}']
           ports:
             - containerPort: {{ .Values.worker.containerPort }}
           resources: {{ toYaml .Values.worker.resources | indent 12 }}
