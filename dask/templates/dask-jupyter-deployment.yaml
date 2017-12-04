@@ -34,6 +34,8 @@ spec:
             value: {{ .Values.jupyter.condaPackages }}
           - name: EXTRA_PIP_PACKAGES
             value: {{ .Values.jupyter.pipPackages }}
+          - name: DASK_SCHEDULER_ADDRESS
+            value: {{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}
       volumes:
       - name: config-volume
         configMap:
