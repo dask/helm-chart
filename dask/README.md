@@ -29,8 +29,8 @@ The following tables lists the configurable parameters of the Dask chart and the
 
 | Parameter                  | Description                        | Default                                                    |
 | -------------------------- | ---------------------------------- | ---------------------------------------------------------- |
-| `scheduler.name`           | Dask master name                   | `dask-master`                                              |
-| `scheduler.image`          | Container image name               | `dask2/dask`                                               |
+| `scheduler.name`           | Dask master name                   | `dask-scheduler`                                           |
+| `scheduler.image`          | Container image name               | `daskdev/dask`                                             |
 | `scheduler.imageTag`       | Container image tag                | `latest`                                                   |
 | `scheduler.replicas`       | k8s deployment replicas            | `1`                                                        |
 | `scheduler.component`      | k8s selector key                   | `dask-scheduler`                                           |
@@ -64,7 +64,7 @@ The following tables lists the configurable parameters of the Dask chart and the
 |       Parameter         |           Description            |                         Default                          |
 |-------------------------|----------------------------------|----------------------------------------------------------|
 | `jupyter.name`          | jupyter name                     | `jupyter`                                                |
-| `jupyter.image`         | Container image name             | `jupyter/base-notebook`                                  |
+| `jupyter.image`         | Container image name             | `daskdev/dask-notebook`                                  |
 | `jupyter.imageTag`      | Container image tag              | `11be019e4079`                                           |
 | `jupyter.replicas`      | k8s deployment replicas          | `1`                                                      |
 | `jupyter.component`     | k8s selector key                 | `jupyter`                                                |
