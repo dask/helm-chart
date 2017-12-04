@@ -39,7 +39,13 @@ worker:
   containerPort: 8081
   resources: {}
   condaPackages: >-
+    # numba
+    # xarray
   pipPackages: >-
+    # gcsfs
+    # s3fs
+    # adlfs
+    # dask-ml
 
   # limits:
   #   cpu: 500m
@@ -60,7 +66,13 @@ jupyter:
   password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c'  # 'dask'
   resources: {}
   condaPackages: >-
+    # numba
+    # xarray
   pipPackages: >-
+    # gcsfs
+    # s3fs
+    # adlfs
+    # dask-ml
 
   # limits:
   #   cpu: 500m
