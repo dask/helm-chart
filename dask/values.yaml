@@ -55,28 +55,4 @@ worker:
   #   memory: 512Mi
 
 jupyter:
-  name: jupyter
-  image: "daskdev/dask-notebook"
-  imageTag: "latest"
-  replicas: 1
-  component: "jupyter-notebook"
-  serviceType: "LoadBalancer"
-  servicePort: 80
-  containerPort: 8888
-  password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c'  # 'dask'
-  resources: {}
-  condaPackages: >-
-    # numba
-    # xarray
-  pipPackages: >-
-    # gcsfs
-    # s3fs
-    # adlfs
-    # dask-ml
-
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 500m
-  #   memory: 512Mi
+  enabled: false

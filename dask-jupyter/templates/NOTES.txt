@@ -1,0 +1,10 @@
+
+3. Get the Jupyter Notebook URL to visit by running these commands in the same shell:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available, until that the commands below will not work.  
+  You can watch the status by running 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ template "dask.jupyter-fullname" . }}'
+
+  NOTE: The default password to login is `dask`.
+  
+  export JUPYTER_NOTEBOOK_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "dask.jupyter-fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$JUPYTER_NOTEBOOK_IP:{{ .Values.jupyter.servicePort }}
