@@ -22,11 +22,14 @@ spec:
       containers:
         - name: {{ template "dask.worker-fullname" . }}
           image: "{{ .Values.worker.image }}:{{ .Values.worker.imageTag }}"
-          args: ["dask-worker", '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}']
+          args: ["dask-worker",
+                 '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}',
+                 "--nthreads", "{{ .Values.worker.limits.cpu }}",
+                 "--memory-limit", "{{ .Values.worker.limits.memory }}"]
           ports:
             - containerPort: {{ .Values.worker.containerPort }}
           resources: {{ toYaml .Values.worker.resources | indent 12 }}
-          env: 
+          env:
           - name: EXTRA_CONDA_PACKAGES
             value: {{ .Values.worker.condaPackages }}
           - name: EXTRA_PIP_PACKAGES

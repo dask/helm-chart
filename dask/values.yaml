@@ -17,13 +17,12 @@ scheduler:
   resources: {}
   condaPackages: >-
   pipPackages: >-
-
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 500m
-  #   memory: 512Mi
+  limits:
+    cpu: 2
+    memory: 75000000000
+  requests:
+    cpu: 2
+    memory: 75000000000
 
 webUI:
   name: webui
@@ -46,13 +45,12 @@ worker:
     # s3fs
     # adlfs
     # dask-ml
-
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 500m
-  #   memory: 512Mi
+  limits:
+    cpu: 1
+    memory: 35000000000
+  requests:
+    cpu: 1
+    memory: 35000000000
 
 jupyter:
   name: jupyter
@@ -73,10 +71,9 @@ jupyter:
     # s3fs
     # adlfs
     # dask-ml
-
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 500m
-  #   memory: 512Mi
+  limits:
+    cpu: 2
+    memory: 75000000000
+  requests:
+    cpu: 2
+    memory: 75000000000
