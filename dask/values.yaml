@@ -19,10 +19,10 @@ scheduler:
   pipPackages: >-
   limits:
     cpu: 2
-    memory: 75000000000
+    memory: 7500000000
   requests:
     cpu: 2
-    memory: 75000000000
+    memory: 7500000000
 
 webUI:
   name: webui
@@ -47,10 +47,10 @@ worker:
     # dask-ml
   limits:
     cpu: 1
-    memory: 35000000000
+    memory: 3500000000
   requests:
     cpu: 1
-    memory: 35000000000
+    memory: 3500000000
 
 jupyter:
   name: jupyter
@@ -73,7 +73,7 @@ jupyter:
     # dask-ml
   limits:
     cpu: 2
-    memory: 75000000000
+    memory: 7500000000
   requests:
     cpu: 2
-    memory: 75000000000
+    memory: 7500000000
