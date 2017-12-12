@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   dask:
-  - created: 2017-12-06T10:36:19.119129601-05:00
+  - created: 2017-12-12T10:47:17.417325935-05:00
     description: Distributed computation in Python
-    digest: 7d464dba0463347204e63fa4d8387c9b9f398a0efe3f4069e91d8870b72b4074
+    digest: 9f18db9c890e327e90b2bac3f53f24b6a98a3f3bcc08e72df074a0a0495fa6a6
     home: https://github.com/dask/dask
     icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
     maintainers:
@@ -17,4 +17,4 @@ entries:
     urls:
     - dask-0.1.0.tgz
     version: 0.1.0
-generated: 2017-12-06T10:36:19.118737508-05:00
+generated: 2017-12-12T10:47:17.416791466-05:00
