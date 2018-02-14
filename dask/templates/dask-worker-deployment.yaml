@@ -25,7 +25,8 @@ spec:
           args: ["dask-worker",
                  '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}',
                  "--nthreads", "{{ .Values.worker.limits.cpu }}",
-                 "--memory-limit", "{{ .Values.worker.limits.memory }}"]
+                 "--memory-limit", "{{ .Values.worker.limits.memory }}",
+                 "--no-bokeh"]
           ports:
             - containerPort: {{ .Values.worker.containerPort }}
           resources: {{ toYaml .Values.worker.resources | indent 12 }}
@@ -34,3 +35,5 @@ spec:
             value: {{ .Values.worker.condaPackages }}
           - name: EXTRA_PIP_PACKAGES
             value: {{ .Values.worker.pipPackages }}
+          - name: EXTRA_APT_PACKAGES
+            value: {{ .Values.worker.aptPackages }}

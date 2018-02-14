@@ -29,11 +29,13 @@ spec:
           volumeMounts:
           - name: config-volume
             mountPath: /home/jovyan/.jupyter
-          env: 
+          env:
           - name: EXTRA_CONDA_PACKAGES
             value: {{ .Values.jupyter.condaPackages }}
           - name: EXTRA_PIP_PACKAGES
             value: {{ .Values.jupyter.pipPackages }}
+          - name: EXTRA_APT_PACKAGES
+            value: {{ .Values.jupyter.aptPackages }}
           - name: DASK_SCHEDULER_ADDRESS
             value: {{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}
       volumes:
