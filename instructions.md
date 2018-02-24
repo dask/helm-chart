@@ -18,7 +18,7 @@ To update the helm repository perform the following:
 
 4.  Update the index.yaml file of the repository
 
-        helm repo index
+        helm repo index .
 
 5.  Commit changes and push
 
