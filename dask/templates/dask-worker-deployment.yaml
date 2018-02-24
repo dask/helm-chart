@@ -24,8 +24,10 @@ spec:
           image: "{{ .Values.worker.image }}:{{ .Values.worker.imageTag }}"
           args: ["dask-worker",
                  '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}',
-                 "--nthreads", "{{ .Values.worker.limits.cpu }}",
-                 "--memory-limit", "{{ .Values.worker.limits.memory }}",
+                 {{- if .Values.worker.limits -}}
+                 "--nthreads", {{ default .Values.worker.limits.cpu 1 | quote }},
+                 "--memory-limit", {{ default .Values.worker.limits.memory "4GiB" | quote }},
+                 {{- end -}}
                  "--no-bokeh"]
           ports:
             - containerPort: {{ .Values.worker.containerPort }}
