@@ -24,6 +24,10 @@ scheduler:
   requests:
   #   cpu: 1.8
   #   memory: 6G
+  nodeSelector: {}
+  ## Node labels for pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
 
 webUI:
   name: webui
@@ -53,6 +57,10 @@ worker:
   requests:
   #   cpu: 1
   #   memory: 3G
+  nodeSelector: {}
+  ## Node labels for pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
 
 jupyter:
   name: jupyter
@@ -80,3 +88,7 @@ jupyter:
   # requests:
   #   cpu: 2
   #   memory: 6G
+  nodeSelector: {}
+  ## Node labels for pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##

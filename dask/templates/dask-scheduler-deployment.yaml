@@ -34,3 +34,7 @@ spec:
             value: {{ .Values.scheduler.pipPackages }}
           - name: EXTRA_APT_PACKAGES
             value: {{ .Values.scheduler.aptPackages }}
+    {{- if .Values.scheduler.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.scheduler.nodeSelector | indent 8 }}
+      {{- end -}}
