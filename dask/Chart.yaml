@@ -1,5 +1,5 @@
 name: dask
-version: 0.17.2
+version: 0.17.1
 description: Distributed computation in Python
 home: https://dask.pydata.org
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
