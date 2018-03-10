@@ -1,15 +1,22 @@
-apiVersion: extensions/v1beta1
+{{ if .Values.jupyter.enabled -}}
+
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "dask.jupyter-fullname" . }}
+  name: {{ template "dask.fullname" . }}-jupyter
   labels:
     app: {{ template "dask.name" . }}
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    component: "{{ .Release.Name }}-{{ .Values.jupyter.component }}"
+    chart: {{ template "dask.chart" . }}
+    component: jupyter
 spec:
   replicas: {{ .Values.jupyter.replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "dask.name" . }}
+      release: {{ .Release.Name | quote }}
+      component: jupyter
   strategy:
     type: RollingUpdate
   template:
@@ -17,32 +24,28 @@ spec:
       labels:
         app: {{ template "dask.name" . }}
         release: {{ .Release.Name | quote }}
-        component: "{{ .Release.Name }}-{{ .Values.jupyter.component }}"
+        component: jupyter
     spec:
       containers:
-        - name: {{ template "dask.jupyter-fullname" . }}
-          image: "{{ .Values.jupyter.image }}:{{ .Values.jupyter.imageTag }}"
+        - name: {{ template "dask.fullname" . }}-jupyter
+          image: "{{ .Values.jupyter.image.repository }}:{{ .Values.jupyter.image.tag }}"
+          imagePullPolicy: {{ .Values.jupyter.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.jupyter.containerPort }}
+            - containerPort: 8888
           resources:
 {{ toYaml .Values.jupyter.resources | indent 12 }}
           volumeMounts:
-          - name: config-volume
-            mountPath: /home/jovyan/.jupyter
+            - name: config-volume
+              mountPath: /home/jovyan/.jupyter
           env:
-          - name: EXTRA_CONDA_PACKAGES
-            value: {{ .Values.jupyter.condaPackages }}
-          - name: EXTRA_PIP_PACKAGES
-            value: {{ .Values.jupyter.pipPackages }}
-          - name: EXTRA_APT_PACKAGES
-            value: {{ .Values.jupyter.aptPackages }}
-          - name: DASK_SCHEDULER_ADDRESS
-            value: {{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}
+            - name: DASK_SCHEDULER_ADDRESS
+              value: {{ template "dask.fullname" . }}-scheduler:{{ .Values.scheduler.servicePort }}
+{{- if .Values.jupyter.env }}
+{{ toYaml .Values.jupyter.env | indent 12 }}
+{{- end }}
       volumes:
-      - name: config-volume
-        configMap:
-          name: {{ template "dask.jupyter-fullname" . }}-config
-    {{- if .Values.jupyter.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.jupyter.nodeSelector | indent 8 }}
-      {{- end -}}
+        - name: config-volume
+          configMap:
+            name: {{ template "dask.fullname" . }}-jupyter-config
+
+{{ end }}

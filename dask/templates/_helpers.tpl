@@ -3,29 +3,30 @@
 Expand the name of the chart.
 */}}
 {{- define "dask.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 24 -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
-Create fully qualified names.
-We truncate at 24 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
 */}}
-{{- define "dask.scheduler-fullname" -}}
-{{- $name := default .Chart.Name .Values.scheduler.name -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 24 -}}
+{{- define "dask.fullname" -}}
+{{- if .Values.fullnameOverride -}}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- if contains $name .Release.Name -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- end -}}
 {{- end -}}
 
-{{- define "dask.webui-fullname" -}}
-{{- $name := default .Chart.Name .Values.webUI.name -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 24 -}}
-{{- end -}}
-
-{{- define "dask.worker-fullname" -}}
-{{- $name := default .Chart.Name .Values.worker.name -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 24 -}}
-{{- end -}}
-
-{{- define "dask.jupyter-fullname" -}}
-{{- $name := default .Chart.Name .Values.jupyter.name -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 24 -}}
+{{/*
+Create chart name and version as used by the chart label.
+*/}}
+{{- define "dask.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

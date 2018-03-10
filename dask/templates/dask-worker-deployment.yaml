@@ -1,15 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "dask.worker-fullname" . }}
+  name: {{ template "dask.fullname" . }}-worker
   labels:
     app: {{ template "dask.name" . }}
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    component: "{{ .Release.Name }}-{{ .Values.worker.component }}"
+    chart: {{ template "dask.chart" . }}
+    component: worker
 spec:
   replicas: {{ .Values.worker.replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "dask.name" . }}
+      release: {{ .Release.Name | quote }}
+      component: worker
   strategy:
     type: RollingUpdate
   template:
@@ -17,29 +22,25 @@ spec:
       labels:
         app: {{ template "dask.name" . }}
         release: {{ .Release.Name | quote }}
-        component: "{{ .Release.Name }}-{{ .Values.worker.component }}"
+        component: worker
     spec:
       containers:
-        - name: {{ template "dask.worker-fullname" . }}
-          image: "{{ .Values.worker.image }}:{{ .Values.worker.imageTag }}"
-          args: ["dask-worker",
-                 '{{ template "dask.scheduler-fullname" . }}:{{ .Values.scheduler.servicePort }}',
-                 {{- if .Values.worker.limits -}}
-                 "--nthreads", {{ default .Values.worker.limits.cpu 1 | quote }},
-                 "--memory-limit", {{ default .Values.worker.limits.memory "4GiB" | quote }},
-                 {{- end -}}
-                 "--no-bokeh"]
+        - name: {{ template "dask.fullname" . }}-worker
+          image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
+          imagePullPolicy: {{ .Values.worker.image.pullPolicy }}
+          args:
+            - dask-worker
+            - {{ template "dask.fullname" . }}-scheduler:{{ .Values.scheduler.servicePort }}
+          {{- if .Values.worker.limits }}
+            - --nthreads
+            - {{ default .Values.worker.limits.cpu .Values.workers.default_resources.cpu | quote }}
+            - --memory-limit
+            - {{ default .Values.worker.limits.memory .Values.workers.default_resources.memory | quote }}
+          {{- end }}
+            - --no-bokeh
           ports:
-            - containerPort: {{ .Values.worker.containerPort }}
-          resources: {{ toYaml .Values.worker.resources | indent 12 }}
+            - containerPort: 8789
+          resources:
+{{ toYaml .Values.worker.resources | indent 12 }}
           env:
-          - name: EXTRA_CONDA_PACKAGES
-            value: {{ .Values.worker.condaPackages }}
-          - name: EXTRA_PIP_PACKAGES
-            value: {{ .Values.worker.pipPackages }}
-          - name: EXTRA_APT_PACKAGES
-            value: {{ .Values.worker.aptPackages }}
-    {{- if .Values.worker.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.worker.nodeSelector | indent 8 }}
-      {{- end -}}
+{{ toYaml .Values.worker.env | indent 12 }}
