@@ -44,3 +44,7 @@ spec:
 {{ toYaml .Values.worker.resources | indent 12 }}
           env:
 {{ toYaml .Values.worker.env | indent 12 }}
+          volumeMounts:
+{{ toYaml .Values.worker.volumeMounts | indent 12 }}
+      volumes:
+{{ toYaml .Values.worker.volumes | indent 8 }}
