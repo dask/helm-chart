@@ -53,7 +53,8 @@ The following tables lists the configurable parameters of the Dask chart and the
 | `worker.imageTag`            | Container image tag              | `0.17.1`       |
 | `worker.replicas`            | k8s hpa and deployment replicas  | `3`            |
 | `worker.resources`           | Container resources              | `{}`           |
-|
+| `worker.volumes`             | Container volumes                | `Null`         |
+| `worker.volumeMounts`        | Container volumeMounts           | `Null`         |
 
 ### jupyter
 
