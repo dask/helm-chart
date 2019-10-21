@@ -1,0 +1,5 @@
+charts:
+  - name: dask
+    repo:
+      git: dask/helm-chart
+      published: https://helm.dask.org
