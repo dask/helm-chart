@@ -19,14 +19,36 @@ This chart will deploy the following:
 
 ## Installing the Chart
 
+First we need to add the Dask helm repo to our local helm config.
+
+```bash
+helm repo add dask https://helm.dask.org/
+helm repo update
+```
+
 To install the chart with the release name `my-release`:
 
 ```bash
-helm install --name my-release stable/dask
+helm install --name my-release dask/dask
 ```
 
 Depending on how your cluster was setup, you may also need to specify
 a namespace with the following flag: `--namespace my-namespace`.
+
+### Upgrading an existing installation that used stable/dask
+
+This chart is fully compatible with the previous chart, it is just a change of location.
+If you have an existing deployment of Dask which used the now-deprecated `stable/dask` chart
+you can upgrade it by changing the repo name in your upgrade command.
+
+```bash
+# Add the Dask repo if you haven't already
+helm repo add dask https://helm.dask.org/
+helm repo update
+
+# Upgrade your deployment that was previous created with stable/dask
+helm upgrade my-release dask/dask
+```
 
 ## Default Configuration
 
@@ -132,7 +154,7 @@ custom YAML config file, and specify this file when installing your chart with
 the `-f` flag. Example:
 
 ```bash
-helm install --name my-release -f values.yaml stable/dask
+helm install --name my-release -f values.yaml dask/dask
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml) for reference
@@ -144,7 +166,7 @@ If you want to change parameters for a specific install without changing
 `helm install`, and it will override any default values. Example:
 
 ```bash
-helm install --name my-release --set jupyter.enabled=false stable/dask
+helm install --name my-release --set jupyter.enabled=false dask/dask
 ```
 
 ### Customizing Python Environment
