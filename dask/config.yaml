@@ -1,0 +1,13 @@
+worker:
+  env:
+  - name: EXTRA_CONDA_PACKAGES
+    value: numba xarray -c conda-forge
+  - name: EXTRA_PIP_PACKAGES
+    value: s3fs dask-ml --upgrade
+
+jupyter:
+  env:
+  - name: EXTRA_CONDA_PACKAGES
+    value: numba xarray -c conda-forge
+  - name: EXTRA_PIP_PACKAGES
+    value: s3fs dask-ml --upgrade
