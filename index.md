@@ -8,9 +8,9 @@ layout: default
 
 You can add this repository to your local helm configuration as follows :
 
-```
-helm repo add {{ site.repo_name }} {{ site.url }}
-helm repo update
+```console
+$ helm repo add {{ site.repo_name }} {{ site.url }}
+$ helm repo update
 ```
 
 ## Charts
@@ -20,35 +20,27 @@ helm repo update
 {% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
 {% assign latest_chart = all_charts[0] %}
 
-### {{ title }}
-
-{{ latest_chart.description }}
+<h3>
+  {% if latest_chart.icon %}
+  <img src="{{ latest_chart.icon }}" style="height:1.2em;vertical-align: text-top;" />
+  {% endif %}
+  {{ title }}
+</h3>
 
 [Home]({{ latest_chart.home }}) \| [Source]({{ latest_chart.sources[0] }})
 
-<table>
-  <tr>
-    <th>chart version</th>
-    <th>app version</th>
-    <th>date</th>
-  </tr>
-  {% for chart in all_charts %}
-    {% unless chart.version contains "-" %}
-    <tr>
-      <td>
-      <a href="{{ chart.urls[0] }}">
-          {{ chart.name }}-{{ chart.version }}
-      </a>
-      </td>
-      <td>
-          {{ chart.appVersion }}
-      </td>
-      <td>
-          <span class='date'>{{ chart.created | date_to_rfc822 }}</span>
-      </td>
-    </tr>
-    {% endunless %}
-  {% endfor %}
-</table>
+{{ latest_chart.description }}
+
+```console
+$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
+```
+
+| Chart Version | App Version | Date |
+|---------------|-------------|------|
+{% for chart in all_charts -%}
+{% unless chart.version contains "-" -%}
+| [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) | {{ chart.appVersion }} | {{ chart.created | date_to_rfc822 }} |
+{% endunless -%}
+{% endfor -%}
 
 {% endfor %}
