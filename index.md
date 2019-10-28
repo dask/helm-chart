@@ -2,14 +2,30 @@
 layout: default
 ---
 
-See installation instructions at:
+## Getting Started
 
-- [Dask](https://github.com/dask/helm-chart)
+{{ site.description }}
 
-## Stable releases
+You can add this repository to your local helm configuration as follows :
 
-{% assign dask = site.data.index.entries.dask | sort: 'created' | reverse %}
-{% assign all_charts = dask %}
+```
+helm repo add {{ site.repo_name }} {{ site.url }}
+helm repo update
+```
+
+## Charts
+
+{% for helm_chart in site.data.index.entries %}
+{% assign title = helm_chart[0] | capitalize %}
+{% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
+{% assign latest_chart = all_charts[0] %}
+
+### {{ title }}
+
+{{ latest_chart.description }}
+
+[Home]({{ latest_chart.home }}) \| [Source]({{ latest_chart.sources[0] }})
+
 <table>
   <tr>
     <th>chart version</th>
@@ -34,3 +50,5 @@ See installation instructions at:
     {% endunless %}
   {% endfor %}
 </table>
+
+{% endfor %}

@@ -1,3 +1,10 @@
 title: Dask Helm charts for Kubernetes
-description: This branch stores Helm chart tarballs for Dask.
+description: This site stores Helm chart tarballs for Dask.
 theme: minima
+url: "https://helm.dask.org"
+repo_name: dask
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
