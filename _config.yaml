@@ -1,0 +1,10 @@
+title: Dask community Helm charts for Kubernetes
+description: This site stores Helm chart tarballs for the Dask community.
+theme: minima
+url: "https://helm.dask.org"
+repo_name: dask
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
