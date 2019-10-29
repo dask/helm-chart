@@ -1,5 +1,8 @@
 # Dask Helm Chart
 
+[![Travis Build Status](https://travis-ci.com/dask/helm-chart.svg?branch=master)](https://travis-ci.com/dask/helm-chart)
+[![Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.dask[:1].version&color=277A9F)](https://helm.dask.org/)
+
 Dask allows distributed computation in Python.
 
 - <https://dask.org>
@@ -202,3 +205,20 @@ worker:
 > **Note**: The Jupyter and Dask-worker environments should have matching
 > software environments, at least where a user is likely to distribute that
 > functionality.
+
+## Releasing
+
+Releases of the Helm chart are automatically pushed to the `gh-pages` branch by Travis CI when git tags are created.
+
+Before releasing you may want to ensure the chart is up to date with the latest Docker images and Dask versions:
+
+- Update the image tags in `dask/values.yaml` to reflect the [latest release of the Dask Docker images](https://github.com/dask/dask-docker/releases).
+- Update the `appVersion` value in `dask/Chart.yaml` to also reflect this version.
+
+Then to perform a release you need to create and push a new tag.
+
+- Update the `version` key in `dask/Chart.yaml` with the new chart version `x.x.x`.
+- Add a release commit `git commit -a -m "bump version to x.x.x"`.
+- Tag the commit `git tag -a x.x.x -m 'Version x.x.x'`.
+- Push the tags `git push upstream master --tags`.
+- Travis CI will automatically build and release to the chart repository.
