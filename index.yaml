@@ -1,91 +1,302 @@
 apiVersion: v1
 entries:
   dask:
-  - apiVersion: v1
-    appVersion: 2.6.0
-    created: "2019-10-29T15:11:29.95839301Z"
-    description: Distributed computation in Python with task scheduling
-    digest: 4b519643772ab3547aba3b27668054a793b6004a61cec15fddf168d03e65baf1
-    home: https://dask.org
-    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-    maintainers:
-    - email: df.rodriguez143@gmail.com
-      name: danielfrg
-    - email: mrocklin@gmail.com
-      name: mrocklin
-    - email: beberg@gmail.com
-      name: beberg
-    - email: jacob@tomlinson.email
-      name: jacobtomlinson
-    name: dask
-    sources:
-    - https://github.com/dask/dask
-    urls:
-    - https://helm.dask.org/dask-4.0.0.tgz
-    version: 4.0.0
-  - appVersion: 0.17.1
-    created: "2018-03-10T08:59:41.526766893-05:00"
-    description: Distributed computation in Python with task scheduling
-    digest: ebee155cfd898cf6e7aba971891a469674253f1607a7b17a17288a15fb2b16df
-    home: https://dask.pydata.org
-    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-    maintainers:
-    - email: df.rodriguez143@gmail.com
-      name: danielfrg
-    - email: mrocklin@gmail.com
-      name: mrocklin
-    name: dask
-    sources:
-    - https://github.com/dask/dask
-    urls:
-    - dask-1.0.0.tgz
-    version: 1.0.0
-  - created: "2018-03-10T08:59:41.52639159-05:00"
-    description: Distributed computation in Python
-    digest: 17a205ea097fcbbc2b1ba69debac5e9292cb3d2d0bb1db3969858dffa3a031ba
-    home: https://dask.pydata.org
-    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-    maintainers:
-    - email: df.rodriguez143@gmail.com
-      name: danielfrg
-    - email: mrocklin@gmail.com
-      name: mrocklin
-    name: dask
-    sources:
-    - https://github.com/dask/dask
-    urls:
-    - dask-0.17.1.tgz
-    version: 0.17.1
-  - created: "2018-03-10T08:59:41.52607072-05:00"
-    description: Distributed computation in Python
-    digest: 2a6fe6dea37ab4bfc30480d5e432aa41a45952bc862c2f01a35400c95f48cee8
-    home: https://dask.pydata.org
-    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-    maintainers:
-    - email: df.rodriguez143@gmail.com
-      name: danielfrg
-    - email: mrocklin@gmail.com
-      name: mrocklin
-    name: dask
-    sources:
-    - https://github.com/dask/dask
-    urls:
-    - dask-0.17.0.tgz
-    version: 0.17.0
-  - created: "2018-03-10T08:59:41.525771171-05:00"
-    description: Distributed computation in Python
-    digest: 9f18db9c890e327e90b2bac3f53f24b6a98a3f3bcc08e72df074a0a0495fa6a6
-    home: https://github.com/dask/dask
-    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-    maintainers:
-    - email: df.rodriguez143@gmail.com
-      name: danielfrg
-    - email: mrocklin@gmail.com
-      name: mrocklin
-    name: dask
-    sources:
-    - https://github.com/dask/dask
-    urls:
-    - dask-0.1.0.tgz
-    version: 0.1.0
+    - apiVersion: v1
+      appVersion: 2.6.0
+      created: "2019-10-29T15:11:29.95839301Z"
+      description: Distributed computation in Python with task scheduling
+      digest: 4b519643772ab3547aba3b27668054a793b6004a61cec15fddf168d03e65baf1
+      home: https://dask.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+        - email: beberg@gmail.com
+          name: beberg
+        - email: jacob@tomlinson.email
+          name: jacobtomlinson
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-4.0.0.tgz
+      version: 4.0.0
+    - apiVersion: v1
+      appVersion: 1.1.5
+      created: 2019-10-29T14:28:19.256479107Z
+      description: Distributed computation in Python with task scheduling
+      digest: 6e79c9e1514017d87771ac5577f52375b7dec7cd69c0fe9721475d8416d30cc6
+      home: https://dask.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+        - email: beberg@gmail.com
+          name: beberg
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-3.1.0.tgz
+      version: 3.1.0
+    - apiVersion: v1
+      appVersion: 1.1.5
+      created: 2019-09-30T13:57:54.994330781Z
+      description: Distributed computation in Python with task scheduling
+      digest: edb285ce41d6dcc0414d2041284d9777735e119c9f4c2a639e825b5ff6a208ea
+      home: https://dask.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+        - email: beberg@gmail.com
+          name: beberg
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-3.0.0.tgz
+      version: 3.0.0
+    - apiVersion: v1
+      appVersion: 1.1.0
+      created: 2019-08-13T06:57:40.56950655Z
+      description: Distributed computation in Python with task scheduling
+      digest: 7dd9a52945515cec7c4ea4476ada51f13ac0d1f1690cad01f49f9bc25a5b9938
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-2.2.1.tgz
+      version: 2.2.1
+    - appVersion: 1.1.0
+      created: 2019-05-14T21:26:35.720278783Z
+      description: Distributed computation in Python with task scheduling
+      digest: 6968838c547a3757122b71f70af1e1dbedbc4e919e427b46585d624c3f8e77f5
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-2.2.0.tgz
+      version: 2.2.0
+    - appVersion: 1.1.0
+      created: 2019-04-03T09:26:11.54267141Z
+      description: Distributed computation in Python with task scheduling
+      digest: 02ddb1fec1fec8db13941791dbb39761d213df7ef7c6b84cfa4d13250ad41ac3
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-2.1.0.tgz
+      version: 2.1.0
+    - appVersion: 1.0.0
+      created: 2019-01-28T16:55:42.240413387Z
+      description: Distributed computation in Python with task scheduling
+      digest: b6be2a4cb7d68cf403b316a71f38ab4e648a2e6b2658569e958b06ed0308ad01
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-2.0.1.tgz
+      version: 2.0.1
+    - appVersion: 1.0.0
+      created: 2018-12-13T18:25:25.84229597Z
+      description: Distributed computation in Python with task scheduling
+      digest: 989b5534482bf6864de85a00908e1f60dbee71bc5b97c65ae3f2f7d3cd436004
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-2.0.0.tgz
+      version: 2.0.0
+    - appVersion: 0.18.1
+      created: 2018-12-12T13:55:22.848232019Z
+      description: Distributed computation in Python with task scheduling
+      digest: f996019dc7b122ad9a4898608fd22b3c989b70b756d5bfae624b655f42fb9e59
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.1.0.tgz
+      version: 1.1.0
+    - appVersion: 0.17.4
+      created: 2018-08-07T15:55:58.143922792Z
+      description: Distributed computation in Python with task scheduling
+      digest: 27792dd49d9648781b619293002772ec7f0778902cd1d87f7687634c3ee9229b
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.0.4.tgz
+      version: 1.0.4
+    - appVersion: 0.17.1
+      created: 2018-05-07T14:56:14.965267855Z
+      description: Distributed computation in Python with task scheduling
+      digest: ca8bf0a3f8a4c7f283d28d5f47642841ebe2eaa8a38b69c0d4a662bf21126753
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.0.3.tgz
+      version: 1.0.3
+    - appVersion: 0.17.1
+      created: 2018-04-18T19:41:40.6405552Z
+      description: Distributed computation in Python with task scheduling
+      digest: b4b2750deadf53734da310a02f3050b0f789bd22e794f242fb50c9608b2955f9
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.0.2.tgz
+      version: 1.0.2
+    - appVersion: 0.17.1
+      created: 2018-04-11T09:26:22.050019412Z
+      description: Distributed computation in Python with task scheduling
+      digest: d6d67cad6f6abc29fa82ad8869c3496e2a644e12ede465151661cd37db32b2c4
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.0.1.tgz
+      version: 1.0.1
+    - appVersion: 0.17.1
+      created: "2018-03-10T08:59:41.526766893-05:00"
+      description: Distributed computation in Python with task scheduling
+      digest: ebee155cfd898cf6e7aba971891a469674253f1607a7b17a17288a15fb2b16df
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-1.0.0.tgz
+      version: 1.0.0
+    - created: "2018-03-10T08:59:41.52639159-05:00"
+      description: Distributed computation in Python
+      digest: 17a205ea097fcbbc2b1ba69debac5e9292cb3d2d0bb1db3969858dffa3a031ba
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-0.17.1.tgz
+      version: 0.17.1
+    - created: "2018-03-10T08:59:41.52607072-05:00"
+      description: Distributed computation in Python
+      digest: 2a6fe6dea37ab4bfc30480d5e432aa41a45952bc862c2f01a35400c95f48cee8
+      home: https://dask.pydata.org
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-0.17.0.tgz
+      version: 0.17.0
+    - created: "2018-03-10T08:59:41.525771171-05:00"
+      description: Distributed computation in Python
+      digest: 9f18db9c890e327e90b2bac3f53f24b6a98a3f3bcc08e72df074a0a0495fa6a6
+      home: https://github.com/dask/dask
+      icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+      maintainers:
+        - email: df.rodriguez143@gmail.com
+          name: danielfrg
+        - email: mrocklin@gmail.com
+          name: mrocklin
+      name: dask
+      sources:
+        - https://github.com/dask/dask
+      urls:
+        - https://helm.dask.org/dask-0.1.0.tgz
+      version: 0.1.0
 generated: "2019-10-29T15:11:29.95662149Z"
