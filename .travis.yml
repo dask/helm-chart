@@ -1,0 +1,21 @@
+sudo: required
+
+language: python
+python:
+  - "3.6"
+
+install:
+  - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+  - helm init --client-only
+  - pip install --default-timeout=100 git+https://github.com/jupyterhub/chartpress.git
+
+script:
+  - helm lint dask
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ci/deploy.sh
+    on:
+      branch: master
+      tags: true
