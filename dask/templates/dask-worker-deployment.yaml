@@ -39,7 +39,7 @@ spec:
             - --memory-limit
             - {{ .Values.worker.resources.limits.memory | default .Values.worker.default_resources.memory | quote }}
           {{- end }}
-            - --no-bokeh
+            - --no-dashboard
           ports:
             - containerPort: 8789
           resources:
