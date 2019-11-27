@@ -94,6 +94,10 @@ jupyter:
   #    value: "numba xarray -c conda-forge"
   #  - name: EXTRA_PIP_PACKAGES
   #    value: "s3fs dask-ml --upgrade"
+  args:
+  #  - "start.sh"
+  #  - "jupyter"
+  #  - "lab"
   resources: {}
   #  limits:
   #    cpu: 2
