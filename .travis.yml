@@ -7,7 +7,7 @@ python:
 install:
   - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
   - helm init --client-only
-  - pip install --default-timeout=100 git+https://github.com/jupyterhub/chartpress.git
+  - pip install chartpress==0.4.2
 
 script:
   - helm lint dask
