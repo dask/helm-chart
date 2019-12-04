@@ -21,7 +21,7 @@ jobs:
       run: |
         export NEW_DASK_VERSION=${{ steps.latest_tag.outputs.tag }}
         export CURRENT_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
-        find dask -exec sed -i "s/${CURRENT_DASK_VERSION//./\.}/${NEW_DASK_VERSION//./\.}/g" {} \;
+        find dask -type f -exec sed -i "s/${CURRENT_DASK_VERSION//./\.}/${NEW_DASK_VERSION//./\.}/g" {} \;
         git add . && git diff-index --quiet HEAD
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
