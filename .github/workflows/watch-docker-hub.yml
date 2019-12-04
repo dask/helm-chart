@@ -13,9 +13,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Update version
       run: |
-        NEW_DASK_VERSION=$(curl -sL https://hub.docker.com/v2/repositories/daskdev/dask/tags/?page_size=10 | \
+        export NEW_DASK_VERSION=$(curl -sL https://hub.docker.com/v2/repositories/daskdev/dask/tags/?page_size=10 | \
         jq -r '.results|.[]|.name' | grep '.*\..*\..*' | sort -u -r | head -n1)
-        CURRENT_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
+        export CURRENT_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
         egrep -lRZ "$CURRENT_DASK_VERSION" dask | xargs sed -i "s/${CURRENT_DASK_VERSION//./\.}/${NEW_DASK_VERSION//./\.}/g"
         git add . && git diff-index --quiet HEAD
     - name: Create Pull Request
