@@ -30,7 +30,7 @@ jobs:
         git add . && ! git diff-index --quiet HEAD
         
         # Test to see if PR to update tags already exists
-        curl https://api.github.com/repos/dask/helm-chart/pulls | grep 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
+        ! curl https://api.github.com/repos/dask/dask/pulls | jq -r '.[]|.title' | grep 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
