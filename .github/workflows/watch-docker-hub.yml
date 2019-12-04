@@ -2,7 +2,7 @@ name: Check for new versions of the Docker image
 
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "0 * * * *"
 
 jobs:
   check-version:
@@ -37,7 +37,10 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
         title: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
+        reviewers: 'jacobtomlinson'
+        branch: 'upgrade-dask-${{ steps.latest_tag.outputs.tag }}'
+        branch-suffix: 'none'
         body: |
-          A new Dask docker image version has been detected. 
+          A new Dask Docker image version has been detected. 
           
           Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
