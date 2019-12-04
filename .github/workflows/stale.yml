@@ -1,0 +1,28 @@
+name: Check for new versions of the Docker image
+
+on:
+  schedule:
+  - cron: "0 * * * *"
+
+jobs:
+  check-version:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Update version
+      run: |
+        NEW_DASK_VERSION=$(curl -sL https://hub.docker.com/v2/repositories/daskdev/dask/tags/?page_size=10 | \
+        jq -r '.results|.[]|.name' | grep '.*\..*\..*' | sort -u -r | head -n1)
+        CURRENT_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
+        egrep -lRZ "$CURRENT_DASK_VERSION" dask | xargs sed -i '' "s/${CURRENT_DASK_VERSION//./\.}/${NEW_DASK_VERSION//./\.}/g"
+        git add . && git diff-index --quiet HEAD
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Update Dask Version
+        title: 'Update Dask Version'
+        body: |
+          A new Dask docker image version has been detected. Updation chart version.
