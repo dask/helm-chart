@@ -17,17 +17,27 @@ jobs:
       with:
         org: 'daskdev'
         repo: 'dask'
-    - name: Update version
+    - name: Update Dask version in files
       run: |
-        export NEW_DASK_VERSION=${{ steps.latest_tag.outputs.tag }}
-        export CURRENT_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
-        find dask -type f -exec sed -i "s/${CURRENT_DASK_VERSION//./\.}/${NEW_DASK_VERSION//./\.}/g" {} \;
-        git add . && git diff-index --quiet HEAD
+        # Get tags
+        export LATEST_DASK_VERSION=${{ steps.latest_tag.outputs.tag }}
+        export CHART_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
+        
+        # Replace tags in files
+        find dask -type f -exec sed -i "s/${CHART_DASK_VERSION//./\.}/${LATEST_DASK_VERSION//./\.}/g" {} \;
+        
+        # Test to see if anything actually changed
+        git add . && ! git diff-index --quiet HEAD
+        
+        # Test to see if PR to update tags already exists
+        curl https://api.github.com/repos/dask/helm-chart/pulls | grep 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Update Dask Version
-        title: 'Update Dask Version'
+        commit-message: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
+        title: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
         body: |
-          A new Dask docker image version has been detected. Updation chart version.
+          A new Dask docker image version has been detected. 
+          
+          Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
