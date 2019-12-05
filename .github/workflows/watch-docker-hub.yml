@@ -25,12 +25,6 @@ jobs:
         
         # Replace tags in files
         find dask -type f -exec sed -i "s/${CHART_DASK_VERSION//./\.}/${LATEST_DASK_VERSION//./\.}/g" {} \;
-        
-        # Test to see if anything actually changed
-        git add . && ! git diff-index --quiet HEAD
-        
-        # Test to see if PR to update tags already exists
-        ! curl https://api.github.com/repos/dask/helm-chart/pulls | jq -r '.[]|.title' | grep 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
@@ -38,7 +32,7 @@ jobs:
         commit-message: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
         title: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
         reviewers: 'jacobtomlinson'
-        branch: 'upgrade-dask-${{ steps.latest_tag.outputs.tag }}'
+        branch: 'upgrade-dask-version'
         branch-suffix: 'none'
         body: |
           A new Dask Docker image version has been detected. 
