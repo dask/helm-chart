@@ -17,11 +17,16 @@ jobs:
       with:
         org: 'daskdev'
         repo: 'dask'
+    - name: Read Helm Chart
+      id: chart
+      uses: jacobtomlinson/gha-read-helm-chart@0.1.0
+      with:
+        path: dask
     - name: Update Dask version in files
       run: |
         # Get tags
         export LATEST_DASK_VERSION=${{ steps.latest_tag.outputs.tag }}
-        export CHART_DASK_VERSION=$(cat dask/Chart.yaml | grep appVersion | awk '{ print $2 }')
+        export CHART_DASK_VERSION=${{ steps.chart.outputs.appVersion }}
         
         # Replace tags in files
         find dask -type f -exec sed -i "s/${CHART_DASK_VERSION//./\.}/${LATEST_DASK_VERSION//./\.}/g" {} \;
