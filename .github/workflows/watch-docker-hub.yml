@@ -22,14 +22,12 @@ jobs:
       uses: jacobtomlinson/gha-read-helm-chart@0.1.1
       with:
         path: dask
-    - name: Update Dask version in files
-      run: |
-        # Get tags
-        export LATEST_DASK_VERSION=${{ steps.latest_tag.outputs.tag }}
-        export CHART_DASK_VERSION=${{ steps.chart.outputs.appVersion }}
-        
-        # Replace tags in files
-        find dask -type f -exec sed -i "s/${CHART_DASK_VERSION//./\.}/${LATEST_DASK_VERSION//./\.}/g" {} \;
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@0.1.0
+      with:
+        include: "dask/"
+        find: "${{ steps.chart.outputs.appVersion }}"
+        replace: "${{ steps.latest_tag.outputs.tag }}"
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
