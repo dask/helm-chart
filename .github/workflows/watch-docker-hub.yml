@@ -19,7 +19,7 @@ jobs:
         repo: 'dask'
     - name: Read Helm Chart
       id: chart
-      uses: jacobtomlinson/gha-read-helm-chart@0.1.0
+      uses: jacobtomlinson/gha-read-helm-chart@0.1.1
       with:
         path: dask
     - name: Update Dask version in files
