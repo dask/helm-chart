@@ -86,16 +86,17 @@ their default values.
 
 ### Dask worker
 
-| Parameter             | Description                     | Default        |
-| --------------------- | ------------------------------- | -------------- |
-| `worker.name`         | Dask worker name                | `worker`       |
-| `worker.image`        | Container image name            | `daskdev/dask` |
-| `worker.imageTag`     | Container image tag             | `1.1.5`        |
-| `worker.replicas`     | k8s hpa and deployment replicas | `3`            |
-| `worker.resources`    | Container resources             | `{}`           |
-| `worker.tolerations`  | Tolerations                     | `[]`           |
-| `worker.nodeSelector` | nodeSelector                    | `{}`           |
-| `worker.affinity`     | Container affinity              | `{}`           |
+| Parameter             | Description                      | Default        |
+| --------------------- | -------------------------------- | -------------- |
+| `worker.name`         | Dask worker name                 | `worker`       |
+| `worker.image`        | Container image name             | `daskdev/dask` |
+| `worker.imageTag`     | Container image tag              | `1.1.5`        |
+| `worker.replicas`     | k8s hpa and deployment replicas  | `3`            |
+| `worker.resources`    | Container resources              | `{}`           |
+| `worker.tolerations`  | Tolerations                      | `[]`           |
+| `worker.nodeSelector` | nodeSelector                     | `{}`           |
+| `worker.affinity`     | Container affinity               | `{}`           |
+| `worker.port`         | Worker port (defaults to random) | `""`           |
 
 ### Jupyter
 

@@ -40,6 +40,10 @@ spec:
             - {{ .Values.worker.resources.limits.memory | default .Values.worker.default_resources.memory | quote }}
           {{- end }}
             - --no-dashboard
+          {{- if .Values.worker.port }}
+            - --worker-port
+            - {{ .Values.worker.port | quote }}
+          {{- end }}
           ports:
             - containerPort: 8789
           resources:
