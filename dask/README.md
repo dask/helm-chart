@@ -121,7 +121,7 @@ their default values.
 #### Jupyter Password
 
 When launching the Jupyter server, you will be prompted for a password. The
-default password set in [values.yaml](values.yaml) is `dask`.
+default password set in [values.yaml](/dask/values.yaml) is `dask`.
 
 ```yaml
 jupyter:
@@ -146,7 +146,7 @@ $ cat /home/dask/.jupyter/jupyter_notebook_config.json
 }
 ```
 
-Replace the `jupyter.password` field in [values.yaml](values.yaml) with the
+Replace the `jupyter.password` field in [values.yaml](/dask/values.yaml) with the
 hash generated for your new password.
 
 ## Custom Configuration
@@ -163,7 +163,7 @@ the `-f` flag. Example:
 helm install --name my-release -f values.yaml dask/dask
 ```
 
-> **Tip**: You can use the default [values.yaml](values.yaml) for reference
+> **Tip**: You can use the default [values.yaml](/dask/values.yaml) for reference
 
 ### Command-Line Arguments
 
