@@ -15,4 +15,6 @@ data:
     c = get_config()
     c.NotebookApp.password = '{{ .Values.jupyter.password }}'
 
+    {{ .Values.jupyter.extraConfig | nindent 4 }}
+
 {{ end }}

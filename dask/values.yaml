@@ -99,6 +99,10 @@ jupyter:
   #  - "start.sh"
   #  - "jupyter"
   #  - "lab"
+  extraConfig: |-
+    # Extra Jupyter config goes here
+    # E.g
+    # c.NotebookApp.port = 8888
   resources: {}
   #  limits:
   #    cpu: 2
