@@ -6,7 +6,7 @@ scheduler:
   name: scheduler
   image:
     repository: "daskdev/dask"
-    tag: 2.9.2
+    tag: 2.10.1
     pullPolicy: IfNotPresent
     # See https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     pullSecrets:
@@ -44,7 +44,7 @@ worker:
   name: worker
   image:
     repository: "daskdev/dask"
-    tag: 2.9.2
+    tag: 2.10.1
     pullPolicy: IfNotPresent
     # dask_worker: "dask-cuda-worker"
     dask_worker: "dask-worker"
@@ -79,7 +79,7 @@ jupyter:
   enabled: true
   image:
     repository: "daskdev/dask-notebook"
-    tag: 2.9.2
+    tag: 2.10.1
     pullPolicy: IfNotPresent
     pullSecrets:
     #  - name: regcred
