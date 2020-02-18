@@ -2,41 +2,41 @@ name: Check for new versions of the Docker image
 
 on:
   schedule:
-  - cron: "0 * * * *"
+    - cron: "0 * * * *"
 
 jobs:
   check-version:
-
     runs-on: ubuntu-latest
+    if: github.repository == 'dask/helm-chart'
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Get latest Docker Hub tag
-      id: latest_tag
-      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.2
-      with:
-        org: 'daskdev'
-        repo: 'dask'
-    - name: Read Helm Chart
-      id: chart
-      uses: jacobtomlinson/gha-read-helm-chart@0.1.1
-      with:
-        path: dask
-    - name: Find and Replace
-      uses: jacobtomlinson/gha-find-replace@0.1.0
-      with:
-        include: "dask/"
-        find: "${{ steps.chart.outputs.appVersion }}"
-        replace: "${{ steps.latest_tag.outputs.tag }}"
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
-        title: 'Update Dask version to ${{ steps.latest_tag.outputs.tag }}'
-        reviewers: 'jacobtomlinson'
-        branch: 'upgrade-dask-version'
-        body: |
-          A new Dask Docker image version has been detected. 
-          
-          Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
+      - uses: actions/checkout@v2
+      - name: Get latest Docker Hub tag
+        id: latest_tag
+        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.2
+        with:
+          org: "daskdev"
+          repo: "dask"
+      - name: Read Helm Chart
+        id: chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.1
+        with:
+          path: dask
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@0.1.0
+        with:
+          include: "dask/"
+          find: "${{ steps.chart.outputs.appVersion }}"
+          replace: "${{ steps.latest_tag.outputs.tag }}"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
+          title: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
+          reviewers: "jacobtomlinson"
+          branch: "upgrade-dask-version"
+          body: |
+            A new Dask Docker image version has been detected.
+
+            Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
