@@ -51,11 +51,12 @@ worker:
     pullSecrets:
     #  - name: regcred
   replicas: 3
-  aptPackages: >-
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1
     memory: "4GiB"
   env:
+  #  - name: EXTRA_APT_PACKAGES
+  #    value: build-essential
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: numba xarray -c conda-forge
   #  - name: EXTRA_PIP_PACKAGES
@@ -69,10 +70,11 @@ worker:
   #    cpu: 1
   #    memory: 3G
   #    nvidia.com/gpu: 1
-  tolerations: []
-  nodeSelector: {}
-  affinity: {}
-  port: ""
+  # tolerations: []
+  # nodeSelector: {}
+  # affinity: {}
+  # serviceAccountName: ""
+  # port: ""
 
 jupyter:
   name: jupyter
@@ -112,6 +114,7 @@ jupyter:
   #    memory: 6G
   tolerations: []
   nodeSelector: {}
+  # serviceAccountName: ""
   affinity: {}
   ingress:
     enabled: false

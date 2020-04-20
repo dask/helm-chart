@@ -49,8 +49,9 @@ spec:
           {{- if .Values.jupyter.env }}
             {{- toYaml .Values.jupyter.env | nindent 12 }}
           {{- end }}
-      nodeSelector:
-        {{- toYaml .Values.jupyter.nodeSelector | nindent 8 }}
+      {{- if .Values.jupyter.serviceAccountName }}
+      serviceAccountName: {{ .Values.jupyter.serviceAccountName | quote }}
+      {{- end }}
       volumes:
         - name: config-volume
           configMap:
