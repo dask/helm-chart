@@ -49,9 +49,6 @@ spec:
           {{- if .Values.jupyter.env }}
             {{- toYaml .Values.jupyter.env | nindent 12 }}
           {{- end }}
-      {{- if .Values.jupyter.serviceAccountName }}
-      serviceAccountName: {{ .Values.jupyter.serviceAccountName | quote }}
-      {{- end }}
       volumes:
         - name: config-volume
           configMap:
@@ -67,5 +64,8 @@ spec:
     {{- with .Values.jupyter.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.jupyter.serviceAccountName }}
+      serviceAccountName: {{ .Values.jupyter.serviceAccountName | quote }}
     {{- end }}
 {{- end }}

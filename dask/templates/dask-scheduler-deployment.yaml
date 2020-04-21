@@ -47,9 +47,6 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- if .Values.scheduler.serviceAccountName }}
-      serviceAccountName: {{ .Values.scheduler.serviceAccountName | quote }}
-    {{- end }}
     {{- with .Values.scheduler.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
@@ -57,4 +54,7 @@ spec:
     {{- with .Values.scheduler.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.scheduler.serviceAccountName }}
+      serviceAccountName: {{ .Values.scheduler.serviceAccountName | quote }}
     {{- end }}
