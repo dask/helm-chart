@@ -74,6 +74,7 @@ worker:
   tolerations: []
   nodeSelector: {}
   affinity: {}
+  securityContext: {}
   # serviceAccountName: ""
   # port: ""
 
@@ -116,6 +117,7 @@ jupyter:
   tolerations: []
   nodeSelector: {}
   affinity: {}
+  securityContext: {}
   # serviceAccountName: ""
   ingress:
     enabled: false

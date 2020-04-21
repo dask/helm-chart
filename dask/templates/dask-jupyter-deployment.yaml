@@ -61,6 +61,10 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.jupyter.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- with .Values.jupyter.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
