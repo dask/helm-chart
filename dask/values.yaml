@@ -37,9 +37,9 @@ webUI:
     # secretName: dask-scheduler-tls
     hostname: dask-ui.example.com
     annotations:
-    # kubernetes.io/ingress.class: "nginx"
-    # secretName: my-tls-cert
-    # kubernetes.io/tls-acme: "true"
+      # kubernetes.io/ingress.class: "nginx"
+      # secretName: my-tls-cert
+      # kubernetes.io/tls-acme: "true"
 
 worker:
   name: worker
@@ -57,7 +57,7 @@ worker:
     memory: "4GiB"
   env:
   #  - name: EXTRA_APT_PACKAGES
-  #    value: build-essential
+  #    value: build-essential openssl
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: numba xarray -c conda-forge
   #  - name: EXTRA_PIP_PACKAGES
@@ -123,6 +123,6 @@ jupyter:
     # secretName: dask-jupyter-tls
     hostname: dask-jupyter.example.com
     annotations:
-    # kubernetes.io/ingress.class: "nginx"
-    # secretName: my-tls-cert
-    # kubernetes.io/tls-acme: "true"
+      # kubernetes.io/ingress.class: "nginx"
+      # secretName: my-tls-cert
+      # kubernetes.io/tls-acme: "true"
