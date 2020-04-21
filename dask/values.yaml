@@ -24,8 +24,9 @@ scheduler:
   #    cpu: 1.8
   #    memory: 6G
   tolerations: []
-  nodeSelector: {}
   affinity: {}
+  nodeSelector: {}
+  # serviceAccountName: ""
 
 webUI:
   name: webui
@@ -36,9 +37,9 @@ webUI:
     # secretName: dask-scheduler-tls
     hostname: dask-ui.example.com
     annotations:
-     # kubernetes.io/ingress.class: "nginx"
-     # secretName: my-tls-cert
-     # kubernetes.io/tls-acme: "true"
+      # kubernetes.io/ingress.class: "nginx"
+      # secretName: my-tls-cert
+      # kubernetes.io/tls-acme: "true"
 
 worker:
   name: worker
@@ -51,11 +52,12 @@ worker:
     pullSecrets:
     #  - name: regcred
   replicas: 3
-  aptPackages: >-
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1
     memory: "4GiB"
   env:
+  #  - name: EXTRA_APT_PACKAGES
+  #    value: build-essential openssl
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: numba xarray -c conda-forge
   #  - name: EXTRA_PIP_PACKAGES
@@ -72,7 +74,9 @@ worker:
   tolerations: []
   nodeSelector: {}
   affinity: {}
-  port: ""
+  securityContext: {}
+  # serviceAccountName: ""
+  # port: ""
 
 jupyter:
   name: jupyter
@@ -113,6 +117,8 @@ jupyter:
   tolerations: []
   nodeSelector: {}
   affinity: {}
+  securityContext: {}
+  # serviceAccountName: ""
   ingress:
     enabled: false
     tls: false

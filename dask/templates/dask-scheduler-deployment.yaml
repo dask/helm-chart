@@ -55,3 +55,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- if .Values.scheduler.serviceAccountName }}
+      serviceAccountName: {{ .Values.scheduler.serviceAccountName | quote }}
+    {{- end }}

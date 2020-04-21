@@ -49,8 +49,6 @@ spec:
           {{- if .Values.jupyter.env }}
             {{- toYaml .Values.jupyter.env | nindent 12 }}
           {{- end }}
-      nodeSelector:
-        {{- toYaml .Values.jupyter.nodeSelector | nindent 8 }}
       volumes:
         - name: config-volume
           configMap:
@@ -63,8 +61,15 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.jupyter.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- with .Values.jupyter.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.jupyter.serviceAccountName }}
+      serviceAccountName: {{ .Values.jupyter.serviceAccountName | quote }}
     {{- end }}
 {{- end }}

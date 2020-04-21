@@ -54,6 +54,10 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.worker.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- with .Values.worker.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
@@ -61,4 +65,7 @@ spec:
     {{- with .Values.worker.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.worker.serviceAccountName }}
+      serviceAccountName: {{ .Values.worker.serviceAccountName | quote }}
     {{- end }}
