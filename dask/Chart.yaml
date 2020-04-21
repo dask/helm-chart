@@ -2,7 +2,7 @@
 apiVersion: v1
 name: dask
 version: 4.1.6
-appVersion: 2.11.0
+appVersion: 2.14.0
 description: Distributed computation in Python with task scheduling
 home: https://dask.org
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
