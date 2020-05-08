@@ -15,7 +15,9 @@ spec:
   tls:
     - hosts:
       - {{ .Values.jupyter.ingress.hostname | quote }}
-      secretName: {{ .Values.jupyter.ingress.secretName | default (printf "%s-jupyter-tls" (include "dask.fullname" .)) }}
+      {{- if .Values.jupyter.ingress.secretName }}
+      secretName: {{ .Values.jupyter.ingress.secretName }}
+      {{- end }}
 {{- end }}
   rules:
   - host: {{ .Values.jupyter.ingress.hostname }}
