@@ -71,12 +71,14 @@ worker:
   #    cpu: 1
   #    memory: 3G
   #    nvidia.com/gpu: 1
+
   tolerations: []
   nodeSelector: {}
   affinity: {}
   securityContext: {}
   # serviceAccountName: ""
   # port: ""
+  # threads_per_worker: 1
 
 jupyter:
   name: jupyter
