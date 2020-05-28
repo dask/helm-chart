@@ -71,14 +71,15 @@ worker:
   #    cpu: 1
   #    memory: 3G
   #    nvidia.com/gpu: 1
-
   tolerations: []
   nodeSelector: {}
   affinity: {}
   securityContext: {}
   # serviceAccountName: ""
   # port: ""
-  # threads_per_worker: 1
+  #  this option overrides "--nthreads" on workers, which defaults to resources.limits.cpu / default_resources.limits.cpu
+  #  use it if you need to limit the amount of threads used by multicore workers, or to make workers with non-whole-number cpu limits
+  # threads_per_worker: 1 
 
 jupyter:
   name: jupyter
