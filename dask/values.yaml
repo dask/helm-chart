@@ -12,10 +12,12 @@ scheduler:
     pullSecrets:
     #  - name: regcred
   replicas: 1
-  # serviceType: "ClusterIP"
+  serviceType: "ClusterIP"
   # serviceType: "NodePort"
-  serviceType: "LoadBalancer"
+  # serviceType: "LoadBalancer"
   servicePort: 8786
+  port: 8080
+  UIPort: 8081
   resources: {}
   #  limits:
   #    cpu: 1.8
@@ -91,10 +93,11 @@ jupyter:
     pullSecrets:
     #  - name: regcred
   replicas: 1
-  # serviceType: "ClusterIP"
+  serviceType: "ClusterIP"
   # serviceType: "NodePort"
-  serviceType: "LoadBalancer"
+  # serviceType: "LoadBalancer"
   servicePort: 80
+  notebookPort: 8082
   # This hash corresponds to the password 'dask'
   password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c'
   env:

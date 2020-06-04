@@ -27,12 +27,16 @@ cluster. You can get these addresses by running the following:
 
 {{- else if contains "ClusterIP"  .Values.scheduler.serviceType }}
 
-  export DASK_SCHEDULER="127.0.0.1"
-  export DASK_SCHEDULER_UI_IP="127.0.0.1"
-  export DASK_SCHEDULER_PORT=8080
-  export DASK_SCHEDULER_UI_PORT=8081
-  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-scheduler $DASK_SCHEDULER_PORT:{{ .Values.scheduler.servicePort }} &
-  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-scheduler $DASK_SCHEDULER_UI_PORT:{{ .Values.webUI.servicePort }} &
+  Port forwarding for the scheduler:
+  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-scheduler {{ .Values.scheduler.port }}:{{ .Values.scheduler.servicePort }} &
+
+  The scheduler is accessible via tcp://127.0.0.1:{{ .Values.scheduler.port }}.
+
+  Port forwarding for the scheduler UI:
+  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-scheduler {{ .Values.scheduler.UIPort }}:{{ .Values.webUI.servicePort }} &
+
+  Visit http://127.0.0.1:{{ .Values.scheduler.UIPort }} to see the web UI.
+
 
 {{- end }}
 
@@ -49,10 +53,10 @@ cluster. You can get these addresses by running the following:
 
 {{- else if contains "ClusterIP"  .Values.jupyter.serviceType }}
 
-  export JUPYTER_NOTEBOOK_IP="127.0.0.1"
-  export JUPYTER_NOTEBOOK_PORT=8082
-  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-jupyter $JUPYTER_NOTEBOOK_PORT:{{ .Values.jupyter.servicePort }} &
+  Port forwarding for the Jupyterlab:
+  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "dask.fullname" . }}-jupyter {{ .Values.jupyter.notebookPort }}:{{ .Values.jupyter.servicePort }} &
 
+  Visit http://127.0.0.1:{{ .Values.jupyter.notebookPort }} to see the Jupyterlab.
 {{- end }}
 
   echo tcp://$DASK_SCHEDULER:$DASK_SCHEDULER_PORT               -- Dask Client connection
