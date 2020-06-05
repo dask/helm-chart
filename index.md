@@ -35,8 +35,17 @@ $ helm repo update
 $ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
 ```
 
+You can then use the `HelmCluster` cluster manager in [dask-kubernetes](https://kubernetes.dask.org/en/latest/) to manage scaling form your Python session.
+
+```python
+from dask_kubernetes import HelmCluster
+
+cluster = HelmCluster(release_name="myrelease")
+cluster.scale(10)
+```
+
 | Chart Version | App Version | Date |
-|---------------|-------------|------|
+| ------------- | ----------- | ---- |
 {% for chart in all_charts -%}
 {% unless chart.version contains "-" -%}
 | [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) | {{ chart.appVersion }} | {{ chart.created | date_to_rfc822 }} |
