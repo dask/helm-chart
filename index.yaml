@@ -2,6 +2,28 @@ apiVersion: v1
 entries:
   dask:
   - apiVersion: v1
+    appVersion: 2.18.0
+    created: "2020-06-08T13:44:49.760159624Z"
+    description: Distributed computation in Python with task scheduling
+    digest: 1b9857ee583a90c92d0e4440c9e926387fd987dfd9e94cb937d38555e959475b
+    home: https://dask.org
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: df.rodriguez143@gmail.com
+      name: danielfrg
+    - email: mrocklin@gmail.com
+      name: mrocklin
+    - email: beberg@gmail.com
+      name: beberg
+    - email: jacob@tomlinson.email
+      name: jacobtomlinson
+    name: dask
+    sources:
+    - https://github.com/dask/dask
+    urls:
+    - https://helm.dask.org/dask-4.1.9.tgz
+    version: 4.1.9
+  - apiVersion: v1
     appVersion: 2.17.2
     created: "2020-06-01T12:37:20.948197379Z"
     description: Distributed computation in Python with task scheduling
@@ -497,4 +519,4 @@ entries:
     urls:
     - https://helm.dask.org/dask-0.1.0.tgz
     version: 0.1.0
-generated: "2020-06-01T12:37:20.946924249Z"
+generated: "2020-06-08T13:44:49.759111384Z"
