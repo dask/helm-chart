@@ -220,6 +220,14 @@ Before releasing you may want to ensure the chart is up to date with the latest 
 
 Then to perform a release you need to create and push a new tag.
 
+You can either use the `ci/release.sh` script.
+
+```
+ci/release.sh x.x.x
+```
+
+Or manually run the steps below.
+
 - Update the `version` key in `dask/Chart.yaml` with the new chart version `x.x.x`.
 - For ease of releasing set the version as an environment variable `export DASK_HELM_VERSION=x.x.x`.
 - Add a release commit `git commit -a -m "bump version to $DASK_HELM_VERSION"`.
