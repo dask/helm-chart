@@ -221,7 +221,8 @@ Before releasing you may want to ensure the chart is up to date with the latest 
 Then to perform a release you need to create and push a new tag.
 
 - Update the `version` key in `dask/Chart.yaml` with the new chart version `x.x.x`.
-- Add a release commit `git commit -a -m "bump version to x.x.x"`.
-- Tag the commit `git tag -a x.x.x -m 'Version x.x.x'`.
+- For ease of releasing set the version as an environment variable `export DASK_HELM_VERSION=x.x.x`.
+- Add a release commit `git commit -a -m "bump version to $DASK_HELM_VERSION"`.
+- Tag the commit `git tag -a $DASK_HELM_VERSION -m "Version $DASK_HELM_VERSION"`.
 - Push the tags `git push upstream master --tags`.
 - Travis CI will automatically build and release to the chart repository.
