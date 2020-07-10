@@ -43,6 +43,10 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /usr/local/etc/jupyter
+          {{- if .Values.jupyter.persistent.enable }}
+            - name: jupyter-persistent
+              mountPath: {{ .Values.jupyter.persistent.path }}
+          {{- end }}
           env:
             - name: DASK_SCHEDULER_ADDRESS
               value: {{ template "dask.fullname" . }}-scheduler:{{ .Values.scheduler.servicePort }}
@@ -53,6 +57,11 @@ spec:
         - name: config-volume
           configMap:
             name: {{ template "dask.fullname" . }}-jupyter-config
+        {{- if .Values.jupyter.persistent.enable }}
+        - name: jupyter-persistent
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-jupyter-persistent
+        {{- end }}
     {{- with .Values.jupyter.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -72,4 +81,21 @@ spec:
     {{- if .Values.jupyter.serviceAccountName }}
       serviceAccountName: {{ .Values.jupyter.serviceAccountName | quote }}
     {{- end }}
+{{- if .Values.jupyter.persistent.enable }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-jupyter-persistent
+spec:
+  {{- if (not (eq .Values.jupyter.persistent.storageClass "default")) }}
+  storageClassName: {{ .Values.jupyter.persistent.storageClass }}
+  {{- end }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.jupyter.persistent.size }}
+{{- end }}
+
 {{- end }}
