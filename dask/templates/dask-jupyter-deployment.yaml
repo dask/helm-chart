@@ -28,6 +28,15 @@ spec:
     spec:
       imagePullSecrets:
         {{- toYaml .Values.jupyter.image.pullSecrets | nindent 8 }}
+      {{- if .Values.jupyter.persistent.enable }}
+      initContainers:
+        - name: {{ .Release.Name }}-jupyter-volume-permissions
+          image: busybox:1.31.1
+          command: ["sh", "-c", "chmod -Rv 777 /data/ && chown 0:100 -R /data/"]
+          volumeMounts:
+            - name: jupyter-persistent
+              mountPath: /data
+      {{- end }}
       containers:
         - name: {{ template "dask.fullname" . }}-jupyter
           image: "{{ .Values.jupyter.image.repository }}:{{ .Values.jupyter.image.tag }}"
