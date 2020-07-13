@@ -112,11 +112,15 @@ their default values.
 | `jupyter.tolerations`         | Tolerations                        | `[]`                    |
 | `jupyter.nodeSelector`        | nodeSelector                       | `{}`                    |
 | `jupyter.affinity`            | Container affinity                 | `{}`                    |
-| `jupyter.ingress.enabled`     | Enable ingress controller resource | false                   |
+| `jupyter.ingress.enabled`     | Enable ingress controller resource | `false`                 |
 | `jupyter.ingress.hostname`    | Ingress resource hostnames         | dask-ui.example.com     |
-| `jupyter.ingress.tls`         | Ingress TLS configuration          | false                   |
+| `jupyter.ingress.tls`         | Ingress TLS configuration          | `false`                 |
 | `jupyter.ingress.secretName`  | Ingress TLS secret name            | `dask-jupyter-tls`      |
 | `jupyter.ingress.annotations` | Ingress annotations configuration  | null                    |
+| `jupyter.persistent.enable`   | Enable persistent storage          | `false`                 |
+| `jupyter.persistent.size`     | Size of persistent storage         | `1Gi`                   |
+| `jupyter.persistent.path`     | Path of Persistent Volume mount    | `/home/jovyan`          |
+
 
 #### Jupyter Password
 

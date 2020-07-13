@@ -97,6 +97,13 @@ jupyter:
   servicePort: 80
   # This hash corresponds to the password 'dask'
   password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c'
+  persistent:
+    enable: false
+    storageClass: "default"
+    size: 1Gi
+    path: /home/jovyan/
+    # run init container that will set the volume directory ownership to jovyan
+    setPermissions: true
   env:
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: "numba xarray -c conda-forge"
