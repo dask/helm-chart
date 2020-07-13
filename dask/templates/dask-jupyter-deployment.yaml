@@ -28,11 +28,11 @@ spec:
     spec:
       imagePullSecrets:
         {{- toYaml .Values.jupyter.image.pullSecrets | nindent 8 }}
-      {{- if .Values.jupyter.persistent.enable }}
+      {{- if (and .Values.jupyter.persistent.enable .Values.jupyter.persistent.setPermissions) }}
       initContainers:
         - name: {{ .Release.Name }}-jupyter-volume-permissions
           image: busybox:1.31.1
-          command: ["sh", "-c", "chmod -Rv 777 /data/ && chown 0:100 -R /data/"]
+          command: ["sh", "-c", "chmod -Rv 755 /data/ && chown 1000:100 -R /data/"]
           volumeMounts:
             - name: jupyter-persistent
               mountPath: /data

@@ -101,7 +101,9 @@ jupyter:
     enable: false
     storageClass: "default"
     size: 1Gi
-    path: /home/jovyan/persistent
+    path: /home/jovyan/
+    # run init container that will set the volume directory ownership to jovyan
+    setPermissions: true
   env:
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: "numba xarray -c conda-forge"
