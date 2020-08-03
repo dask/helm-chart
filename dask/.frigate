@@ -1,7 +1,6 @@
+{% extends "markdown.jinja2" %}
 
-Dask
-===========
-
+{% block description -%}
 [![Travis Build Status](https://travis-ci.com/dask/helm-chart.svg?branch=master)](https://travis-ci.com/dask/helm-chart)
 [![Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.dask[:1].version&color=277A9F)](https://helm.dask.org/)
 [![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=Dask&query=$.entries.dask[:1].appVersion&color=D67548)](https://helm.dask.org/)
@@ -53,69 +52,9 @@ helm repo update
 # Upgrade your deployment that was previous created with stable/dask
 helm upgrade my-release dask/dask
 ```
-## Configuration
+{%- endblock %}
 
-The following table lists the configurable parameters of the Dask chart and their default values.
-
-| Parameter                | Description             | Default        |
-| ------------------------ | ----------------------- | -------------- |
-| `scheduler.name` | Dask scheduler name. | `"scheduler"` |
-| `scheduler.image.repository` | Container image repository. | `"daskdev/dask"` |
-| `scheduler.image.tag` | Container image tag. | `"2.22.0"` |
-| `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
-| `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
-| `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
-| `scheduler.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
-| `scheduler.servicePort` | Scheduler service internal port. | `8786` |
-| `scheduler.resources` | Scheduler pod resources. see `values.yaml` for example values. | `{}` |
-| `scheduler.tolerations` | Tolerations. | `[]` |
-| `scheduler.affinity` | Container affinity. | `{}` |
-| `scheduler.nodeSelector` | Node selector. | `{}` |
-| `webUI.name` | Dask webui name. | `"webui"` |
-| `webUI.servicePort` | Webui service internal port. | `80` |
-| `webUI.ingress.enabled` | Enable ingress. | `false` |
-| `webUI.ingress.tls` | Ingress should use tls. | `false` |
-| `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
-| `webUI.ingress.annotations` | Ingress annotations. see `values.yaml` for example values. | `null` |
-| `worker.name` | Dask worker name. | `"worker"` |
-| `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
-| `worker.image.tag` | Container image tag. | `"2.22.0"` |
-| `worker.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
-| `worker.image.dask_worker` | Dask worker command. e.g `dask-cuda-worker` for gpu worker. | `"dask-worker"` |
-| `worker.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
-| `worker.replicas` | Number of workers. | `3` |
-| `worker.default_resources.cpu` | Default cpu (deprecated use `resources`). | `1` |
-| `worker.default_resources.memory` | Default memory (deprecated use `resources`). | `"4GiB"` |
-| `worker.env` | Environment variables. see `values.yaml` for example values. | `null` |
-| `worker.resources` | Worker pod resources. see `values.yaml` for example values. | `{}` |
-| `worker.tolerations` | Tolerations. | `[]` |
-| `worker.affinity` | Container affinity. | `{}` |
-| `worker.nodeSelector` | Node selector. | `{}` |
-| `worker.securityContext` | Security contect. | `{}` |
-| `jupyter.name` | Jupyter name. | `"jupyter"` |
-| `jupyter.enabled` | Enable/disable the bundled jupyter notebook. | `true` |
-| `jupyter.image.repository` | Container image repository. | `"daskdev/dask-notebook"` |
-| `jupyter.image.tag` | Container image tag. | `"2.22.0"` |
-| `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
-| `jupyter.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
-| `jupyter.replicas` | Number of notebook servers. | `1` |
-| `jupyter.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
-| `jupyter.servicePort` | Jupyter service internal port. | `80` |
-| `jupyter.password` | Password hash. default hash corresponds to the password `dask`. | `"sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c"` |
-| `jupyter.env` | Environment variables. see `values.yaml` for example values. | `null` |
-| `jupyter.command` | Container command. | `null` |
-| `jupyter.args` | Container arguments. | `null` |
-| `jupyter.extraConfig` |  | `"# Extra Jupyter config goes here\n# E.g\n# c.NotebookApp.port = 8888"` |
-| `jupyter.resources` | Jupyter pod resources. see `values.yaml` for example values. | `{}` |
-| `jupyter.tolerations` | Tolerations. | `[]` |
-| `jupyter.affinity` | Container affinity. | `{}` |
-| `jupyter.nodeSelector` | Node selector. | `{}` |
-| `jupyter.securityContext` | Security contect. | `{}` |
-| `jupyter.ingress.enabled` | Enable ingress. | `false` |
-| `jupyter.ingress.tls` | Ingress should use tls. | `false` |
-| `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
-| `jupyter.ingress.annotations` | Ingress annotations. see `values.yaml` for example values. | `null` |
-
+{% block footnotes -%}
 #### Jupyter Password
 
 When launching the Jupyter server, you will be prompted for a password. The
@@ -248,4 +187,7 @@ Or manually run the steps below.
 - Push the tags `git push upstream master --tags`.
 - Travis CI will automatically build and release to the chart repository.
 
+{%- endblock %}
 
+{% block credits -%}
+{%- endblock %}
