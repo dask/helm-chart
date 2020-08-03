@@ -146,7 +146,22 @@ worker:
 > software environments, at least where a user is likely to distribute that
 > functionality.
 
-## Releasing
+## Maintaining
+
+### Generating the README
+
+This repo uses [Frigate](https://frigate.readthedocs.io/en/master/index.html) to autogenerate the README. This makes it quick to keep the table
+of config options up to date.
+
+If you wish to make a change to the README body you must edit `dask/.frigate` instead.
+
+To generate the readme run Frigate.
+
+```
+frigate gen dask > README.md
+```
+
+### Releasing
 
 Releases of the Helm chart are automatically pushed to the `gh-pages` branch by Travis CI when git tags are created.
 

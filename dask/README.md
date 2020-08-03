@@ -123,8 +123,8 @@ default password set in [values.yaml](/dask/values.yaml) is `dask`.
 
 ```yaml
 jupyter:
-    ...
-    password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c' # 'dask'
+  ...
+  password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c' # 'dask'
 ```
 
 To change this password, run `jupyter notebook password` in the command-line,
@@ -138,9 +138,9 @@ Verify password: dask
 
 $ cat /home/dask/.jupyter/jupyter_notebook_config.json
 {
-    "NotebookApp": {
+  "NotebookApp": {
     "password": "sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c"
-    }
+  }
 }
 ```
 
@@ -189,25 +189,40 @@ Consider the following YAML config as an example:
 
 ```yaml
 jupyter:
-    env:
-    - name: EXTRA_CONDA_PACKAGES
-        value: numba xarray -c conda-forge
-    - name: EXTRA_PIP_PACKAGES
-        value: s3fs dask-ml --upgrade
+  env:
+  - name: EXTRA_CONDA_PACKAGES
+    value: numba xarray -c conda-forge
+  - name: EXTRA_PIP_PACKAGES
+    value: s3fs dask-ml --upgrade
 
 worker:
-    env:
-    - name: EXTRA_CONDA_PACKAGES
-        value: numba xarray -c conda-forge
-    - name: EXTRA_PIP_PACKAGES
-        value: s3fs dask-ml --upgrade
+  env:
+  - name: EXTRA_CONDA_PACKAGES
+    value: numba xarray -c conda-forge
+  - name: EXTRA_PIP_PACKAGES
+    value: s3fs dask-ml --upgrade
 ```
 
 > **Note**: The Jupyter and Dask-worker environments should have matching
 > software environments, at least where a user is likely to distribute that
 > functionality.
 
-## Releasing
+## Maintaining
+
+### Generating the README
+
+This repo uses [Frigate](https://frigate.readthedocs.io/en/master/index.html) to autogenerate the README. This makes it quick to keep the table
+of config options up to date.
+
+If you wish to make a change to the README body you must edit `dask/.frigate` instead.
+
+To generate the readme run Frigate.
+
+```
+frigate gen dask > README.md
+```
+
+### Releasing
 
 Releases of the Helm chart are automatically pushed to the `gh-pages` branch by Travis CI when git tags are created.
 
