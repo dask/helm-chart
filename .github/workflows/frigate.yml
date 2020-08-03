@@ -21,6 +21,6 @@ jobs:
         run: |
           frigate gen dask > dask/README.md
           if git status --porcelain dask/README.md | grep .; then
-              echo "README is out of date. Please run `frigate gen dask > dask/README.md`."
+              echo "README is out of date. Please ensure you modify dask/.frigate and not README.md. Then run `frigate gen dask > dask/README.md`."
               exit 1
           fi
