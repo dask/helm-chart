@@ -32,6 +32,10 @@ spec:
         - name: {{ template "dask.fullname" . }}-jupyter
           image: "{{ .Values.jupyter.image.repository }}:{{ .Values.jupyter.image.tag }}"
           imagePullPolicy: {{ .Values.jupyter.image.pullPolicy }}
+          {{- if .Values.jupyter.command }}
+          command:
+            {{- toYaml .Values.jupyter.command | nindent 12 }}
+          {{- end }}
           {{- if .Values.jupyter.args }}
           args:
             {{- toYaml .Values.jupyter.args | nindent 12 }}
