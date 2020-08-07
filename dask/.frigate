@@ -146,6 +146,39 @@ worker:
 > software environments, at least where a user is likely to distribute that
 > functionality.
 
+### RBAC
+
+By default the Jupyter pod will be given an RBAC role via a service account which allows you to scale
+deployments and access pod logs from the Jupyter pod.
+
+For example to scale the workers you can run the following command from the Jupyter terminal.
+
+```bash
+kubectl scale deployment dask-worker --replicas=10
+```
+
+You can also get pod logs using kubectl.
+
+```bash
+# List pods
+kubectl get pods
+
+# Watch pod logs
+kubectl logs -f {podname}
+```
+
+The RBAC role will give the Jupyter pod access to view all pods and update all deployments in the namespace you
+install the Helm Chart in. If you wish to disable this you must disable the Jupyter RBAC and unset the service account.
+
+```yaml
+jupyter:
+  rbac: false
+  serviceAccountName: null
+```
+
+Also see the [dask-kubernetes documentation](https://kubernetes.dask.org/en/latest/api.html#dask_kubernetes.HelmCluster)
+for the `HelmCluster` cluster manager for managing workers from within your Python session.
+
 ## Maintaining
 
 ### Generating the README

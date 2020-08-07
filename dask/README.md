@@ -94,6 +94,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.securityContext` | Security contect. | `{}` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled jupyter notebook. | `true` |
+| `jupyter.rbac` | Create rbac service account and role to allow jupyter pod to scale worker pods and access logs. | `true` |
 | `jupyter.image.repository` | Container image repository. | `"daskdev/dask-notebook"` |
 | `jupyter.image.tag` | Container image tag. | `"2.22.0"` |
 | `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
@@ -111,6 +112,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.affinity` | Container affinity. | `{}` |
 | `jupyter.nodeSelector` | Node selector. | `{}` |
 | `jupyter.securityContext` | Security contect. | `{}` |
+| `jupyter.serviceAccountName` | Service account for use with rbac | `"dask-jupyter"` |
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
 | `jupyter.ingress.tls` | Ingress should use tls. | `false` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
@@ -206,6 +208,39 @@ worker:
 > **Note**: The Jupyter and Dask-worker environments should have matching
 > software environments, at least where a user is likely to distribute that
 > functionality.
+
+### RBAC
+
+By default the Jupyter pod will be given an RBAC role via a service account which allows you to scale
+deployments and access pod logs from the Jupyter pod.
+
+For example to scale the workers you can run the following command from the Jupyter terminal.
+
+```bash
+kubectl scale deployment dask-worker --replicas=10
+```
+
+You can also get pod logs using kubectl.
+
+```bash
+# List pods
+kubectl get pods
+
+# Watch pod logs
+kubectl logs -f {podname}
+```
+
+The RBAC role will give the Jupyter pod access to view all pods and update all deployments in the namespace you
+install the Helm Chart in. If you wish to disable this you must disable the Jupyter RBAC and unset the service account.
+
+```yaml
+jupyter:
+  rbac: false
+  serviceAccountName: null
+```
+
+Also see the [dask-kubernetes documentation](https://kubernetes.dask.org/en/latest/api.html#dask_kubernetes.HelmCluster)
+for the `HelmCluster` cluster manager for managing workers from within your Python session.
 
 ## Maintaining
 
