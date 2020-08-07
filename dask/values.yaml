@@ -82,6 +82,7 @@ worker:
 jupyter:
   name: jupyter  # Jupyter name.
   enabled: true  # Enable/disable the bundled Jupyter notebook.
+  rbac: true  # Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs.
   image:
     repository: "daskdev/dask-notebook"  # Container image repository.
     tag: 2.22.0  # Container image tag.
@@ -120,7 +121,7 @@ jupyter:
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.
   securityContext: {}  # Security Contect.
-  # serviceAccountName: ""
+  serviceAccountName: "dask-jupyter"  # Service account for use with RBAC
   ingress:
     enabled: false  # Enable ingress.
     tls: false  # Ingress should use TLS.
