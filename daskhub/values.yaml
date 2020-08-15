@@ -1,0 +1,32 @@
+# DaskHub configuration values
+# ----------------------------
+# Create and use roles and service accounts on an RBAC enabled cluster.
+rbac:
+  enabled: true
+
+jupyterhub:
+  # JupyterHub configuration goes here.
+  # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
+  singleuser:
+    image:
+      name: pangeo/base-notebook
+      tag: 2020.07.28
+    defaultUrl: "/lab"
+    extraEnv:
+      DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
+
+dask-gateway:
+  # Enabling dask-gateway will install Dask Gateway as a dependency.
+  enabled: true
+  # Futher Dask Gateway configuration goes here
+  # See https://github.com/dask/dask-gateway/blob/master/resources/helm/dask-gateway/values.yaml
+  gateway:
+    auth:
+      type: jupyterhub
+
+dask-kubernetes:
+  # Use dask-kubernetes, rather than Dask Gateway, for creating Dask Clusters.
+  # Enabling this also requires
+  # 1. Setting `jupyterhub.singleuser.serviceAccountName: daskkubernetes`.
+  # 2. Ensuring that `dask-kubernetes` is in your singleuser environment.
+  enabled: false

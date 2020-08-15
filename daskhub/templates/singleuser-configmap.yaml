@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: daskhub-config
+data:
+  DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
+  DASK_GATEWAY__ADDRESS: "traefik-{{ .Release.Name }}-dask-gateway"
