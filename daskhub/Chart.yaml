@@ -13,8 +13,8 @@ dependencies:
     version: "0.8.0"
     repository: 'https://dask.org/dask-gateway-helm-repo/'
 maintainers:
-  - name: Jacob Tomlinson (Met Office)
-    email: jacob.tomlinson@informaticslab.co.uk
+  - name: Jacob Tomlinson (Nvidia)
+    email: jtomlinson@nvidia.com
   - name: Joe Hamman (NCAR)
     email: jhamman@ucar.edu
   - name: Guillaume Eynard-Bontemps (CNES)
