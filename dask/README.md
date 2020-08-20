@@ -13,13 +13,13 @@ Dask
 
 This chart will deploy the following:
 
-- 1 x Dask scheduler with port 8786 (scheduler) and 80 (Web UI) exposed on an external LoadBalancer (default)
+- 1 x Dask scheduler with port 8786 (scheduler) and 80 (Web UI)
 - 3 x Dask workers that connect to the scheduler
-- 1 x Jupyter notebook (optional) with port 80 exposed on an external LoadBalancer (default)
+- 1 x Jupyter notebook (optional)
 - All using Kubernetes Deployments
 
 > **Tip**: See the [Kubernetes Service Type Docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-> for the differences between ClusterIP, NodePort, and LoadBalancer.
+> for the differences between ClusterIP, NodePort, and LoadBalancer. To access the Dask Cluster from outside of the Kubernetes Cluster (from your laptop, say) you'll neeed to set `scheduler.serviceType` and `jupyter.serviceType` to `LoadBalancer`.
 
 ## Installing the Chart
 
@@ -65,7 +65,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
-| `scheduler.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
+| `scheduler.serviceType` | Scheduler service type. set to `LoadBalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
 | `scheduler.resources` | Scheduler pod resources. see `values.yaml` for example values. | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
@@ -100,7 +100,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `jupyter.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `jupyter.replicas` | Number of notebook servers. | `1` |
-| `jupyter.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
+| `jupyter.serviceType` | Scheduler service type. set to `LoadBalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `jupyter.servicePort` | Jupyter service internal port. | `80` |
 | `jupyter.password` | Password hash. default hash corresponds to the password `dask`. | `"sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c"` |
 | `jupyter.env` | Environment variables. see `values.yaml` for example values. | `null` |
