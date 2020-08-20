@@ -13,13 +13,13 @@ Dask
 
 This chart will deploy the following:
 
-- 1 x Dask scheduler with the scheduler on port 8786 and the Dashboard on port 80
+- 1 x Dask scheduler with port 8786 (scheduler) and 80 (Web UI) exposed on an external LoadBalancer (default)
 - 3 x Dask workers that connect to the scheduler
-- 1 x Jupyter notebook (optional)
+- 1 x Jupyter notebook (optional) with port 80 exposed on an external LoadBalancer (default)
 - All using Kubernetes Deployments
 
 > **Tip**: See the [Kubernetes Service Type Docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-> for the differences between ClusterIP, NodePort, and LoadBalancer. To access the Dask Cluster from outside of the Kubernetes Cluster (from your laptop, say) you'll neeed to set `scheduler.serviceType` and `jupyter.serviceType` to `LoadBalancer`.
+> for the differences between ClusterIP, NodePort, and LoadBalancer.
 
 ## Installing the Chart
 
