@@ -254,7 +254,7 @@ If you wish to make a change to the README body you must edit `dask/.frigate` in
 To generate the readme run Frigate.
 
 ```
-frigate gen dask > README.md
+frigate gen dask > dask/README.md
 ```
 
 ### Releasing
