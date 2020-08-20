@@ -10,9 +10,11 @@ For single users, a simpler setup is supported by the `dask` helm chart.
 
 This chart will deploy the following
 
-- A standard Dask Gateway deployment using the Dask Gateway helm chart
+- A standard Dask Gateway deployment using the Dask Gateway helm chart,
   configured to use JupyterHub for authentication.
-- A standard JupyterHub deployment using the JupyterHub helm chart.
+- A standard JupyterHub deployment using the JupyterHub helm chart,
+  configured proxy Dask Gateway requests and set Dask Gateway-related
+  environment variables.
 
 ## Prepare Configuration File
 
@@ -23,17 +25,16 @@ keys, which should not be checked into version control in plaintext.
 We need two random hex strings that will be used as keys, one for
 JupyterHub and one for Dask Gateway.
 
-
 Run the following command, and copy the output. This is our `token-1`.
 
 ```console
-openssl rand -hex 32
+openssl rand -hex 32  # generate token-1
 ```
 
 Run command again and copy the output. This is our `token-2`.
 
 ```console
-openssl rand -hex 32
+openssl rand -hex 32  # generate token-2
 ```
 
 Now substitute those two values for `<token-1>` and `<token-2>` below.
@@ -41,7 +42,7 @@ Note that `<token-2>` is used twice, once for `jupyterhub.hub.services.dask-gate
 
 
 ```yaml
-# secrets.yaml
+# file: secrets.yaml
 jupyterhub:
   proxy:
     secretToken: "<token-1>"
@@ -57,6 +58,25 @@ dask-gateway:
         apiToken: "<token-2>"
 ```
 
+If you wish to access the Dask Dashboard (and why wouldn't you?), you'll also
+need to specify the hostname users will access your JupyterHub at. If you don't
+have that, then specify the IP address. This will let users access the dashboard
+from their browser.
+ 
+```yaml
+# file: config.yaml
+jupyterhub:
+  proxy:
+    hosts:
+      - "<jupyterhub url>"
+    service:
+      loadBalancerIP: "<ip>"
+```
+ 
+If you don't have an IP for your JupyterHub yet (if, say, you're letting
+kubernetes assign it for you), then you may need to leave this blank and
+do a secondary `helm install`.
+ 
 ## Install Dask Hub
 
 This example installs into the namespace `dhub`. Make sure you're

@@ -7,7 +7,49 @@ rbac:
 jupyterhub:
   # JupyterHub configuration goes here.
   # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
+  proxy:
+    service:
+      loadBalancerIP: "34.66.194.106"
+  hub:
+    # These environment variables are declared in templates/daskhub-configmap.yaml
+    # They are eventually set in the singleuser environment.
+    extraEnv:
+      - name: DASK_GATEWAY__ADDRESS
+        valueFrom:
+          configMapKeyRef:
+            name: daskhub-config
+            key: DASK_GATEWAY__ADDRESS
+      - name: DASK_GATEWAY__PROXY_ADDRESS
+        valueFrom:
+          configMapKeyRef:
+            name: daskhub-config
+            key: DASK_GATEWAY__PROXY_ADDRESS
+      - name: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
+        valueFrom:
+          configMapKeyRef:
+            name: daskhub-config
+            key: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
+
+    extraConfig:
+      00-add-dask-gateway-values: |
+        import os
+
+        # Adds a few variables to singluser.ExtraEnv which depend on the release name.
+        for key in ["DASK_GATEWAY__ADDRESS", "DASK_GATEWAY__PROXY_ADDRESS"]:
+            c.KubeSpawner.environment[key] = os.environ[key]
+
+        # Adds Dask Gateway as a JupyterHub service to make the gateway available at
+        # {HUB_URL}/services/dask-gateway
+        for service in c.JupyterHub.services:
+            if service["name"] == "dask-gateway":
+              print("Adding dask-gateway service URL")
+              service["url"] = os.environ["DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"]
+              break
+        else:
+            print("dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?")
+
   singleuser:
+    # The singleuser image should contain Dask Gateway for users to start Dask clusters.
     image:
       name: pangeo/base-notebook
       tag: 2020.07.28
@@ -21,8 +63,15 @@ dask-gateway:
   # Futher Dask Gateway configuration goes here
   # See https://github.com/dask/dask-gateway/blob/master/resources/helm/dask-gateway/values.yaml
   gateway:
+    # Users connect to the Gateway through the JupyterHub service.
+    prefix: "/services/dask-gateway"
     auth:
       type: jupyterhub
+  traefik:
+    service:
+      # We are using Dask Gateway behind a JupyterHub service. To access Dask Gateway
+      # from outside the JupyterHub, this must be changed to a LoadBalancer.
+      type: ClusterIP
 
 dask-kubernetes:
   # Use dask-kubernetes, rather than Dask Gateway, for creating Dask Clusters.

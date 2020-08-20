@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: daskhub-config
+data:
+  {{ if .Values.jupyterhub.proxy.https.enabled }}
+  DASK_GATEWAY__ADDRESS: "http://{{ .Values.jupyterhub.proxy.https.hosts | first }}/services/dask-gateway/"
+  {{ else if .Values.jupyterhub.proyx.service.loadBalancerIP }}
+  {{ else if .Values.jupyterhub.proyx.service.loadBalancerIP }}
+  DASK_GATEWAY__ADDRESS: "http://{{ .Values.jupyterhub.proxy.service.loadBalancerIP }}/services/dask-gateway/"
+  {{ else }}
+  DASK_GATEWAY__ADDRESS: "http://traefik-{{ .Release.Name }}-dask-gateway.{{ .Release.Namespace }}"
+  {{ end }} 
+  DASK_GATEWAY__PROXY_ADDRESS: "gateway://traefik-{{ .Release.Name }}-dask-gateway.{{ .Release.Namespace }}:80"
+  DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL: "http://traefik-{{ .Release.Name }}-dask-gateway.{{ .Release.Namespace }}"
