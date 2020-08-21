@@ -7,9 +7,6 @@ rbac:
 jupyterhub:
   # JupyterHub configuration goes here.
   # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
-  proxy:
-    service:
-      loadBalancerIP: "34.66.194.106"
   hub:
     # These environment variables are declared in templates/daskhub-configmap.yaml
     # They are eventually set in the singleuser environment.
@@ -32,6 +29,12 @@ jupyterhub:
 
     extraConfig:
       00-add-dask-gateway-values: |
+        # We need to set two a few things
+        # On the Hub:
+        # - Add the Gateway URL to the service.
+        # On the singleuser
+        # - DASK_GATEWAY_ADDRESS: {{ HUB_URL }}/servcies/dask-gateway/
+        # - DASK_GATEWAY__PROXY_ADDRESS: gateway://traefik-{{ RELEASE_NAME }}-dask-gateway.{{ NAMESPACE }}
         import os
 
         # Adds a few variables to singluser.ExtraEnv which depend on the release name.
@@ -42,9 +45,10 @@ jupyterhub:
         # {HUB_URL}/services/dask-gateway
         for service in c.JupyterHub.services:
             if service["name"] == "dask-gateway":
-              print("Adding dask-gateway service URL")
-              service["url"] = os.environ["DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"]
-              break
+                if not service.get("url", None):
+                    print("Adding dask-gateway service URL")
+                    service["url"] = os.environ["DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"]
+                break
         else:
             print("dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?")
 

@@ -77,7 +77,7 @@ If you don't have an IP for your JupyterHub yet (if, say, you're letting
 kubernetes assign it for you), then you may need to leave this blank and
 do a secondary `helm install`.
  
-## Install Dask Hub
+## Install DaskHub
 
 This example installs into the namespace `dhub`. Make sure you're
 in the same directory as the `secrets.yaml` file.
