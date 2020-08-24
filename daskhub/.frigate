@@ -1,7 +1,6 @@
+{% extends "markdown.jinja2" %}
 
-Daskhub
-===========
-
+{% block description -%}
 [![Travis Build Status](https://travis-ci.com/dask/helm-chart.svg?branch=master)](https://travis-ci.com/dask/helm-chart)
 [![Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.daskhub[:1].version&color=277A9F)](https://helm.dask.org/)
 [![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=Dask&query=$.entries.daskhub[:1].appVersion&color=D67548)](https://helm.dask.org/)
@@ -187,27 +186,8 @@ daskhub:
 ```
 
 When deploying, helm will create a Kubernetes ServiceAccount, Role, and RoleBinding. This ensures that the pods serving JupyterHub singleusers have the eleveated permissions for starting and stopping pods.
-## Configuration
 
-The following table lists the configurable parameters of the Daskhub chart and their default values.
+{%- endblock %}
 
-| Parameter                | Description             | Default        |
-| ------------------------ | ----------------------- | -------------- |
-| `rbac.enabled` |  | `true` |
-| `jupyterhubPublicHost` |  | `"nil"` |
-| `jupyterhub.hub.extraEnv` |  | `[{"name": "DASK_GATEWAY__ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__ADDRESS"}}}, {"name": "DASK_GATEWAY__PROXY_ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__PROXY_ADDRESS"}}}, {"name": "DASK_GATEWAY__PUBLIC_ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__PUBLIC_ADDRESS"}}}, {"name": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"}}}]` |
-| `jupyterhub.hub.extraConfig.00-add-dask-gateway-values` |  | `"# We need to set two a few things\n# On the Hub:\n# - Add the Gateway URL to the service.\n# On the singleuser\n# - DASK_GATEWAY_ADDRESS: {{ HUB_URL }}/servcies/dask-gateway/\n# - DASK_GATEWAY__PROXY_ADDRESS: gateway://traefik-{{ RELEASE_NAME }}-dask-gateway.{{ NAMESPACE }}\nimport os\n\n# Adds a few variables to singluser.ExtraEnv which depend on the release name.\nfor key in [\"DASK_GATEWAY__ADDRESS\", \"DASK_GATEWAY__PROXY_ADDRESS\",\n            \"DASK_GATEWAY__PUBLIC_ADDRESS\"]:\n    c.KubeSpawner.environment[key] = os.environ[key]\n\n# Adds Dask Gateway as a JupyterHub service to make the gateway available at\n# {HUB_URL}/services/dask-gateway\nfor service in c.JupyterHub.services:\n    if service[\"name\"] == \"dask-gateway\":\n        if not service.get(\"url\", None):\n            print(\"Adding dask-gateway service URL\")\n            service[\"url\"] = os.environ[\"DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL\"]\n        break\nelse:\n    print(\"dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?\")\n"` |
-| `jupyterhub.singleuser.image.name` |  | `"pangeo/base-notebook"` |
-| `jupyterhub.singleuser.image.tag` |  | `"2020.07.28"` |
-| `jupyterhub.singleuser.defaultUrl` |  | `"/lab"` |
-| `jupyterhub.singleuser.extraEnv.DASK_GATEWAY__AUTH__TYPE` |  | `"jupyterhub"` |
-| `dask-gateway.enabled` |  | `true` |
-| `dask-gateway.gateway.prefix` |  | `"/services/dask-gateway"` |
-| `dask-gateway.gateway.auth.type` |  | `"jupyterhub"` |
-| `dask-gateway.traefik.service.type` |  | `"ClusterIP"` |
-| `dask-kubernetes.enabled` |  | `false` |
-
-
-
-
-
+{% block credits -%}
+{%- endblock %}
