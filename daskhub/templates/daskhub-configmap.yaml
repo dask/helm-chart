@@ -3,13 +3,16 @@ kind: ConfigMap
 metadata:
   name: daskhub-config
 data:
+  DASK_GATEWAY__ADDRESS: "http://proxy-public/services/dask-gateway"
   DASK_GATEWAY__PROXY_ADDRESS: "gateway://traefik-{{ .Release.Name }}-dask-gateway.{{ .Release.Namespace }}:80"
   DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL: "http://traefik-{{ .Release.Name }}-dask-gateway.{{ .Release.Namespace }}"
-  # Try to detect the gateway address through a few means.
-  {{ if .Values.jupyterhub.proxy.https.hosts }}
-  DASK_GATEWAY__ADDRESS: "https://{{ .Values.jupyterhub.proxy.https.hosts | first }}/services/dask-gateway"
+  # Try to detect the gateway public address through a few means.
+  {{ if .Values.jupyterhubPublicHost }}
+  DASK_GATEWAY__PUBLIC_ADDRESS: "{{ .Values.jupyterhubPublicHost }}/services/dask-gateway/"
+  {{ else if .Values.jupyterhub.proxy.https.hosts }}
+  DASK_GATEWAY__PUBLIC_ADDRESS: "https://{{ .Values.jupyterhub.proxy.https.hosts | first }}/services/dask-gateway/"
   {{ else if .Values.jupyterhub.proxy.service.loadBalancerIP }}
-  DASK_GATEWAY__ADDRESS: "http://{{ .Values.jupyterhub.proxy.service.loadBalancerIP }}/services/dask-gateway"
+  DASK_GATEWAY__PUBLIC_ADDRESS: "http://{{ .Values.jupyterhub.proxy.service.loadBalancerIP }}/services/dask-gateway/"
   {{ else }}
-  DASK_GATEWAY__ADDRESS: "http://proxy-public/services/dask-gateway"
+  DASK_GATEWAY__PUBLIC_ADDRESS: ""
   {{ end }} 

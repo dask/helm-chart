@@ -63,6 +63,8 @@ public hostname or IP address of the hub .
 
 ```yaml
 # file: config.yaml
+jupyterhubPublicHost: "https://daskhub.example.com"
+
 jupyterhub:
   proxy:
     https:
@@ -71,6 +73,10 @@ jupyterhub:
     service:
       loadBalancerIP: "35.202.158.223"
 ```
+
+Notice that we tell both `daskhub` and `jupyterhub` the public host for the
+JupyterHub. If you just specify `jupyterhub.proxy.https.hosts`, then daskhub
+will *try* to guess the URL for you, but we might get it wrong.
  
 If you don't have an IP for your JupyterHub yet (if, say, you're letting
 Kubernetes assign it for you), then you may need to leave this blank and
@@ -86,7 +92,8 @@ $ helm upgrade --wait --install --render-subchart-notes \
     dhub dask/daskhub \
     --namespace=dhub \
     --version=0.0.1 \
-    --values=secrets.yaml
+    --values=secrets.yaml \
+    --values=config.yaml
 ```
 
 The output explains how to find the IPs for your JupyterHub and Dask Gateway.
@@ -101,13 +108,15 @@ Note, that this value needs to be set as the `jupyterhub.proxy.service.loadBalan
 
 ```yaml
 # file: config.yaml
+jupyterhubPublicHost: "http://35.202.158.223"
+
 jupyterhub:
   proxy:
     service:
       loadBalancerIP: "35.202.158.223"
 ```
 
-Be sure to (re)deploy helm with this value set to enable the Dask dashboard.
+Be sure to (re)deploy with helm with this value set to enable the Dask dashboard.
 
 ## Creating a Dask Cluster
 
