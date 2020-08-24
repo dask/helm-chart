@@ -4,13 +4,6 @@
 rbac:
   enabled: true
 
-# The public URL (including protocol) for your JupyterHub deployment.
-# If set, this provides a simple way to set the Dask Gateway public
-# address for users to access their Dask dashboards. If not set,
-# we'll try to guess it.
-# example: https://daskhub.pangeo.io
-jupyterhubPublicHost: nil
-
 jupyterhub:
   # JupyterHub configuration goes here.
   # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
@@ -28,11 +21,6 @@ jupyterhub:
           configMapKeyRef:
             name: daskhub-config
             key: DASK_GATEWAY__PROXY_ADDRESS
-      - name: DASK_GATEWAY__PUBLIC_ADDRESS
-        valueFrom:
-          configMapKeyRef:
-            name: daskhub-config
-            key: DASK_GATEWAY__PUBLIC_ADDRESS
       - name: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
         valueFrom:
           configMapKeyRef:
@@ -50,8 +38,7 @@ jupyterhub:
         import os
 
         # Adds a few variables to singluser.ExtraEnv which depend on the release name.
-        for key in ["DASK_GATEWAY__ADDRESS", "DASK_GATEWAY__PROXY_ADDRESS",
-                    "DASK_GATEWAY__PUBLIC_ADDRESS"]:
+        for key in ["DASK_GATEWAY__ADDRESS", "DASK_GATEWAY__PROXY_ADDRESS"]:
             c.KubeSpawner.environment[key] = os.environ[key]
 
         # Adds Dask Gateway as a JupyterHub service to make the gateway available at
@@ -72,6 +59,9 @@ jupyterhub:
       tag: 2020.07.28
     defaultUrl: "/lab"
     extraEnv:
+      # Sets the Dask dashboard link.
+      DASK_GATEWAY__PUBLIC_ADDRESS: "/services/dask-gateway/"
+      # Authenticate Gateway requests via JupyterHub.
       DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
 
 dask-gateway:

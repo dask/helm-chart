@@ -64,30 +64,6 @@ dask-gateway:
         apiToken: "<token-2>"
 ```
 
-If your users wish to access Dask dashboards, you'll also need to specify the
-public hostname or IP address of the hub .
-
-```yaml
-# file: config.yaml
-jupyterhubPublicHost: "https://daskhub.example.com"
-
-jupyterhub:
-  proxy:
-    https:
-      hosts:
-        - "daskhub.example.com"
-    service:
-      loadBalancerIP: "35.202.158.223"
-```
-
-Notice that we tell both `daskhub` and `jupyterhub` the public host for the
-JupyterHub. If you just specify `jupyterhub.proxy.https.hosts`, then daskhub
-will *try* to guess the URL for you, but we might get it wrong.
- 
-If you don't have an IP for your JupyterHub yet (if, say, you're letting
-Kubernetes assign it for you), then you may need to leave this blank and
-do a secondary `helm install` with the value set once it's known.
- 
 ## Install DaskHub
 
 This example installs into the namespace `dhub`. Make sure you're
@@ -114,8 +90,6 @@ Note, that this value needs to be set as the `jupyterhub.proxy.service.loadBalan
 
 ```yaml
 # file: config.yaml
-jupyterhubPublicHost: "http://35.202.158.223"
-
 jupyterhub:
   proxy:
     service:
@@ -194,12 +168,12 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `rbac.enabled` |  | `true` |
-| `jupyterhubPublicHost` |  | `"nil"` |
-| `jupyterhub.hub.extraEnv` |  | `[{"name": "DASK_GATEWAY__ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__ADDRESS"}}}, {"name": "DASK_GATEWAY__PROXY_ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__PROXY_ADDRESS"}}}, {"name": "DASK_GATEWAY__PUBLIC_ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__PUBLIC_ADDRESS"}}}, {"name": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"}}}]` |
-| `jupyterhub.hub.extraConfig.00-add-dask-gateway-values` |  | `"# We need to set two a few things\n# On the Hub:\n# - Add the Gateway URL to the service.\n# On the singleuser\n# - DASK_GATEWAY_ADDRESS: {{ HUB_URL }}/servcies/dask-gateway/\n# - DASK_GATEWAY__PROXY_ADDRESS: gateway://traefik-{{ RELEASE_NAME }}-dask-gateway.{{ NAMESPACE }}\nimport os\n\n# Adds a few variables to singluser.ExtraEnv which depend on the release name.\nfor key in [\"DASK_GATEWAY__ADDRESS\", \"DASK_GATEWAY__PROXY_ADDRESS\",\n            \"DASK_GATEWAY__PUBLIC_ADDRESS\"]:\n    c.KubeSpawner.environment[key] = os.environ[key]\n\n# Adds Dask Gateway as a JupyterHub service to make the gateway available at\n# {HUB_URL}/services/dask-gateway\nfor service in c.JupyterHub.services:\n    if service[\"name\"] == \"dask-gateway\":\n        if not service.get(\"url\", None):\n            print(\"Adding dask-gateway service URL\")\n            service[\"url\"] = os.environ[\"DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL\"]\n        break\nelse:\n    print(\"dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?\")\n"` |
+| `jupyterhub.hub.extraEnv` |  | `[{"name": "DASK_GATEWAY__ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__ADDRESS"}}}, {"name": "DASK_GATEWAY__PROXY_ADDRESS", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASK_GATEWAY__PROXY_ADDRESS"}}}, {"name": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL", "valueFrom": {"configMapKeyRef": {"name": "daskhub-config", "key": "DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"}}}]` |
+| `jupyterhub.hub.extraConfig.00-add-dask-gateway-values` |  | `"# We need to set two a few things\n# On the Hub:\n# - Add the Gateway URL to the service.\n# On the singleuser\n# - DASK_GATEWAY_ADDRESS: {{ HUB_URL }}/servcies/dask-gateway/\n# - DASK_GATEWAY__PROXY_ADDRESS: gateway://traefik-{{ RELEASE_NAME }}-dask-gateway.{{ NAMESPACE }}\nimport os\n\n# Adds a few variables to singluser.ExtraEnv which depend on the release name.\nfor key in [\"DASK_GATEWAY__ADDRESS\", \"DASK_GATEWAY__PROXY_ADDRESS\"]:\n    c.KubeSpawner.environment[key] = os.environ[key]\n\n# Adds Dask Gateway as a JupyterHub service to make the gateway available at\n# {HUB_URL}/services/dask-gateway\nfor service in c.JupyterHub.services:\n    if service[\"name\"] == \"dask-gateway\":\n        if not service.get(\"url\", None):\n            print(\"Adding dask-gateway service URL\")\n            service[\"url\"] = os.environ[\"DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL\"]\n        break\nelse:\n    print(\"dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?\")\n"` |
 | `jupyterhub.singleuser.image.name` |  | `"pangeo/base-notebook"` |
 | `jupyterhub.singleuser.image.tag` |  | `"2020.07.28"` |
 | `jupyterhub.singleuser.defaultUrl` |  | `"/lab"` |
+| `jupyterhub.singleuser.extraEnv.DASK_GATEWAY__PUBLIC_ADDRESS` |  | `"/services/dask-gateway/"` |
 | `jupyterhub.singleuser.extraEnv.DASK_GATEWAY__AUTH__TYPE` |  | `"jupyterhub"` |
 | `dask-gateway.enabled` |  | `true` |
 | `dask-gateway.gateway.prefix` |  | `"/services/dask-gateway"` |

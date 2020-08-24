@@ -63,30 +63,6 @@ dask-gateway:
         apiToken: "<token-2>"
 ```
 
-If your users wish to access Dask dashboards, you'll also need to specify the
-public hostname or IP address of the hub .
-
-```yaml
-# file: config.yaml
-jupyterhubPublicHost: "https://daskhub.example.com"
-
-jupyterhub:
-  proxy:
-    https:
-      hosts:
-        - "daskhub.example.com"
-    service:
-      loadBalancerIP: "35.202.158.223"
-```
-
-Notice that we tell both `daskhub` and `jupyterhub` the public host for the
-JupyterHub. If you just specify `jupyterhub.proxy.https.hosts`, then daskhub
-will *try* to guess the URL for you, but we might get it wrong.
- 
-If you don't have an IP for your JupyterHub yet (if, say, you're letting
-Kubernetes assign it for you), then you may need to leave this blank and
-do a secondary `helm install` with the value set once it's known.
- 
 ## Install DaskHub
 
 This example installs into the namespace `dhub`. Make sure you're
@@ -113,8 +89,6 @@ Note, that this value needs to be set as the `jupyterhub.proxy.service.loadBalan
 
 ```yaml
 # file: config.yaml
-jupyterhubPublicHost: "http://35.202.158.223"
-
 jupyterhub:
   proxy:
     service:
