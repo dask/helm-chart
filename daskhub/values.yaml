@@ -1,8 +1,7 @@
 # DaskHub configuration values
 # ----------------------------
-# Create and use roles and service accounts on an RBAC enabled cluster.
 rbac:
-  enabled: true
+  enabled: true  # Create and use roles and service accounts on an RBAC-enabled cluster.
 
 jupyterhub:
   # JupyterHub configuration goes here.
@@ -10,7 +9,7 @@ jupyterhub:
   hub:
     # These environment variables are declared in templates/daskhub-configmap.yaml
     # They are eventually set in the singleuser environment.
-    extraEnv:
+    extraEnv:  # Configure JupyterHub to work with Dask Gateway.
       - name: DASK_GATEWAY__ADDRESS
         valueFrom:
           configMapKeyRef:
@@ -28,13 +27,8 @@ jupyterhub:
             key: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
 
     extraConfig:
+      # Register Dask Gateway service and setup singleuser environment.
       00-add-dask-gateway-values: |
-        # We need to set two a few things
-        # On the Hub:
-        # - Add the Gateway URL to the service.
-        # On the singleuser
-        # - DASK_GATEWAY_ADDRESS: {{ HUB_URL }}/servcies/dask-gateway/
-        # - DASK_GATEWAY__PROXY_ADDRESS: gateway://traefik-{{ RELEASE_NAME }}-dask-gateway.{{ NAMESPACE }}
         import os
 
         # Adds a few variables to singluser.ExtraEnv which depend on the release name.
@@ -53,32 +47,25 @@ jupyterhub:
             print("dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?")
 
   singleuser:
-    # The singleuser image should contain Dask Gateway for users to start Dask clusters.
     image:
-      name: pangeo/base-notebook
+      name: pangeo/base-notebook  # Image to use for singleuser environment. Must include dask-gateyway.
       tag: 2020.07.28
-    defaultUrl: "/lab"
+    defaultUrl: "/lab"  # Use jupyterlab by defualt.
     extraEnv:
-      # Sets the Dask dashboard link.
-      DASK_GATEWAY__PUBLIC_ADDRESS: "/services/dask-gateway/"
-      # Authenticate Gateway requests via JupyterHub.
-      DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
+      DASK_GATEWAY__PUBLIC_ADDRESS: "/services/dask-gateway/"  # Sets the Dask dashboard link in cluster and client reprs.
+      DASK_GATEWAY__AUTH__TYPE: "jupyterhub"  # Use JupyterHub to authenticate with Dask Gateway.
 
 dask-gateway:
-  # Enabling dask-gateway will install Dask Gateway as a dependency.
-  enabled: true
+  enabled: true  # Enabling dask-gateway will install Dask Gateway as a dependency.
   # Futher Dask Gateway configuration goes here
   # See https://github.com/dask/dask-gateway/blob/master/resources/helm/dask-gateway/values.yaml
   gateway:
-    # Users connect to the Gateway through the JupyterHub service.
-    prefix: "/services/dask-gateway"
+    prefix: "/services/dask-gateway"  # Users connect to the Gateway through the JupyterHub service.
     auth:
-      type: jupyterhub
+      type: jupyterhub  # Use JupyterHub to authenticate with Dask Gateway
   traefik:
     service:
-      # We are using Dask Gateway behind a JupyterHub service. To access Dask Gateway
-      # from outside the JupyterHub, this must be changed to a LoadBalancer.
-      type: ClusterIP
+      type: ClusterIP  # Access Dask Gateway through JupyterHub. To access the Gateway from outside JupyterHub, this must be changed to a `LoadBalancer`.
 
 dask-kubernetes:
   # Use dask-kubernetes, rather than Dask Gateway, for creating Dask Clusters.
