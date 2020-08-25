@@ -80,40 +80,33 @@ $ helm upgrade --wait --install --render-subchart-notes \
 The output explains how to find the IPs for your JupyterHub and Dask Gateway.
 
 ```console
+$ kubectl -n dhub get service proxy-public
 NAME           TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)                      AGE
 proxy-public   LoadBalancer   10.43.249.239   35.202.158.223   443:31587/TCP,80:30500/TCP   2m40s
 ```
 
 JupyterHub is available at the `proxy-public` external ip (35.202.158.223 in this example).
-Note, that this value needs to be set as the `jupyterhub.proxy.service.loadBalancerIP`.
-
-```yaml
-# file: config.yaml
-jupyterhub:
-  proxy:
-    service:
-      loadBalancerIP: "35.202.158.223"
-```
-
-Be sure to (re)deploy with helm with this value set to enable the Dask dashboard.
 
 ## Creating a Dask Cluster
 
-To create a Dask cluster, connect to the Dask Gateway
+To create a Dask cluster users can create a `dask_gateway.GatewayCluster`.
 
 ```python
->>> from dask_gateway import Gateway
->>> gateway = dask_gateway.Gateway()
->>> gateway.list_clusters()
-[]
-```
-
-Once connected to the gateway, create a cluster and connect a client.
-
-```python
+>>> from dask_gateway import GatewayCluster
 >>> cluster = gateway.new_cluster()
 >>> client = cluster.get_client()
 ```
+
+If necessary (say to set options, create clusters that outlive the notebook session, etc.),
+users can connect to the Gateway
+
+
+```python
+>>> from dask_gateway import Gateway
+>>> gateway = Gateway()
+```
+
+See https://gateway.dask.org/ for more on using Dask Gateway.
 
 ## Matching the user environment
 
