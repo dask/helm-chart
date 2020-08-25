@@ -124,6 +124,11 @@ it as a Gateway option.
 
 ```yaml
 # config.yaml
+jupyterhub:
+ singleuser:
+   extraEnv:
+     DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: '{JUPYTER_IMAGE_SPEC}'
+
 dask-gateway:
   extraConfig:
     optionHandler: |
