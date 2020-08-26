@@ -7,41 +7,34 @@ jupyterhub:
   # JupyterHub configuration goes here.
   # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
   hub:
-    # These environment variables are declared in templates/daskhub-configmap.yaml
-    # They are eventually set in the singleuser environment.
-    extraEnv:  # Configure JupyterHub to work with Dask Gateway.
-      - name: DASK_GATEWAY__ADDRESS
-        valueFrom:
-          configMapKeyRef:
-            name: daskhub-config
-            key: DASK_GATEWAY__ADDRESS
-      - name: DASK_GATEWAY__PROXY_ADDRESS
-        valueFrom:
-          configMapKeyRef:
-            name: daskhub-config
-            key: DASK_GATEWAY__PROXY_ADDRESS
-      - name: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
-        valueFrom:
-          configMapKeyRef:
-            name: daskhub-config
-            key: DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL
-
     extraConfig:
       # Register Dask Gateway service and setup singleuser environment.
       00-add-dask-gateway-values: |
+        # 1. Sets `DASK_GATEWAY__PROXY_ADDRESS` in the singleuser environment.
+        # 2. Adds the URL for the Dask Gateway JupyterHub service.
         import os
 
-        # Adds a few variables to singluser.ExtraEnv which depend on the release name.
-        for key in ["DASK_GATEWAY__ADDRESS", "DASK_GATEWAY__PROXY_ADDRESS"]:
-            c.KubeSpawner.environment[key] = os.environ[key]
+        # These are set by jupyterhub.
+        release_name = os.environ["HELM_RELEASE_NAME"]
+        release_namespace = os.environ["POD_NAMESPACE"]
+
+        # Internal address to connect to the Dask Gateway.
+        c.KubeSpawner.environment["DASK_GATEWAY__ADDRESS"] = "http://proxy-public/services/dask-gateway"
+        # Internal address for the Dask Gateway proxy.
+        c.KubeSpawner.environment["DASK_GATEWAY__PROXY_ADDRESS"] = "gateway://traefik-{}-dask-gateway.{}:80".format(release_name, release_namespace)
+        # Relative address for the dashboard link.
+        c.KubeSpawner.environment["DASK_GATEWAY__PUBLIC_ADDRESS"] = "/services/dask-gateway/"
+        # Use JupyterHub to authenticate with Dask Gateway.
+        c.KubeSpawner.environment["DASK_GATEWAY__AUTH__TYPE"] = "jupyterhub"
 
         # Adds Dask Gateway as a JupyterHub service to make the gateway available at
         # {HUB_URL}/services/dask-gateway
+        service_url = "http://traefik-{}-dask-gateway.{}".format(release_name, release_namespace)
         for service in c.JupyterHub.services:
             if service["name"] == "dask-gateway":
                 if not service.get("url", None):
                     print("Adding dask-gateway service URL")
-                    service["url"] = os.environ["DASKHUB_JUPYTERHUB_SERVICE_GATEWAY_URL"]
+                    service["url"] = service_url
                 break
         else:
             print("dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?")
@@ -51,9 +44,6 @@ jupyterhub:
       name: pangeo/base-notebook  # Image to use for singleuser environment. Must include dask-gateyway.
       tag: 2020.07.28
     defaultUrl: "/lab"  # Use jupyterlab by defualt.
-    extraEnv:
-      DASK_GATEWAY__PUBLIC_ADDRESS: "/services/dask-gateway/"  # Sets the Dask dashboard link in cluster and client reprs.
-      DASK_GATEWAY__AUTH__TYPE: "jupyterhub"  # Use JupyterHub to authenticate with Dask Gateway.
 
 dask-gateway:
   enabled: true  # Enabling dask-gateway will install Dask Gateway as a dependency.
