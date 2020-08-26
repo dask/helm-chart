@@ -17,17 +17,30 @@ jobs:
         with:
           org: "daskdev"
           repo: "dask"
-      - name: Read Helm Chart
-        id: chart
+      - name: Read Dask Helm Chart
+        id: dask_chart
         uses: jacobtomlinson/gha-read-helm-chart@0.1.1
         with:
           path: dask
-      - name: Find and Replace
+      - name: Find and Replace Dask appVersion
         uses: jacobtomlinson/gha-find-replace@0.1.0
         with:
           include: "dask/"
-          find: "${{ steps.chart.outputs.appVersion }}"
+          find: "${{ steps.dask_chart.outputs.appVersion }}"
           replace: "${{ steps.latest_tag.outputs.tag }}"
+
+      - name: Read DaskHub Helm Chart
+        id: daskhub_chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.1
+        with:
+          path: daskhub
+      - name: Find and Replace DaskHub appVersion
+        uses: jacobtomlinson/gha-find-replace@0.1.0
+        with:
+          include: "daskhub/"
+          find: "${{ steps.daskhub_chart.outputs.appVersion }}"
+          replace: "${{ steps.latest_tag.outputs.tag }}"
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v2
         with:
