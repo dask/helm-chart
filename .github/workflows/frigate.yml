@@ -17,12 +17,21 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install frigate
-      - name: Check README is up to date
+      - name: Check that dask README is up to date
         run: |
           frigate gen dask > dask/README.md
           if git status --porcelain dask/README.md | grep .; then
               echo "README is out of date. Either you have modified README.md directly or you've modified values.yaml or Chart.yaml without generating the README."
               echo "If you have modified with README.md please make those changes in dask/.frigate."
               echo "In both cases please run `frigate gen dask > dask/README.md`."
+              exit 1
+          fi
+      - name: Check that daskhub README is up to date
+        run: |
+          frigate gen daskhub > daskhub/README.md
+          if git status --porcelain daskhub/README.md | grep .; then
+              echo "README is out of date. Either you have modified README.md directly or you've modified values.yaml or Chart.yaml without generating the README."
+              echo "If you have modified with README.md please make those changes in daskhub/.frigate."
+              echo "In both cases please run `frigate gen daskhub > daskhub/README.md`."
               exit 1
           fi
