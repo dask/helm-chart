@@ -18,8 +18,19 @@ jupyterhub:
         release_name = os.environ["HELM_RELEASE_NAME"]
         release_namespace = os.environ["POD_NAMESPACE"]
 
+        if "PROXY_HTTP_SERVICE_HOST" in os.environ:
+            # https is enabled, we want to use the internal http service.
+            gateway_address = "http://{}:{}/services/dask-gateway/".format(
+                os.environ["PROXY_HTTP_SERVICE_HOST"],
+                os.environ["PROXY_HTTP_SERVICE_PORT"],
+            )
+            print("Setting DASK_GATEWAY__ADDRESS {} from HTTP service".format(gateway_address))
+        else:
+            gateway_address = "http://proxy-public/services/dask-gateway"
+            print("Setting DASK_GATEWAY__ADDRESS {}".format(gateway_address))
+
         # Internal address to connect to the Dask Gateway.
-        c.KubeSpawner.environment.setdefault("DASK_GATEWAY__ADDRESS", "http://proxy-public/services/dask-gateway")
+        c.KubeSpawner.environment.setdefault("DASK_GATEWAY__ADDRESS", gateway_address)
         # Internal address for the Dask Gateway proxy.
         c.KubeSpawner.environment.setdefault("DASK_GATEWAY__PROXY_ADDRESS", "gateway://traefik-{}-dask-gateway.{}:80".format(release_name, release_namespace))
         # Relative address for the dashboard link.
