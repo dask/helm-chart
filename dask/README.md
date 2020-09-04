@@ -88,6 +88,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.default_resources.memory` | Default memory (deprecated use `resources`). | `"4GiB"` |
 | `worker.env` | Environment variables. see `values.yaml` for example values. | `null` |
 | `worker.resources` | Worker pod resources. see `values.yaml` for example values. | `{}` |
+| `worker.mounts` |  | `{}` |
 | `worker.tolerations` | Tolerations. | `[]` |
 | `worker.affinity` | Container affinity. | `{}` |
 | `worker.nodeSelector` | Node selector. | `{}` |
@@ -108,6 +109,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.args` | Container arguments. | `null` |
 | `jupyter.extraConfig` |  | `"# Extra Jupyter config goes here\n# E.g\n# c.NotebookApp.port = 8888"` |
 | `jupyter.resources` | Jupyter pod resources. see `values.yaml` for example values. | `{}` |
+| `jupyter.mounts` |  | `{}` |
 | `jupyter.tolerations` | Tolerations. | `[]` |
 | `jupyter.affinity` | Container affinity. | `{}` |
 | `jupyter.nodeSelector` | Node selector. | `{}` |
