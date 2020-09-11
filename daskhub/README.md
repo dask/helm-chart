@@ -123,19 +123,20 @@ jupyterhub:
      DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: '{JUPYTER_IMAGE_SPEC}'
 
 dask-gateway:
-  extraConfig:
-    optionHandler: |
-      from dask_gateway_server.options import Options, Integer, Float, String
-      def option_handler(options):
-          if ":" not in options.image:
-              raise ValueError("When specifying an image you must also provide a tag")
-          return {
-              "image": options.image,
-          }
-      c.Backend.cluster_options = Options(
-          String("image", default="pangeo/base-notebook:2020.07.28", label="Image"),
-          handler=option_handler,
-      )
+  gateway:
+    extraConfig:
+      optionHandler: |
+        from dask_gateway_server.options import Options, Integer, Float, String
+        def option_handler(options):
+            if ":" not in options.image:
+                raise ValueError("When specifying an image you must also provide a tag")
+            return {
+                "image": options.image,
+            }
+        c.Backend.cluster_options = Options(
+            String("image", default="pangeo/base-notebook:2020.07.28", label="Image"),
+            handler=option_handler,
+        )
 ```
 
 The user environment will need to include `dask-gateway`.
