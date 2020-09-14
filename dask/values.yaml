@@ -69,6 +69,13 @@ worker:
   #    cpu: 1
   #    memory: 3G
   #    nvidia.com/gpu: 1
+  mounts: {} # Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec
+  #  volumes:
+  #    - name: data
+  #      emptyDir: {}
+  #  volumeMounts:
+  #    - name: data
+  #      mountPath: /data
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.
@@ -89,6 +96,7 @@ jupyter:
     pullPolicy: IfNotPresent  # Container image pull policy.
     pullSecrets:  # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
     #  - name: regcred
+    #
   replicas: 1  # Number of notebook servers.
   serviceType: "ClusterIP" # Scheduler service type. Set to `LoadBalancer` to expose outside of your cluster.
   # serviceType: "NodePort"
@@ -117,6 +125,13 @@ jupyter:
   #  requests:
   #    cpu: 2
   #    memory: 6G
+  mounts: {} # Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec
+  #  volumes:
+  #    - name: data
+  #      emptyDir: {}
+  #  volumeMounts:
+  #    - name: data
+  #      mountPath: /data
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.

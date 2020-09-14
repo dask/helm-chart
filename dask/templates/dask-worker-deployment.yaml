@@ -26,6 +26,10 @@ spec:
     spec:
       imagePullSecrets:
         {{- toYaml .Values.worker.image.pullSecrets | nindent 8 }}
+      {{- if .Values.worker.mounts.volumes }}
+      volumes:
+        {{- toYaml .Values.worker.mounts.volumes | nindent 8}}
+      {{- end }}
       containers:
         - name: {{ template "dask.fullname" . }}-worker
           image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
@@ -50,6 +54,11 @@ spec:
             {{- toYaml .Values.worker.resources | nindent 12 }}
           env:
             {{- toYaml .Values.worker.env | nindent 12 }}
+
+          {{- if .Values.worker.mounts.volumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.worker.mounts.volumeMounts | nindent 12 }}
+          {{- end }}
     {{- with .Values.worker.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

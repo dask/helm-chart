@@ -47,6 +47,9 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /usr/local/etc/jupyter
+            {{- if .Values.worker.mounts.volumeMounts }}
+              {{- toYaml .Values.worker.mounts.volumeMounts | nindent 12 }}
+            {{- end }}
           env:
             - name: DASK_SCHEDULER_ADDRESS
               value: {{ template "dask.fullname" . }}-scheduler:{{ .Values.scheduler.servicePort }}
@@ -54,6 +57,9 @@ spec:
             {{- toYaml .Values.jupyter.env | nindent 12 }}
           {{- end }}
       volumes:
+      {{- if .Values.jupyter.mounts.volumes }}
+        {{- toYaml .Values.worker.mounts.volumes | nindent 8}}
+      {{- end }}
         - name: config-volume
           configMap:
             name: {{ template "dask.fullname" . }}-jupyter-config
