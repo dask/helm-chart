@@ -32,7 +32,11 @@ $ helm repo update
 {{ latest_chart.description }}
 
 ```console
-$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
+# With helm3
+helm install --version {{latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
+
+# With helm2
+helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
 ```
 
 | Chart Version | App Version | Date |
