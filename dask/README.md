@@ -71,6 +71,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
 | `scheduler.nodeSelector` | Node selector. | `{}` |
+| `scheduler.securityContext` | Security context. | `{}` |
 | `webUI.name` | Dask webui name. | `"webui"` |
 | `webUI.servicePort` | Webui service internal port. | `80` |
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
