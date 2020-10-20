@@ -61,7 +61,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | ------------------------ | ----------------------- | -------------- |
 | `scheduler.name` | Dask scheduler name. | `"scheduler"` |
 | `scheduler.image.repository` | Container image repository. | `"daskdev/dask"` |
-| `scheduler.image.tag` | Container image tag. | `"2.27.0"` |
+| `scheduler.image.tag` | Container image tag. | `"2.30.0"` |
 | `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
@@ -79,7 +79,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.ingress.annotations` | Ingress annotations. see `values.yaml` for example values. | `null` |
 | `worker.name` | Dask worker name. | `"worker"` |
 | `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
-| `worker.image.tag` | Container image tag. | `"2.27.0"` |
+| `worker.image.tag` | Container image tag. | `"2.30.0"` |
 | `worker.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `worker.image.dask_worker` | Dask worker command. e.g `dask-cuda-worker` for gpu worker. | `"dask-worker"` |
 | `worker.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
@@ -97,7 +97,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.enabled` | Enable/disable the bundled jupyter notebook. | `true` |
 | `jupyter.rbac` | Create rbac service account and role to allow jupyter pod to scale worker pods and access logs. | `true` |
 | `jupyter.image.repository` | Container image repository. | `"daskdev/dask-notebook"` |
-| `jupyter.image.tag` | Container image tag. | `"2.27.0"` |
+| `jupyter.image.tag` | Container image tag. | `"2.30.0"` |
 | `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `jupyter.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `jupyter.replicas` | Number of notebook servers. | `1` |
