@@ -25,6 +25,7 @@ scheduler:
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.
+  securityContext: {}  # Security Context.
   # serviceAccountName: ""
 
 webUI:
@@ -79,7 +80,7 @@ worker:
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.
-  securityContext: {}  # Security Contect.
+  securityContext: {}  # Security Context.
   # serviceAccountName: ""
   # port: ""
   #  this option overrides "--nthreads" on workers, which defaults to resources.limits.cpu / default_resources.limits.cpu
@@ -135,7 +136,7 @@ jupyter:
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.
-  securityContext: {}  # Security Contect.
+  securityContext: {}  # Security Context.
   serviceAccountName: "dask-jupyter"  # Service account for use with RBAC
   ingress:
     enabled: false  # Enable ingress.
