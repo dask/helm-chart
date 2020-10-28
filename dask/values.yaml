@@ -15,7 +15,7 @@ scheduler:
   # serviceType: "NodePort"
   # serviceType: "LoadBalancer"
   servicePort: 8786 # Scheduler service internal port.
-  extraArgs:  [] # Extra CLI arguments to be passed to the scheduler
+  extraArgs: [] # Extra CLI arguments to be passed to the scheduler
     # - --preload
     # - scheduler-setup.py
   resources: {}  # Scheduler pod resources. See `values.yaml` for example values.
@@ -64,7 +64,7 @@ worker:
   #    value: numba xarray -c conda-forge
   #  - name: EXTRA_PIP_PACKAGES
   #    value: s3fs dask-ml --upgrade
-  extraArgs:  [] # Extra CLI arguments to be passed to the worker
+  extraArgs: [] # Extra CLI arguments to be passed to the worker
     # - --preload
     # - worker-setup.py
   resources: {}  # Worker pod resources. See `values.yaml` for example values.

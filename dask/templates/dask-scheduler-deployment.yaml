@@ -36,7 +36,9 @@ spec:
             - "{{ .Values.scheduler.servicePort }}"
             - --bokeh-port
             - "8787"
-            {{- toYaml .Values.scheduler.extraArgs | nindent 12 }}
+            {{- if .Values.scheduler.extraArgs }}
+              {{- toYaml .Values.scheduler.extraArgs | nindent 12 }}
+            {{- end }}
           ports:
             - containerPort: 8786
             - containerPort: 8787
