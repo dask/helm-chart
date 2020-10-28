@@ -48,6 +48,7 @@ spec:
             - --worker-port
             - {{ .Values.worker.port | quote }}
           {{- end }}
+          {{- toYaml .Values.worker.extraArgs | nindent 12 }}
           ports:
             - containerPort: 8789
           resources:
