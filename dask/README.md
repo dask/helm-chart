@@ -67,6 +67,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
 | `scheduler.serviceType` | Scheduler service type. Set to `LoadBalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
+| `scheduler.extraArgs` | Extra CLI arguments to be passed to the scheduler | `[]` |
 | `scheduler.resources` | Scheduler pod resources. See `values.yaml` for example values. | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
