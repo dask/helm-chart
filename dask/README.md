@@ -67,6 +67,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
 | `scheduler.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
+| `scheduler.extraArgs` | Extra cli arguments to be passed to the scheduler | `[]` |
 | `scheduler.resources` | Scheduler pod resources. see `values.yaml` for example values. | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
@@ -88,6 +89,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.default_resources.cpu` | Default cpu (deprecated use `resources`). | `1` |
 | `worker.default_resources.memory` | Default memory (deprecated use `resources`). | `"4GiB"` |
 | `worker.env` | Environment variables. see `values.yaml` for example values. | `null` |
+| `worker.extraArgs` | Extra cli arguments to be passed to the worker | `[]` |
 | `worker.resources` | Worker pod resources. see `values.yaml` for example values. | `{}` |
 | `worker.mounts` | Worker pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 volumes spec. mounts.volumemounts follows kubernetesapi v1 volumemount spec | `{}` |
 | `worker.tolerations` | Tolerations. | `[]` |
