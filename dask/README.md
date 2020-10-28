@@ -71,6 +71,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
 | `scheduler.nodeSelector` | Node Selector. | `{}` |
+| `scheduler.securityContext` | Security Context. | `{}` |
 | `webUI.name` | Dask webui name. | `"webui"` |
 | `webUI.servicePort` | webui service internal port. | `80` |
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
@@ -93,7 +94,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.tolerations` | Tolerations. | `[]` |
 | `worker.affinity` | Container affinity. | `{}` |
 | `worker.nodeSelector` | Node Selector. | `{}` |
-| `worker.securityContext` | Security Contect. | `{}` |
+| `worker.securityContext` | Security Context. | `{}` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled Jupyter notebook. | `true` |
 | `jupyter.rbac` | Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs. | `true` |
@@ -114,7 +115,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.tolerations` | Tolerations. | `[]` |
 | `jupyter.affinity` | Container affinity. | `{}` |
 | `jupyter.nodeSelector` | Node Selector. | `{}` |
-| `jupyter.securityContext` | Security Contect. | `{}` |
+| `jupyter.securityContext` | Security Context. | `{}` |
 | `jupyter.serviceAccountName` | Service account for use with RBAC | `"dask-jupyter"` |
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
 | `jupyter.ingress.tls` | Ingress should use TLS. | `false` |
