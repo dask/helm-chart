@@ -65,63 +65,63 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
-| `scheduler.serviceType` | Scheduler service type. Set to `LoadBalancer` to expose outside of your cluster. | `"ClusterIP"` |
+| `scheduler.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
-| `scheduler.extraArgs` | Extra CLI arguments to be passed to the scheduler | `[]` |
-| `scheduler.resources` | Scheduler pod resources. See `values.yaml` for example values. | `{}` |
+| `scheduler.extraArgs` | Extra cli arguments to be passed to the scheduler | `[]` |
+| `scheduler.resources` | Scheduler pod resources. see `values.yaml` for example values. | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
-| `scheduler.nodeSelector` | Node Selector. | `{}` |
-| `scheduler.securityContext` | Security Context. | `{}` |
+| `scheduler.nodeSelector` | Node selector. | `{}` |
+| `scheduler.securityContext` | Security context. | `{}` |
 | `webUI.name` | Dask webui name. | `"webui"` |
-| `webUI.servicePort` | webui service internal port. | `80` |
+| `webUI.servicePort` | Webui service internal port. | `80` |
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
-| `webUI.ingress.tls` | Ingress should use TLS. | `false` |
+| `webUI.ingress.tls` | Ingress should use tls. | `false` |
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
-| `webUI.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `null` |
+| `webUI.ingress.annotations` | Ingress annotations. see `values.yaml` for example values. | `null` |
 | `worker.name` | Dask worker name. | `"worker"` |
 | `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
 | `worker.image.tag` | Container image tag. | `"2.30.0"` |
 | `worker.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
-| `worker.image.dask_worker` | Dask worker command. E.g `dask-cuda-worker` for GPU worker. | `"dask-worker"` |
+| `worker.image.dask_worker` | Dask worker command. e.g `dask-cuda-worker` for gpu worker. | `"dask-worker"` |
 | `worker.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `worker.replicas` | Number of workers. | `3` |
-| `worker.default_resources.cpu` | Default CPU (DEPRECATED use `resources`). | `1` |
-| `worker.default_resources.memory` | Default memory (DEPRECATED use `resources`). | `"4GiB"` |
-| `worker.env` | Environment variables. See `values.yaml` for example values. | `null` |
-| `worker.extraArgs` | Extra CLI arguments to be passed to the worker | `[]` |
-| `worker.resources` | Worker pod resources. See `values.yaml` for example values. | `{}` |
-| `worker.mounts` | Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec | `{}` |
+| `worker.default_resources.cpu` | Default cpu (deprecated use `resources`). | `1` |
+| `worker.default_resources.memory` | Default memory (deprecated use `resources`). | `"4GiB"` |
+| `worker.env` | Environment variables. see `values.yaml` for example values. | `null` |
+| `worker.extraArgs` | Extra cli arguments to be passed to the worker | `[]` |
+| `worker.resources` | Worker pod resources. see `values.yaml` for example values. | `{}` |
+| `worker.mounts` | Worker pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 volumes spec. mounts.volumemounts follows kubernetesapi v1 volumemount spec | `{}` |
 | `worker.tolerations` | Tolerations. | `[]` |
 | `worker.affinity` | Container affinity. | `{}` |
-| `worker.nodeSelector` | Node Selector. | `{}` |
-| `worker.securityContext` | Security Context. | `{}` |
+| `worker.nodeSelector` | Node selector. | `{}` |
+| `worker.securityContext` | Security context. | `{}` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
-| `jupyter.enabled` | Enable/disable the bundled Jupyter notebook. | `true` |
-| `jupyter.rbac` | Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs. | `true` |
+| `jupyter.enabled` | Enable/disable the bundled jupyter notebook. | `true` |
+| `jupyter.rbac` | Create rbac service account and role to allow jupyter pod to scale worker pods and access logs. | `true` |
 | `jupyter.image.repository` | Container image repository. | `"daskdev/dask-notebook"` |
 | `jupyter.image.tag` | Container image tag. | `"2.30.0"` |
 | `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `jupyter.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `jupyter.replicas` | Number of notebook servers. | `1` |
-| `jupyter.serviceType` | Scheduler service type. Set to `LoadBalancer` to expose outside of your cluster. | `"ClusterIP"` |
+| `jupyter.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
 | `jupyter.servicePort` | Jupyter service internal port. | `80` |
-| `jupyter.password` | Password hash. Default hash corresponds to the password `dask`. | `"sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c"` |
-| `jupyter.env` | Environment variables. See `values.yaml` for example values. | `null` |
+| `jupyter.password` | Password hash. default hash corresponds to the password `dask`. | `"sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c"` |
+| `jupyter.env` | Environment variables. see `values.yaml` for example values. | `null` |
 | `jupyter.command` | Container command. | `null` |
 | `jupyter.args` | Container arguments. | `null` |
 | `jupyter.extraConfig` |  | `"# Extra Jupyter config goes here\n# E.g\n# c.NotebookApp.port = 8888"` |
-| `jupyter.resources` | Jupyter pod resources. See `values.yaml` for example values. | `{}` |
-| `jupyter.mounts` | Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec | `{}` |
+| `jupyter.resources` | Jupyter pod resources. see `values.yaml` for example values. | `{}` |
+| `jupyter.mounts` | Worker pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 volumes spec. mounts.volumemounts follows kubernetesapi v1 volumemount spec | `{}` |
 | `jupyter.tolerations` | Tolerations. | `[]` |
 | `jupyter.affinity` | Container affinity. | `{}` |
-| `jupyter.nodeSelector` | Node Selector. | `{}` |
-| `jupyter.securityContext` | Security Context. | `{}` |
-| `jupyter.serviceAccountName` | Service account for use with RBAC | `"dask-jupyter"` |
+| `jupyter.nodeSelector` | Node selector. | `{}` |
+| `jupyter.securityContext` | Security context. | `{}` |
+| `jupyter.serviceAccountName` | Service account for use with rbac | `"dask-jupyter"` |
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
-| `jupyter.ingress.tls` | Ingress should use TLS. | `false` |
+| `jupyter.ingress.tls` | Ingress should use tls. | `false` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
-| `jupyter.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `null` |
+| `jupyter.ingress.annotations` | Ingress annotations. see `values.yaml` for example values. | `null` |
 
 #### Jupyter Password
 
