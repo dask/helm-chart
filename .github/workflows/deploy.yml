@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          pip install chartpress==0.4.2
+          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+      - name: Update chart dependencies
+        run: |
+          helm dep update daskhub
+      - name: Decrypt secrets
+        env:
+          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+        run: |
+          openssl aes-256-cbc -in ci/id_rsa.enc -out ci/id_rsa -pass pass:$ENCRYPTION_KEY -d -md sha1
+          chmod 0400 ci/id_rsa
+      - name: Deploy repo
+        env:
+          GIT_SSH_COMMAND: "ssh -i ci/id_rsa"
+        run: |
+          chartpress --tag "${GITHUB_REF#refs/*/}" --publish-chart
