@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+      - name: Update chart dependencies
+        run: |
+          helm dep update daskhub
+      - name: Lint charts
+        run: |
+          helm lint dask
+          helm lint daskhub --set 'dask-gateway.gateway.auth.jupyterhub.apiToken=foo' --set 'jupyterhub.proxy.secretToken=foo'
