@@ -32,4 +32,6 @@ jobs:
         env:
           GIT_SSH_COMMAND: "ssh -i ci/id_rsa"
         run: |
+          git config --global user.email "dask@dask.org"
+          git config --global user.name "[Dask]"
           chartpress --tag "${GITHUB_REF#refs/*/}" --publish-chart
