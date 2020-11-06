@@ -918,6 +918,37 @@ entries:
   daskhub:
   - apiVersion: v2
     appVersion: 2.30.0
+    created: "2020-11-06T14:18:07.363875-06:00"
+    dependencies:
+    - import-values:
+      - child: rbac
+        parent: rbac
+      name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.10.2
+    - name: dask-gateway
+      repository: https://dask.org/dask-gateway-helm-repo/
+      version: 0.9.0
+    description: Multi-user JupyterHub and Dask deployment.
+    digest: 33a8914f206398e483db9a1ea9f7f96c34b63165bb9150ddc5339c635f7b5639
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: jtomlinson@nvidia.com
+      name: Jacob Tomlinson (Nvidia)
+    - email: jhamman@ucar.edu
+      name: Joe Hamman (NCAR)
+    - email: guillaume.eynard-bontemps@cnes.fr
+      name: Guillaume Eynard-Bontemps (CNES)
+    - email: erik.i.sundell@gmail.com
+      name: Erik Sundell
+    - email: tom.w.augspurger@gmail.com
+      name: Tom Augspurger
+    name: daskhub
+    urls:
+    - https://helm.dask.org/daskhub-4.5.4.tgz
+    version: 4.5.4
+  - apiVersion: v2
+    appVersion: 2.30.0
     created: "2020-10-28T12:45:15.660763207Z"
     dependencies:
     - import-values:
@@ -1132,4 +1163,4 @@ entries:
     urls:
     - https://helm.dask.org/daskhub-4.4.1.tgz
     version: 4.4.1
-generated: "2020-11-06T14:17:56.595413-06:00"
+generated: "2020-11-06T14:18:07.360653-06:00"
