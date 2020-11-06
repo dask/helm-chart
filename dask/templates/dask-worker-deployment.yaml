@@ -23,6 +23,10 @@ spec:
         app: {{ template "dask.name" . }}
         release: {{ .Release.Name | quote }}
         component: worker
+      {{- if .Values.worker.annotations }}
+      annotations:
+        {{- toYaml .Values.worker.annotations | nindent 8 }}
+      {{- end }}
     spec:
       imagePullSecrets:
         {{- toYaml .Values.worker.image.pullSecrets | nindent 8 }}

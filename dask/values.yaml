@@ -83,6 +83,7 @@ worker:
   #  volumeMounts:
   #    - name: data
   #      mountPath: /data
+  annotations: {}  # Annotations
   tolerations: []  # Tolerations.
   affinity: {}  # Container affinity.
   nodeSelector: {}  # Node Selector.

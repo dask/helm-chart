@@ -92,6 +92,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.extraArgs` | Extra cli arguments to be passed to the worker | `[]` |
 | `worker.resources` | Worker pod resources. see `values.yaml` for example values. | `{}` |
 | `worker.mounts` | Worker pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 volumes spec. mounts.volumemounts follows kubernetesapi v1 volumemount spec | `{}` |
+| `worker.annotations` | Annotations | `{}` |
 | `worker.tolerations` | Tolerations. | `[]` |
 | `worker.affinity` | Container affinity. | `{}` |
 | `worker.nodeSelector` | Node selector. | `{}` |
