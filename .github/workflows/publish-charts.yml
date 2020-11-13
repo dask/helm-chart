@@ -9,6 +9,7 @@ name: Publish charts
 on:
   push:
     tags: ["*"]
+  workflow_dispatch:
 
 defaults:
   run:

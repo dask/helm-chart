@@ -16,6 +16,7 @@ on:
       - "*/README.md"
       - "*/values.yaml"
       - "*/Chart.yaml"
+  workflow_dispatch:
 
 jobs:
   build:

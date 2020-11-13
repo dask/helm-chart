@@ -12,6 +12,7 @@ on:
   schedule:
     # Run every hour sharp, ref: https://crontab.guru/#0_*_*_*_*
     - cron: "0 * * * *"
+  workflow_dispatch:
 
 jobs:
   check-version:

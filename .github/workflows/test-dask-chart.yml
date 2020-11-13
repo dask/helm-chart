@@ -8,6 +8,7 @@ on:
     paths: ["dask/**", chartpress.yaml]
   pull_request:
     paths: ["dask/**", chartpress.yaml]
+  workflow_dispatch:
 
 defaults:
   run:
