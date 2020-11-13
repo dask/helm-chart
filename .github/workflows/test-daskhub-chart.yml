@@ -1,9 +1,13 @@
 # This is a GitHub workflow defining a set of jobs with a set of steps. ref:
 # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
 #
-name: CI
+name: Test daskhub chart
 
-on: [push, pull_request]
+on:
+  push:
+    paths: ["dask/**", chartpress.yaml]
+  pull_request:
+    paths: ["dask/**", chartpress.yaml]
 
 default:
   run:

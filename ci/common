@@ -1,0 +1,31 @@
+#!/bin/bash
+# Use https://www.shellcheck.net/ to reduce mistakes if you make changes to this file.
+
+# Prints a overview of resources in the namespace, and writes out logs of pods
+# that have failed to startup.
+full_namespace_report() {
+    # list config (secret,configmap)
+    kubectl get secret,cm
+    # list networking (service,ingress)
+    kubectl get svc,ing
+    # list workloads (deployment,statefulset,daemonset,pod)
+    kubectl get deploy,sts,ds,pod
+
+    # if any pod has any non-ready -> show its containers' logs
+    kubectl get pods -o json \
+    | jq '
+        .items[]
+        | select(
+            any(.status.containerStatuses[]?; .ready == false)
+        )
+        | .metadata.name' \
+    | xargs --max-args 1 --no-run-if-empty \
+    sh -c 'printf "\nPod with non-ready container detected\n - Logs of $0:\n"; kubectl logs --all-containers $0'
+}
+
+# Awaits deployments, statefulsets, and daemonsets becoming ready.
+full_namespace_await() {
+    kubectl get deploy,sts,ds -n kube-system -o name \
+    | xargs --max-args 1 --no-run-if-empty \
+    kubectl rollout status -n kube-system --timeout=1m
+}
