@@ -1,0 +1,40 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+#
+name: CI
+
+on: [push, pull_request]
+
+default:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install helm
+        run: |
+          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+
+      - name: Update chart dependencies
+        run: |
+          helm dep update daskhub
+
+      - name: Lint charts' templates
+        run: |
+          helm lint --strict --values dev-values.yaml dask
+          helm lint --strict --values dev-values.yaml daskhub
+
+      - name: Validate charts' templates can render
+        run: |
+          helm template --values dev-values.yaml dask 1>/dev/null
+          helm template --values dev-values.yaml daskhub 1>/dev/null
+
+      # FIXME: requires k8s api-server and CRD resource installation...
+      # - name: Validate charts' rendered templates are valid k8s resources
+      #   run: |
+      #     helm template --validate --values dev-values.yaml dask 1>/dev/null
+      #     helm template --validate --values dev-values.yaml daskhub 1>/dev/null
