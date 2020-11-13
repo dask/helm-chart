@@ -1,6 +1,11 @@
 # This is a GitHub workflow defining a set of jobs with a set of steps.
 # ref: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
 #
+# This workflow monitors the daskdev/dask image tags and compares them to the
+# version of the Helm chart's appVersion. If they are not in sync, a PR is
+# automatically created to update the Helm charts by replacing the old version
+# with the new.
+#
 name: Keep charts updated with daskdev/dask image
 
 on:
