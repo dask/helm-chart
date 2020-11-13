@@ -13,10 +13,10 @@ name: Ensure charts' README.md are updated
 on:
   pull_request:
     paths:
+      - "*/.frigate"
       - "*/README.md"
       - "*/values.yaml"
       - "*/Chart.yaml"
-  workflow_dispatch:
 
 jobs:
   build:
