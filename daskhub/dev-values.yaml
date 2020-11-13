@@ -1,0 +1,11 @@
+# TODO: Configure the Helm chart to use as much values as possible to render as
+#       much in templates as possible to better test it.
+
+dask-gateway:
+  gateway:
+    auth:
+      jupyterhub:
+        apiToken: foo1
+jupyterhub:
+  proxy:
+    secretToken: foo2
