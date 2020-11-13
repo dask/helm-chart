@@ -1,17 +1,14 @@
-[![CI Status](https://github.com/dask/helm-chart/workflows/CI/badge.svg)](https://github.com/dask/helm-chart/actions)
-[![Dask Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.dask[:1].version&color=277A9F)](https://helm.dask.org/)
-[![DaskHub Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.daskhub[:1].version&color=277A9F)](https://helm.dask.org/)
-[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=Dask&query=$.entries.dask[:1].appVersion&color=D67548)](https://helm.dask.org/)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dask/helm-chart/CI?logo=github)](https://github.com/dask/helm-chart/actions)
+[![Dask Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![DaskHub Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].appVersion&color=D67548&logo=python)](https://dask.org/)
 
-
-
-Dask Helm Charts
-================
+# Dask Helm Charts
 
 This repository contains Dask's two helm charts.
 
-- [dask](./dask/README.md): Install Dask on Kubernetes for a single user with Jupyter and dask-kubernetes.
-- [daskhub](./daskhub/README.md): Install Dask on Kubernetes for multiple users with JupyterHub and Dask Gateway.
+- [dask](./dask/README.md): Install Dask on Kubernetes for a single user with Jupyter and [dask-kubernetes](https://github.com/dask/dask-kubernetes).
+- [daskhub](./daskhub/README.md): Install Dask on Kubernetes for multiple users with JupyterHub and [dask-gateway](https://github.com/dask/dask-gateway).
 
 ## Single-user Quickstart
 

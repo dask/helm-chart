@@ -1,9 +1,9 @@
 {% extends "markdown.jinja2" %}
 
 {% block description -%}
-[![Travis Build Status](https://travis-ci.com/dask/helm-chart.svg?branch=master)](https://travis-ci.com/dask/helm-chart)
-[![Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.daskhub[:1].version&color=277A9F)](https://helm.dask.org/)
-[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=Dask&query=$.entries.daskhub[:1].appVersion&color=D67548)](https://helm.dask.org/)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dask/helm-chart/CI?logo=github)](https://github.com/dask/helm-chart/actions)
+[![DaskHub Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.daskhub[:1].appVersion&color=D67548&logo=python)](https://dask.org/)
 
 This chart provides a multi-user, Dask-Gateway enabled JupyterHub.
 It combines the [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/)
