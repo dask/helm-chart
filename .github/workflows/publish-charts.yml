@@ -1,7 +1,10 @@
 # This is a GitHub workflow defining a set of jobs with a set of steps. ref:
 # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
 #
-name: Deploy
+# This workflow package and publishes the Helm charts to Helm repository living
+# inside the gh-pages branch of this git repository.
+#
+name: Publish charts
 
 on:
   push:
