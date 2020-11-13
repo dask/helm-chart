@@ -25,7 +25,7 @@ full_namespace_report() {
 
 # Awaits deployments, statefulsets, and daemonsets becoming ready.
 full_namespace_await() {
-    kubectl get deploy,sts,ds -n kube-system -o name \
+    kubectl get deploy,sts,ds -o name \
     | xargs --max-args 1 --no-run-if-empty \
-    kubectl rollout status -n kube-system --timeout=1m
+    kubectl rollout status --timeout=3m
 }

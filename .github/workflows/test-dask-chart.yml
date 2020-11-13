@@ -5,9 +5,9 @@ name: Test dask chart
 
 on:
   push:
-    paths: ["dask/**", chartpress.yaml]
+    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
   pull_request:
-    paths: ["dask/**", chartpress.yaml]
+    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
   workflow_dispatch:
 
 defaults:
@@ -39,12 +39,11 @@ jobs:
 
       - name: Lint chart's templates
         run: |
-          helm lint --strict --values dev-values.yaml dask
+          helm lint ./dask --strict --values dask/dev-values.yaml
 
       - name: Validate chart's templates can render
         run: |
-          # discard normal output keep error output
-          helm template --values dev-values.yaml dask 1>/dev/null
+          helm template ./dask --values dask/dev-values.yaml 1>/dev/null
 
       # Starts a k8s cluster with NetworkPolicy enforcement and installs kubectl
       #
@@ -52,18 +51,18 @@ jobs:
       - uses: manics/action-k3s-helm@v0.2.1
         with:
           k3s-version: ${{ matrix.k3s-version }}
-          helm-version: v3.4.0
+          helm-version: v3.4.1
           metrics-enabled: false
           traefik-enabled: false
           docker-enabled: false
 
       - name: Validate charts' rendered templates are valid k8s resources
         run: |
-          helm template --validate --values dev-values.yaml dask 1>/dev/null
+          helm template ./dask --validate --values dask/dev-values.yaml 1>/dev/null
 
       - name: Install chart and await readiness
         run: |
-          helm install daskhub ./daskhub --values dev-values.yaml
+          helm install dask ./dask --values dask/dev-values.yaml
 
           . ci/common
           full_namespace_await
