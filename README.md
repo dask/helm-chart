@@ -1,7 +1,10 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dask/helm-chart/CI?logo=github)](https://github.com/dask/helm-chart/actions)
-[![Dask Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
-[![DaskHub Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![GitHub workflow status - Dask](https://img.shields.io/github/workflow/status/dask/helm-chart/Test%20dask%20chart?logo=github&label=dask)](https://github.com/dask/helm-chart/actions)
+[![Dask chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
 [![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].appVersion&color=D67548&logo=python)](https://dask.org/)
+
+[![GitHub workflow status - DaskHub](https://img.shields.io/github/workflow/status/daskhub/helm-chart/Test%20daskhub%20chart?logo=github&label=daskhub)](https://github.com/dask/helm-chart/actions)
+[![DaskHub chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].appVersion&color=D67548&logo=python)](https://dask.org/)
 
 # Dask Helm Charts
 
