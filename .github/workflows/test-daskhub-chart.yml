@@ -9,7 +9,7 @@ on:
   pull_request:
     paths: ["dask/**", chartpress.yaml]
 
-default:
+defaults:
   run:
     shell: bash
 

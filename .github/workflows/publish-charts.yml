@@ -10,7 +10,7 @@ on:
   push:
     tags: ["*"]
 
-default:
+defaults:
   run:
     shell: bash
 
