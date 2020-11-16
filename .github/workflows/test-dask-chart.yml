@@ -1,0 +1,76 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+#
+# NOTE: Changes to this name must be followed by updates to the README.me
+#       badges.
+name: Test dask chart
+
+on:
+  push:
+    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+  pull_request:
+    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      # Keep running even if one variation of the job fail
+      fail-fast: false
+      matrix:
+        # We run this job multiple times with different parameterization
+        # specified below, these parameters have no meaning on their own and
+        # gain meaning on how job steps use them.
+        #
+        # k3s-version: https://github.com/rancher/k3s/tags
+        include:
+          - k3s-version: v1.19.3+k3s2
+          - k3s-version: v1.16.15+k3s1
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install helm
+        run: |
+          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+
+      - name: Lint chart's templates
+        run: |
+          helm lint ./dask --strict --values dask/dev-values.yaml
+
+      - name: Validate chart's templates can render
+        run: |
+          helm template ./dask --values dask/dev-values.yaml 1>/dev/null
+
+      # Starts a k8s cluster with NetworkPolicy enforcement and installs kubectl
+      #
+      # ref: https://github.com/manics/action-k3s-helm/
+      - uses: manics/action-k3s-helm@v0.2.1
+        with:
+          k3s-version: ${{ matrix.k3s-version }}
+          helm-version: v3.4.1
+          metrics-enabled: false
+          traefik-enabled: false
+          docker-enabled: false
+
+      - name: Validate charts' rendered templates are valid k8s resources
+        run: |
+          helm template ./dask --validate --values dask/dev-values.yaml 1>/dev/null
+
+      - name: Install chart and await readiness
+        run: |
+          helm install dask ./dask --values dask/dev-values.yaml
+
+          . ci/common
+          full_namespace_await
+
+      - name: Print full report on failure
+        if: failure()
+        run: |
+          . ci/common
+          full_namespace_report

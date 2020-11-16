@@ -2,9 +2,9 @@
 Dask
 ===========
 
-[![Travis Build Status](https://travis-ci.com/dask/helm-chart.svg?branch=master)](https://travis-ci.com/dask/helm-chart)
-[![Chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=chart&query=$.entries.dask[:1].version&color=277A9F)](https://helm.dask.org/)
-[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=Dask&query=$.entries.dask[:1].appVersion&color=D67548)](https://helm.dask.org/)
+[![GitHub workflow status - Dask](https://img.shields.io/github/workflow/status/dask/helm-chart/Test%20dask%20chart?logo=github&label=dask)](https://github.com/dask/helm-chart/actions)
+[![Dask chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
+[![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=dask&query=$.entries.dask[:1].appVersion&color=D67548&logo=python&logoColor=white)](https://dask.org/)
 
 - <https://dask.org>
 - <https://jupyter.org/>

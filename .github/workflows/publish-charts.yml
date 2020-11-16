@@ -1,13 +1,23 @@
-name: Deploy
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+#
+# This workflow package and publishes the Helm charts to Helm repository living
+# inside the gh-pages branch of this git repository.
+#
+name: Publish charts
 
 on:
   push:
-    tags:
-      - "*"
+    tags: ["*"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +27,7 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          pip install chartpress==0.4.2
+          pip install chartpress==0.7.0
           curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
       - name: Update chart dependencies
         run: |
