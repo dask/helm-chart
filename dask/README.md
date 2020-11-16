@@ -66,7 +66,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `scheduler.replicas` | Number of schedulers (should always be 1). | `1` |
 | `scheduler.serviceType` | Scheduler service type. set to `loadbalancer` to expose outside of your cluster. | `"ClusterIP"` |
-| `scheduler.loadBalancerIP` | Some cloud providers allow you to specify the loadbalancerip when using the `loadbalancer` service type. | `null` |
+| `scheduler.loadBalancerIP` | Some cloud providers allow you to specify the loadbalancerip when using the `loadbalancer` service type. if your cloud does not support it this option will be ignored. | `null` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
 | `scheduler.extraArgs` | Extra cli arguments to be passed to the scheduler | `[]` |
 | `scheduler.resources` | Scheduler pod resources. see `values.yaml` for example values. | `{}` |
