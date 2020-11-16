@@ -21,3 +21,6 @@ spec:
     release: {{ .Release.Name | quote }}
     component: scheduler
   type: {{ .Values.scheduler.serviceType }}
+  {{- if .Values.scheduler.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.scheduler.loadBalancerIP }}
+  {{- end }}

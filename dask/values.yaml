@@ -14,6 +14,7 @@ scheduler:
   serviceType: "ClusterIP" # Scheduler service type. Set to `LoadBalancer` to expose outside of your cluster.
   # serviceType: "NodePort"
   # serviceType: "LoadBalancer"
+  loadBalancerIP: null  # Some cloud providers allow you to specify the loadBalancerIP when using the `LoadBalancer` service type.
   servicePort: 8786 # Scheduler service internal port.
   extraArgs: [] # Extra CLI arguments to be passed to the scheduler
     # - --preload
