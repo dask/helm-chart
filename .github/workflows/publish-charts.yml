@@ -32,16 +32,12 @@ jobs:
       - name: Update chart dependencies
         run: |
           helm dep update daskhub
-      - name: Decrypt secrets
-        env:
-          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
-        run: |
-          openssl aes-256-cbc -in ci/id_rsa.enc -out ci/id_rsa -pass pass:$ENCRYPTION_KEY -d -md sha1
-          chmod 0400 ci/id_rsa
       - name: Deploy repo
         env:
-          GIT_SSH_COMMAND: "ssh -i ci/id_rsa"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Required for git commit:
+          EMAIL: dask@dask.org
+          GIT_AUTHOR_NAME: "[Dask]"
+          GIT_COMMITTER_NAME: "[Dask]"
         run: |
-          git config --global user.email "dask@dask.org"
-          git config --global user.name "[Dask]"
           chartpress --tag "${GITHUB_REF#refs/*/}" --publish-chart
