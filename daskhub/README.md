@@ -73,7 +73,6 @@ in the same directory as the `secrets.yaml` file.
 $ helm upgrade --wait --install --render-subchart-notes \
     dhub dask/daskhub \
     --namespace=dhub \
-    --version=0.0.1 \
     --values=secrets.yaml \
     --values=config.yaml
 ```
