@@ -34,7 +34,7 @@ jobs:
           helm dep update daskhub
       - name: Deploy repo
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: "${{ env.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"
           # Required for git commit:
           EMAIL: dask@dask.org
           GIT_AUTHOR_NAME: "[Dask]"
