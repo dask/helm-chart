@@ -18,14 +18,13 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch:
 
-if: github.repository == 'dask/helm-chart'
-
 defaults:
   run:
     shell: bash
 
 jobs:
   check-dask-image:
+    if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -80,6 +79,7 @@ jobs:
 
 
   check-jupyterhub-chart:
+    if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -127,6 +127,7 @@ jobs:
 
 
   check-dask-gateway-chart:
+    if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
