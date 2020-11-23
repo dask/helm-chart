@@ -1,0 +1,173 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps.
+# ref: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+#
+# This workflow has a job to monitor the daskdev/dask image tags and compares
+# them to the version of the Helm chart's appVersion. If they are not in sync, a
+# PR is automatically created to update the Helm charts by replacing the old
+# version with the new.
+#
+# This workflow has another two jobs to monitor the versions of the JupyterHub
+# Helm chart and Dask-Gateway Helm charts which should trigger a PR to be
+# created bumping daskhub/Chart.yaml's dependency version pinning.
+#
+name: Watch dependencies
+
+on:
+  schedule:
+    # Run every hour sharp, ref: https://crontab.guru/#0_*_*_*_*
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+if: github.repository == 'dask/helm-chart'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-dask-image:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      # ref: https://github.com/jacobtomlinson/gha-get-docker-hub-tags
+      - name: Get latest tag of daskdev/dask image
+        id: latest_tag
+        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
+        with:
+          org: daskdev
+          repo: dask
+
+      # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
+      - name: Read appVersion of dask chart
+        id: dask_chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.2
+        with:
+          path: dask
+      - name: Read appVersion of daskhub chart
+        id: daskhub_chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.2
+        with:
+          path: daskhub
+
+      # ref: https://github.com/jacobtomlinson/gha-find-replace
+      - name: Replace old appVersion with new in dask chart
+        uses: jacobtomlinson/gha-find-replace@0.1.2
+        with:
+          include: "dask/"
+          find: "${{ steps.dask_chart.outputs.appVersion }}"
+          replace: "${{ steps.latest_tag.outputs.tag }}"
+      - name: Replace old appVersion with new in daskhub chart
+        uses: jacobtomlinson/gha-find-replace@0.1.2
+        with:
+          include: "daskhub/"
+          find: "${{ steps.daskhub_chart.outputs.appVersion }}"
+          replace: "${{ steps.latest_tag.outputs.tag }}"
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create PR bumping both Helm charts' appVersion
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
+          title: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
+          reviewers: "jacobtomlinson"
+          branch: "upgrade-dask-version"
+          body: |
+            A new Dask Docker image version has been detected.
+
+            Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
+
+
+  check-jupyterhub-chart:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      # ref: https://github.com/oprypin/find-latest-tag
+      - name: Find latest tag of dependency
+        id: remote_chart
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: jupyterhub/zero-to-jupyterhub-k8s
+          releases-only: false
+
+      # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
+      - name: Find current tag of dependency
+        id: local_chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.3
+        with:
+          path: daskhub
+
+      # ref: https://github.com/jacobtomlinson/gha-find-replace
+      - name: Replace current with latest in Chart.yaml
+        uses: jacobtomlinson/gha-find-replace@0.1.2
+        with:
+          include: "daskhub/Chart.yaml"
+          find: "${{ steps.local_chart.outputs.dependencies_jupyterhub_version }}"
+          replace: "${{ steps.remote_chart.outputs.tag }}"
+
+      # ref: https://github.com/jacobtomlinson/gha-find-replace
+      - name: Git diff changes
+        run: |
+          git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          commit-message: Upgrade jupyterhub chart to ${{ steps.remote_chart.outputs.tag }}
+          title: Upgrade jupyterhub chart to ${{ steps.remote_chart.outputs.tag }}
+          reviewers: jacobtomlinson,consideratio
+          labels: chart/daskhub
+          branch: upgrade-daskhubs-jupyterhub-version
+          body: |
+            This PR upgrades the DaskHub chart to depend on jupyterhub version `${{ steps.remote_chart.outputs.tag }}`.
+
+
+  check-dask-gateway-chart:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      # ref: https://github.com/oprypin/find-latest-tag
+      - name: Find latest tag of dependency
+        id: remote_chart
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: dask/dask-gateway
+          releases-only: false
+
+      # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
+      - name: Find current tag of dependency
+        id: local_chart
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.3
+        with:
+          path: daskhub
+
+      # ref: https://github.com/jacobtomlinson/gha-find-replace
+      - name: Replace current with latest in Chart.yaml
+        uses: jacobtomlinson/gha-find-replace@0.1.2
+        with:
+          include: "daskhub/Chart.yaml"
+          find: "${{ steps.local_chart.outputs.dependencies_dask-gateway_version }}"
+          replace: "${{ steps.remote_chart.outputs.tag }}"
+
+      # ref: https://github.com/jacobtomlinson/gha-find-replace
+      - name: Git diff changes
+        run: |
+          git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          commit-message: Upgrade dask-gateway chart to ${{ steps.remote_chart.outputs.tag }}
+          title: Upgrade dask-gateway chart to ${{ steps.remote_chart.outputs.tag }}
+          reviewers: jacobtomlinson,consideratio
+          labels: chart/daskhub
+          branch: upgrade-daskhubs-dask-gateway-version
+          body: |
+            This PR upgrades the DaskHub chart to depend on dask-gateway version `${{ steps.remote_chart.outputs.tag }}`.
