@@ -15,6 +15,7 @@ $ helm repo update
 
 ## Charts
 
+{% comment %}[0] and [1] below represent key and value{% endcomment %}
 {% for helm_chart in site.data.index.entries %}
 {% assign title = helm_chart[0] | capitalize %}
 {% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
@@ -33,17 +34,17 @@ $ helm repo update
 
 ```console
 # With helm3
-$ helm install --version {{latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
+$ helm install --version {{ latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
 
 # With helm2
 $ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
 ```
 
-| Chart Version | App Version | Date |
-| ------------- | ----------- | ---- |
+| Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} Dask | Date |
+| - | - | - |{% for dep in latest_chart.dependencies %} - |{% endfor %}
 {% for chart in all_charts -%}
 {% unless chart.version contains "-" -%}
-| [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) | {{ chart.appVersion }} | {{ chart.created | date_to_rfc822 }} |
+| [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) |{% for dep in latest_chart.dependencies %} {{ dep.version | capitalize }} |{% endfor %} {{ chart.appVersion }} | {{ chart.created | date_to_long_string }} |
 {% endunless -%}
 {% endfor -%}
 
