@@ -43,6 +43,6 @@ jobs:
 
       - name: Package and publish the dask and daskhub charts
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ env.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"
         run: |
           chartpress --tag "${GITHUB_REF#refs/*/}" --publish-chart
