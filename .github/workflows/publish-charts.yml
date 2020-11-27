@@ -27,7 +27,7 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          pip install chartpress==0.7.0
+          pip install chartpress==1.*
           curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
       - name: Update chart dependencies
         run: |
