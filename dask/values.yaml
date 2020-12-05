@@ -16,6 +16,7 @@ scheduler:
   # serviceType: "LoadBalancer"
   loadBalancerIP: null  # Some cloud providers allow you to specify the loadBalancerIP when using the `LoadBalancer` service type. If your cloud does not support it this option will be ignored.
   servicePort: 8786 # Scheduler service internal port.
+  serviceAnnotations: {}
   extraArgs: [] # Extra CLI arguments to be passed to the scheduler
     # - --preload
     # - scheduler-setup.py
