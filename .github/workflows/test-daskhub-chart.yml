@@ -76,8 +76,7 @@ jobs:
           . ci/common
           full_namespace_await
 
-      - name: Print full report on failure
-        if: failure()
-        run: |
-          . ci/common
-          full_namespace_report
+      # GitHub Action reference: https://github.com/jupyterhub/action-k8s-namespace-report
+      - name: Kubernetes namespace report
+        uses: jupyterhub/action-k8s-namespace-report@v1
+        if: always()
