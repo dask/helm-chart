@@ -6,7 +6,7 @@ appVersion: 2.30.0
 description: Multi-user JupyterHub and Dask deployment.
 dependencies:
   - name: jupyterhub
-    version: "0.10.6"
+    version: "0.11.1"
     repository: 'https://jupyterhub.github.io/helm-chart/'
     import-values:
       - child: rbac
