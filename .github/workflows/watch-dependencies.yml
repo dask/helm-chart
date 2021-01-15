@@ -125,6 +125,8 @@ jobs:
           body: |
             This PR upgrades the DaskHub chart to depend on jupyterhub version `${{ steps.remote_chart.outputs.tag }}`.
 
+            See the [changelog](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/CHANGELOG.md) for more information.
+
 
   check-dask-gateway-chart:
     if: github.repository == 'dask/helm-chart'
