@@ -19,7 +19,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  test-install-chart:
     runs-on: ubuntu-20.04
 
     strategy:
