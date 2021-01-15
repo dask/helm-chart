@@ -40,12 +40,12 @@ jobs:
       # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
       - name: Read appVersion of dask chart
         id: dask_chart
-        uses: jacobtomlinson/gha-read-helm-chart@0.1.2
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.3
         with:
           path: dask
       - name: Read appVersion of daskhub chart
         id: daskhub_chart
-        uses: jacobtomlinson/gha-read-helm-chart@0.1.2
+        uses: jacobtomlinson/gha-read-helm-chart@0.1.3
         with:
           path: daskhub
 
