@@ -8,6 +8,8 @@ name: Test dask chart
 on:
   push:
     paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+    branches-ignore:
+      - "upgrade-**"
   pull_request:
     paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
   workflow_dispatch:
