@@ -8,6 +8,8 @@ name: Test dask chart
 on:
   push:
     paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+    branches-ignore:
+      - "upgrade-**"
   pull_request:
     paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
   workflow_dispatch:
@@ -17,7 +19,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  test-install-chart:
     runs-on: ubuntu-20.04
 
     strategy:
@@ -50,8 +52,8 @@ jobs:
 
       # Starts a k8s cluster with NetworkPolicy enforcement and installs kubectl
       #
-      # ref: https://github.com/manics/action-k3s-helm/
-      - uses: manics/action-k3s-helm@v1
+      # ref: https://github.com/jupyterhub/action-k3s-helm/
+      - uses: jupyterhub/action-k3s-helm@v1
         with:
           k3s-channel: ${{ matrix.k3s-channel }}
           metrics-enabled: false
