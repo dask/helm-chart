@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install helm and update chart dependencies
         run: |
-          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
           helm dependencies update ./daskhub
 
       - name: Lint chart's templates

@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install helm
         run: |
-          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
       - name: Lint chart's templates
         run: |

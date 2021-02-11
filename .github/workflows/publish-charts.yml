@@ -39,7 +39,7 @@ jobs:
       - name: Install chart publishing dependencies (chartpress, helm)
         run: |
           pip install chartpress==1.*
-          curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 | bash
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
       - name: Package and publish the dask and daskhub charts
         env:

@@ -11,4 +11,4 @@ git commit --allow-empty -m "Version $VERSION"
 git tag -a $VERSION -m "Version $VERSION"
 
 # Push upstream
-git push upstream master --tags
+git push upstream main --tags
