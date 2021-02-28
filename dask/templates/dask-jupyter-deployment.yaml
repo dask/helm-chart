@@ -57,9 +57,9 @@ spec:
             {{- toYaml .Values.jupyter.env | nindent 12 }}
           {{- end }}
       volumes:
-        {{- if .Values.jupyter.mounts.volumes }}
-          {{- toYaml .Values.worker.mounts.volumes | nindent 8}}
-        {{- end }}
+      {{- if .Values.jupyter.mounts.volumes }}
+        {{- toYaml .Values.worker.mounts.volumes | nindent 8}}
+      {{- end }}
         - name: config-volume
           configMap:
             name: {{ template "dask.fullname" . }}-jupyter-config
