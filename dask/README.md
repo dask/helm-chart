@@ -60,6 +60,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `scheduler.name` | Dask scheduler name. | `"scheduler"` |
+| `scheduler.enabled` | Enable/disable scheduler. | `true` |
 | `scheduler.image.repository` | Container image repository. | `"daskdev/dask"` |
 | `scheduler.image.tag` | Container image tag. | `"2021.3.0"` |
 | `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
