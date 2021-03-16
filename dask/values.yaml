@@ -57,7 +57,7 @@ worker:
     pullSecrets:  # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
     #  - name: regcred
   replicas: 3  # Number of workers.
-  #custom_scheduler_url: "" # connect to already existing scheduler, deployed not by this chart
+  custom_scheduler_url: null # connect to already existing scheduler, deployed not by this chart.
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1  # Default CPU (DEPRECATED use `resources`).
     memory: "4GiB"  # Default memory (DEPRECATED use `resources`).

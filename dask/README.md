@@ -89,6 +89,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.image.dask_worker` | Dask worker command. e.g `dask-cuda-worker` for gpu worker. | `"dask-worker"` |
 | `worker.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
 | `worker.replicas` | Number of workers. | `3` |
+| `worker.custom_scheduler_url` | Connect to already existing scheduler, deployed not by this chart. | `null` |
 | `worker.default_resources.cpu` | Default cpu (deprecated use `resources`). | `1` |
 | `worker.default_resources.memory` | Default memory (deprecated use `resources`). | `"4GiB"` |
 | `worker.env` | Environment variables. see `values.yaml` for example values. | `null` |
