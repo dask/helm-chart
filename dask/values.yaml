@@ -4,6 +4,7 @@
 
 scheduler:
   name: scheduler  # Dask scheduler name.
+  enabled: true  # Enable/disable scheduler.
   image:
     repository: "daskdev/dask"  # Container image repository.
     tag: 2021.3.0  # Container image tag.
@@ -56,6 +57,7 @@ worker:
     pullSecrets:  # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
     #  - name: regcred
   replicas: 3  # Number of workers.
+  #custom_scheduler_url: "" # connect to already existing scheduler, deployed not by this chart
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1  # Default CPU (DEPRECATED use `resources`).
     memory: "4GiB"  # Default memory (DEPRECATED use `resources`).

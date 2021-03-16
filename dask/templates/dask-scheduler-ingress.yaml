@@ -1,4 +1,5 @@
-{{- if .Values.webUI.ingress.enabled -}}
+{{- if and .Values.scheduler.enabled .Values.webUI.ingress.enabled -}}
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
