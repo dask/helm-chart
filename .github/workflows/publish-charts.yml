@@ -19,30 +19,24 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
+    strategy:
+      matrix:
+        chart:
+          - dask
+          - daskhub
+
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Publish Helm charts
+        uses: stefanprodan/helm-gh-pages@master
         with:
-          # chartpress requires the full history
-          fetch-depth: 0
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: Configure a git user
-        # Having a user.email and user.name configured with git is required to
-        # make commits, which is something chartpress does when publishing.
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Install chart publishing dependencies (chartpress, helm)
-        run: |
-          pip install chartpress==1.*
-          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-
-      - name: Package and publish the dask and daskhub charts
-        env:
-          GITHUB_TOKEN: "${{ env.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"
-        run: |
-          chartpress --tag "${GITHUB_REF#refs/*/}" --publish-chart
+          token: ${{ secrets.GITHUB_TOKEN }}
+          charts_dir: "${{ matrix.chart }}"
+          charts_url: https://helm.dask.org/
+          linting: "off"
+          chart_version: ${{ steps.get_version.outputs.VERSION }}
