@@ -19,12 +19,6 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
-    strategy:
-      matrix:
-        chart:
-          - dask
-          - daskhub
-
     steps:
       - uses: actions/checkout@v2
 
@@ -36,7 +30,7 @@ jobs:
         uses: stefanprodan/helm-gh-pages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          charts_dir: "${{ matrix.chart }}"
+          charts_dir: "."
           charts_url: https://helm.dask.org/
           linting: "off"
           chart_version: ${{ steps.get_version.outputs.VERSION }}
