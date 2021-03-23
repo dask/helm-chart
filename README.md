@@ -20,7 +20,7 @@ Users deploying Dask for a single user should use the `dask/dask` helm chart.
 ```
 helm repo add dask https://helm.dask.org/
 helm repo update
-helm install --name my-release dask/dask
+helm install my-release dask/dask
 ```
 
 See [dask](./dask/README.md) for more.
