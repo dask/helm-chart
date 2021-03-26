@@ -3,7 +3,29 @@ entries:
   dask:
   - apiVersion: v1
     appVersion: 2021.3.0
-    created: "2021-03-22T14:48:25.470833033Z"
+    created: "2021-03-26T12:03:03.410725632Z"
+    description: Distributed computation in Python with task scheduling
+    digest: 6924c2865df5f4d2f3be9f891b5c9b74823c9316939ca660925ff2837b05efb5
+    home: https://dask.org
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: df.rodriguez143@gmail.com
+      name: danielfrg
+    - email: mrocklin@gmail.com
+      name: mrocklin
+    - email: beberg@gmail.com
+      name: beberg
+    - email: jacob@tomlinson.email
+      name: jacobtomlinson
+    name: dask
+    sources:
+    - https://github.com/dask/dask
+    urls:
+    - https://helm.dask.org/dask-2021.3.2.tgz
+    version: 2021.3.2
+  - apiVersion: v1
+    appVersion: 2021.3.0
+    created: "2021-03-26T12:03:03.40976037Z"
     description: Distributed computation in Python with task scheduling
     digest: f53484ac6eeb24bb0c59b44456a01da455f60ba1835ac5ef97a8619027c49ead
     home: https://dask.org
@@ -25,7 +47,7 @@ entries:
     version: 2021.3.1
   - apiVersion: v1
     appVersion: 2021.3.0
-    created: "2021-03-22T14:48:25.469897621Z"
+    created: "2021-03-26T12:03:03.408645499Z"
     description: Distributed computation in Python with task scheduling
     digest: 5d2fa5215d2191382ba078093c18e0419947ffcc808f309608d46b6a803dc028
     home: https://dask.org
@@ -47,7 +69,7 @@ entries:
     version: 2021.3.0
   - apiVersion: v1
     appVersion: 2021.1.0
-    created: "2021-03-22T14:48:25.509041101Z"
+    created: "2021-03-26T12:03:03.447439686Z"
     description: Distributed computation in Python with task scheduling
     digest: 97238df07dc77520e2c9be715aebe0f7e1b1bdf41e164db82862abe2e4dd1ca6
     home: https://dask.org
@@ -69,7 +91,7 @@ entries:
     version: 4.5.7
   - apiVersion: v1
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.508229791Z"
+    created: "2021-03-26T12:03:03.446510426Z"
     description: Distributed computation in Python with task scheduling
     digest: 2dc24fdf041db0b9e021a25687bca75e25624cc9f76607f9840e6fec2de5b998
     home: https://dask.org
@@ -91,7 +113,7 @@ entries:
     version: 4.5.6
   - apiVersion: v1
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.507423081Z"
+    created: "2021-03-26T12:03:03.445561566Z"
     description: Distributed computation in Python with task scheduling
     digest: f328e735746365e693f54c749d3bacb34c90ed6cf94d0da2e8eca36107956942
     home: https://dask.org
@@ -113,7 +135,7 @@ entries:
     version: 4.5.5
   - apiVersion: v1
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.50648067Z"
+    created: "2021-03-26T12:03:03.444728912Z"
     description: Distributed computation in Python with task scheduling
     digest: e7c51f9db60105c3e18ed24a7fccab0640849873a3fbce03ccea50d7f2f5725d
     home: https://dask.org
@@ -135,7 +157,7 @@ entries:
     version: 4.5.4
   - apiVersion: v1
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.505506458Z"
+    created: "2021-03-26T12:03:03.443650743Z"
     description: Distributed computation in Python with task scheduling
     digest: 7f9743f8c0711ff951f8a63163cfaa711d4b73ade0209b165edff6467accb6c3
     home: https://dask.org
@@ -157,7 +179,7 @@ entries:
     version: 4.5.3
   - apiVersion: v1
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.504597847Z"
+    created: "2021-03-26T12:03:03.442572574Z"
     description: Distributed computation in Python with task scheduling
     digest: 6ac749cf13cee64691c3f9a0ca2f38ba6a1ba73b2ac858bcdb64745982a9c162
     home: https://dask.org
@@ -179,7 +201,7 @@ entries:
     version: 4.5.2
   - apiVersion: v1
     appVersion: 2.27.0
-    created: "2021-03-22T14:48:25.503716336Z"
+    created: "2021-03-26T12:03:03.441532307Z"
     description: Distributed computation in Python with task scheduling
     digest: c8c4b2eafeebb91ed6c468011e085adb290ef7b4f62465dd9256effe47e1f7b6
     home: https://dask.org
@@ -201,7 +223,7 @@ entries:
     version: 4.5.1
   - apiVersion: v1
     appVersion: 2.26.0
-    created: "2021-03-22T14:48:25.502801925Z"
+    created: "2021-03-26T12:03:03.44047664Z"
     description: Distributed computation in Python with task scheduling
     digest: 399c380e07c99fbd47b61adff9c88ae10f804162276bedb8a0f71809b198abde
     home: https://dask.org
@@ -223,7 +245,7 @@ entries:
     version: 4.5.0
   - apiVersion: v1
     appVersion: 2.25.0
-    created: "2021-03-22T14:48:25.501891714Z"
+    created: "2021-03-26T12:03:03.439353468Z"
     description: Distributed computation in Python with task scheduling
     digest: 22a133cbe3b38796f18f1001a6319e48e96c330143a89e0861695b4dde6e871a
     home: https://dask.org
@@ -245,7 +267,7 @@ entries:
     version: 4.4.3
   - apiVersion: v1
     appVersion: 2.24.0
-    created: "2021-03-22T14:48:25.49673205Z"
+    created: "2021-03-26T12:03:03.4382964Z"
     description: Distributed computation in Python with task scheduling
     digest: ea5600d357ae9373fda4103ee831e45004f9498f329cf816c378cc21663ee89a
     home: https://dask.org
@@ -267,7 +289,7 @@ entries:
     version: 4.4.2
   - apiVersion: v1
     appVersion: 2.24.0
-    created: "2021-03-22T14:48:25.495625537Z"
+    created: "2021-03-26T12:03:03.437228831Z"
     description: Distributed computation in Python with task scheduling
     digest: efc7262f66cad4fd5e3dffe2048f56584c19ad299bf370c78e78a66cf71ce5e3
     home: https://dask.org
@@ -289,7 +311,7 @@ entries:
     version: 4.4.1
   - apiVersion: v1
     appVersion: 2.24.0
-    created: "2021-03-22T14:48:25.494483523Z"
+    created: "2021-03-26T12:03:03.43532901Z"
     description: Distributed computation in Python with task scheduling
     digest: be01e295a8626227ab1e69db7be314e0cdeb651a26ead364838108da05854e9f
     home: https://dask.org
@@ -311,7 +333,7 @@ entries:
     version: 4.4.0
   - apiVersion: v1
     appVersion: 2.24.0
-    created: "2021-03-22T14:48:25.491069181Z"
+    created: "2021-03-26T12:03:03.433914919Z"
     description: Distributed computation in Python with task scheduling
     digest: bf1d2175839568dd65e0460c26e314506674070d73d7b678705dddcdb80b0c3b
     home: https://dask.org
@@ -333,7 +355,7 @@ entries:
     version: 4.3.2
   - apiVersion: v1
     appVersion: 2.23.0
-    created: "2021-03-22T14:48:25.490237371Z"
+    created: "2021-03-26T12:03:03.432452025Z"
     description: Distributed computation in Python with task scheduling
     digest: a6b12bc20670029709e70c064db7699f610747e18f3e7f4338c7084495f1033a
     home: https://dask.org
@@ -355,7 +377,7 @@ entries:
     version: 4.3.1
   - apiVersion: v1
     appVersion: 2.22.0
-    created: "2021-03-22T14:48:25.489265659Z"
+    created: "2021-03-26T12:03:03.431486363Z"
     description: Distributed computation in Python with task scheduling
     digest: 0ecd0e5b72673c05ecc448ff9cd7ca134fda260fe1ac8924840ee95d78d7a3f7
     home: https://dask.org
@@ -377,7 +399,7 @@ entries:
     version: 4.3.0
   - apiVersion: v1
     appVersion: 2.22.0
-    created: "2021-03-22T14:48:25.488301547Z"
+    created: "2021-03-26T12:03:03.430486599Z"
     description: Distributed computation in Python with task scheduling
     digest: 1c64949349e216b382c315cdef654769b0cffc6d6d3a00bcdd3ac8e6610e8b75
     home: https://dask.org
@@ -399,7 +421,7 @@ entries:
     version: 4.2.0
   - apiVersion: v1
     appVersion: 2.22.0
-    created: "2021-03-22T14:48:25.479404838Z"
+    created: "2021-03-26T12:03:03.421834644Z"
     description: Distributed computation in Python with task scheduling
     digest: 8bd73b95cecf37cdd34f15daaeb9306720416e6980e0840898a72e997d5daa35
     home: https://dask.org
@@ -421,7 +443,7 @@ entries:
     version: 4.1.14
   - apiVersion: v1
     appVersion: 2.21.0
-    created: "2021-03-22T14:48:25.478591228Z"
+    created: "2021-03-26T12:03:03.420934787Z"
     description: Distributed computation in Python with task scheduling
     digest: b2faeb340e814ee7d7f92d39a9390c6043fc7e711a112845586b92317c9a07ca
     home: https://dask.org
@@ -443,7 +465,7 @@ entries:
     version: 4.1.13
   - apiVersion: v1
     appVersion: 2.20.0
-    created: "2021-03-22T14:48:25.477715717Z"
+    created: "2021-03-26T12:03:03.419548598Z"
     description: Distributed computation in Python with task scheduling
     digest: 40a651372e053572cd69ec948a0e1f723aa11628d9d3561ab2f1df457e7d1630
     home: https://dask.org
@@ -465,7 +487,7 @@ entries:
     version: 4.1.12
   - apiVersion: v1
     appVersion: 2.19.0
-    created: "2021-03-22T14:48:25.476775506Z"
+    created: "2021-03-26T12:03:03.418359322Z"
     description: Distributed computation in Python with task scheduling
     digest: 512f680bd77d4fd745efa4bb2fe55f7e6fa65078adb65c44042ca955f72aa12c
     home: https://dask.org
@@ -487,7 +509,7 @@ entries:
     version: 4.1.11
   - apiVersion: v1
     appVersion: 2.18.1
-    created: "2021-03-22T14:48:25.475877895Z"
+    created: "2021-03-26T12:03:03.416510903Z"
     description: Distributed computation in Python with task scheduling
     digest: 6e90ac920ad44cebe19e62efa414f91345f2cd6c7f8f7fb32625878474eefe30
     home: https://dask.org
@@ -509,7 +531,7 @@ entries:
     version: 4.1.10
   - apiVersion: v1
     appVersion: 2.18.0
-    created: "2021-03-22T14:48:25.487458537Z"
+    created: "2021-03-26T12:03:03.429350226Z"
     description: Distributed computation in Python with task scheduling
     digest: 1b9857ee583a90c92d0e4440c9e926387fd987dfd9e94cb937d38555e959475b
     home: https://dask.org
@@ -531,7 +553,7 @@ entries:
     version: 4.1.9
   - apiVersion: v1
     appVersion: 2.17.2
-    created: "2021-03-22T14:48:25.486719728Z"
+    created: "2021-03-26T12:03:03.428014141Z"
     description: Distributed computation in Python with task scheduling
     digest: 80fd1aff9173565a3609c7aa001cc033b142a827ee1516900f20a12f8a8af227
     home: https://dask.org
@@ -553,7 +575,7 @@ entries:
     version: 4.1.8
   - apiVersion: v1
     appVersion: 2.17.0
-    created: "2021-03-22T14:48:25.485979719Z"
+    created: "2021-03-26T12:03:03.426988275Z"
     description: Distributed computation in Python with task scheduling
     digest: 44ede83cf2e7e8e69c33a4ed84680bfb8877b0e18dfc1b35ef72fc77a7e7233e
     home: https://dask.org
@@ -575,7 +597,7 @@ entries:
     version: 4.1.7
   - apiVersion: v1
     appVersion: 2.11.0
-    created: "2021-03-22T14:48:25.485239109Z"
+    created: "2021-03-26T12:03:03.426170022Z"
     description: Distributed computation in Python with task scheduling
     digest: 43f6dbde7a5e24810e3de99b8b5413a863ecae389c925e53e693ee781b29ce2f
     home: https://dask.org
@@ -597,7 +619,7 @@ entries:
     version: 4.1.6
   - apiVersion: v1
     appVersion: 2.10.1
-    created: "2021-03-22T14:48:25.484520401Z"
+    created: "2021-03-26T12:03:03.42535427Z"
     description: Distributed computation in Python with task scheduling
     digest: bbe280ec463fd7274560dc0d10d2dbef061fce2e5869074f1cb1785f8a99b448
     home: https://dask.org
@@ -619,7 +641,7 @@ entries:
     version: 4.1.5
   - apiVersion: v1
     appVersion: 2.9.2
-    created: "2021-03-22T14:48:25.48363039Z"
+    created: "2021-03-26T12:03:03.424537818Z"
     description: Distributed computation in Python with task scheduling
     digest: 893233d4a737b6ee79652a4869ead3f9d0800df537b92bb3df45f634cc809f32
     home: https://dask.org
@@ -641,7 +663,7 @@ entries:
     version: 4.1.4
   - apiVersion: v1
     appVersion: 2.9.2
-    created: "2021-03-22T14:48:25.481950169Z"
+    created: "2021-03-26T12:03:03.423616159Z"
     description: Distributed computation in Python with task scheduling
     digest: 1f635d24ed169e02b674eeefe7a5525417800b75ebd60204da30ed17b4413eec
     home: https://dask.org
@@ -663,7 +685,7 @@ entries:
     version: 4.1.3
   - apiVersion: v1
     appVersion: 2.9.0
-    created: "2021-03-22T14:48:25.480697554Z"
+    created: "2021-03-26T12:03:03.422717201Z"
     description: Distributed computation in Python with task scheduling
     digest: 6b89e7855e9c92c71b3b56cfb2344b3b734dda0ac4d12c6856e5d42a092596b2
     home: https://dask.org
@@ -685,7 +707,7 @@ entries:
     version: 4.1.2
   - apiVersion: v1
     appVersion: 2.8.1
-    created: "2021-03-22T14:48:25.475019984Z"
+    created: "2021-03-26T12:03:03.415307926Z"
     description: Distributed computation in Python with task scheduling
     digest: 0c8c290bc34bfd9487f6be95aac1fc91d5c3fb382ec87fd6020d3ad6c14e7b1b
     home: https://dask.org
@@ -707,7 +729,7 @@ entries:
     version: 4.1.1
   - apiVersion: v1
     appVersion: 2.8.0
-    created: "2021-03-22T14:48:25.474142173Z"
+    created: "2021-03-26T12:03:03.41443347Z"
     description: Distributed computation in Python with task scheduling
     digest: 9e9cad568a9164db6a55037b16954bd70af63c5f9415c13c811a6aef560c7457
     home: https://dask.org
@@ -729,7 +751,7 @@ entries:
     version: 4.1.0
   - apiVersion: v1
     appVersion: 2.6.0
-    created: "2021-03-22T14:48:25.473296063Z"
+    created: "2021-03-26T12:03:03.413250594Z"
     description: Distributed computation in Python with task scheduling
     digest: 4b519643772ab3547aba3b27668054a793b6004a61cec15fddf168d03e65baf1
     home: https://dask.org
@@ -751,7 +773,7 @@ entries:
     version: 4.0.0
   - apiVersion: v1
     appVersion: 1.1.5
-    created: "2021-03-22T14:48:25.472396652Z"
+    created: "2021-03-26T12:03:03.412421441Z"
     description: Distributed computation in Python with task scheduling
     digest: 6e79c9e1514017d87771ac5577f52375b7dec7cd69c0fe9721475d8416d30cc6
     home: https://dask.org
@@ -771,7 +793,7 @@ entries:
     version: 3.1.0
   - apiVersion: v1
     appVersion: 1.1.5
-    created: "2021-03-22T14:48:25.471600042Z"
+    created: "2021-03-26T12:03:03.411482581Z"
     description: Distributed computation in Python with task scheduling
     digest: edb285ce41d6dcc0414d2041284d9777735e119c9f4c2a639e825b5ff6a208ea
     home: https://dask.org
@@ -791,7 +813,7 @@ entries:
     version: 3.0.0
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-22T14:48:25.46896631Z"
+    created: "2021-03-26T12:03:03.407750141Z"
     description: Distributed computation in Python with task scheduling
     digest: 7dd9a52945515cec7c4ea4476ada51f13ac0d1f1690cad01f49f9bc25a5b9938
     home: https://dask.pydata.org
@@ -809,7 +831,7 @@ entries:
     version: 2.2.1
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-22T14:48:25.467567393Z"
+    created: "2021-03-26T12:03:03.407074598Z"
     description: Distributed computation in Python with task scheduling
     digest: 6968838c547a3757122b71f70af1e1dbedbc4e919e427b46585d624c3f8e77f5
     home: https://dask.pydata.org
@@ -827,7 +849,7 @@ entries:
     version: 2.2.0
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-22T14:48:25.466664182Z"
+    created: "2021-03-26T12:03:03.406435557Z"
     description: Distributed computation in Python with task scheduling
     digest: 02ddb1fec1fec8db13941791dbb39761d213df7ef7c6b84cfa4d13250ad41ac3
     home: https://dask.pydata.org
@@ -845,7 +867,7 @@ entries:
     version: 2.1.0
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-22T14:48:25.465479967Z"
+    created: "2021-03-26T12:03:03.405808417Z"
     description: Distributed computation in Python with task scheduling
     digest: b6be2a4cb7d68cf403b316a71f38ab4e648a2e6b2658569e958b06ed0308ad01
     home: https://dask.pydata.org
@@ -863,7 +885,7 @@ entries:
     version: 2.0.1
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-22T14:48:25.464727758Z"
+    created: "2021-03-26T12:03:03.405217879Z"
     description: Distributed computation in Python with task scheduling
     digest: 989b5534482bf6864de85a00908e1f60dbee71bc5b97c65ae3f2f7d3cd436004
     home: https://dask.pydata.org
@@ -881,7 +903,7 @@ entries:
     version: 2.0.0
   - apiVersion: v1
     appVersion: 0.18.1
-    created: "2021-03-22T14:48:25.464183051Z"
+    created: "2021-03-26T12:03:03.404574638Z"
     description: Distributed computation in Python with task scheduling
     digest: f996019dc7b122ad9a4898608fd22b3c989b70b756d5bfae624b655f42fb9e59
     home: https://dask.pydata.org
@@ -899,7 +921,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: 0.17.4
-    created: "2021-03-22T14:48:25.463668445Z"
+    created: "2021-03-26T12:03:03.403921196Z"
     description: Distributed computation in Python with task scheduling
     digest: 27792dd49d9648781b619293002772ec7f0778902cd1d87f7687634c3ee9229b
     home: https://dask.pydata.org
@@ -917,7 +939,7 @@ entries:
     version: 1.0.4
   - apiVersion: v1
     appVersion: 0.17.1
-    created: "2021-03-22T14:48:25.463180039Z"
+    created: "2021-03-26T12:03:03.402416099Z"
     description: Distributed computation in Python with task scheduling
     digest: ca8bf0a3f8a4c7f283d28d5f47642841ebe2eaa8a38b69c0d4a662bf21126753
     home: https://dask.pydata.org
@@ -935,7 +957,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: 0.17.1
-    created: "2021-03-22T14:48:25.462676833Z"
+    created: "2021-03-26T12:03:03.40164025Z"
     description: Distributed computation in Python with task scheduling
     digest: b4b2750deadf53734da310a02f3050b0f789bd22e794f242fb50c9608b2955f9
     home: https://dask.pydata.org
@@ -953,7 +975,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: 0.17.1
-    created: "2021-03-22T14:48:25.462174327Z"
+    created: "2021-03-26T12:03:03.400835798Z"
     description: Distributed computation in Python with task scheduling
     digest: d6d67cad6f6abc29fa82ad8869c3496e2a644e12ede465151661cd37db32b2c4
     home: https://dask.pydata.org
@@ -971,7 +993,7 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: 0.17.1
-    created: "2021-03-22T14:48:25.46164562Z"
+    created: "2021-03-26T12:03:03.399730827Z"
     description: Distributed computation in Python with task scheduling
     digest: ebee155cfd898cf6e7aba971891a469674253f1607a7b17a17288a15fb2b16df
     home: https://dask.pydata.org
@@ -988,7 +1010,7 @@ entries:
     - https://helm.dask.org/dask-1.0.0.tgz
     version: 1.0.0
   - apiVersion: v1
-    created: "2021-03-22T14:48:25.461071113Z"
+    created: "2021-03-26T12:03:03.397687396Z"
     description: Distributed computation in Python
     digest: 17a205ea097fcbbc2b1ba69debac5e9292cb3d2d0bb1db3969858dffa3a031ba
     home: https://dask.pydata.org
@@ -1005,7 +1027,7 @@ entries:
     - https://helm.dask.org/dask-0.17.1.tgz
     version: 0.17.1
   - apiVersion: v1
-    created: "2021-03-22T14:48:25.460540507Z"
+    created: "2021-03-26T12:03:03.39712196Z"
     description: Distributed computation in Python
     digest: 2a6fe6dea37ab4bfc30480d5e432aa41a45952bc862c2f01a35400c95f48cee8
     home: https://dask.pydata.org
@@ -1022,7 +1044,7 @@ entries:
     - https://helm.dask.org/dask-0.17.0.tgz
     version: 0.17.0
   - apiVersion: v1
-    created: "2021-03-22T14:48:25.459951499Z"
+    created: "2021-03-26T12:03:03.396465818Z"
     description: Distributed computation in Python
     digest: 9f18db9c890e327e90b2bac3f53f24b6a98a3f3bcc08e72df074a0a0495fa6a6
     home: https://github.com/dask/dask
@@ -1041,7 +1063,38 @@ entries:
   daskhub:
   - apiVersion: v2
     appVersion: 2021.3.0
-    created: "2021-03-22T14:48:25.530784168Z"
+    created: "2021-03-26T12:03:03.468074709Z"
+    dependencies:
+    - import-values:
+      - child: rbac
+        parent: rbac
+      name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.11.1
+    - name: dask-gateway
+      repository: https://dask.org/dask-gateway-helm-repo/
+      version: 0.9.0
+    description: Multi-user JupyterHub and Dask deployment.
+    digest: aeec40805ab58cfab6b5f117d8ab97e58bb6a426086637e7f2f386a1e2c4a89e
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: jtomlinson@nvidia.com
+      name: Jacob Tomlinson (Nvidia)
+    - email: jhamman@ucar.edu
+      name: Joe Hamman (NCAR)
+    - email: guillaume.eynard-bontemps@cnes.fr
+      name: Guillaume Eynard-Bontemps (CNES)
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - email: tom.w.augspurger@gmail.com
+      name: Tom Augspurger
+    name: daskhub
+    urls:
+    - https://helm.dask.org/daskhub-2021.3.2.tgz
+    version: 2021.3.2
+  - apiVersion: v2
+    appVersion: 2021.3.0
+    created: "2021-03-26T12:03:03.461787706Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1072,7 +1125,7 @@ entries:
     version: 2021.3.1
   - apiVersion: v2
     appVersion: 2021.3.0
-    created: "2021-03-22T14:48:25.524226988Z"
+    created: "2021-03-26T12:03:03.455982734Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1103,7 +1156,7 @@ entries:
     version: 2021.3.0
   - apiVersion: v2
     appVersion: 2021.1.0
-    created: "2021-03-22T14:48:25.599227307Z"
+    created: "2021-03-26T12:03:03.539141265Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1134,7 +1187,7 @@ entries:
     version: 4.5.7
   - apiVersion: v2
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.594337147Z"
+    created: "2021-03-26T12:03:03.533498803Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1165,7 +1218,7 @@ entries:
     version: 4.5.6
   - apiVersion: v2
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.588961981Z"
+    created: "2021-03-26T12:03:03.52595232Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1196,7 +1249,7 @@ entries:
     version: 4.5.5
   - apiVersion: v2
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.582669604Z"
+    created: "2021-03-26T12:03:03.518391235Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1227,7 +1280,7 @@ entries:
     version: 4.5.4
   - apiVersion: v2
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.576698131Z"
+    created: "2021-03-26T12:03:03.511031163Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1258,7 +1311,7 @@ entries:
     version: 4.5.3
   - apiVersion: v2
     appVersion: 2.30.0
-    created: "2021-03-22T14:48:25.571667169Z"
+    created: "2021-03-26T12:03:03.505718722Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1289,7 +1342,7 @@ entries:
     version: 4.5.2
   - apiVersion: v2
     appVersion: 2.27.0
-    created: "2021-03-22T14:48:25.56522009Z"
+    created: "2021-03-26T12:03:03.500333577Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1320,7 +1373,7 @@ entries:
     version: 4.5.1
   - apiVersion: v2
     appVersion: 2.26.0
-    created: "2021-03-22T14:48:25.557787599Z"
+    created: "2021-03-26T12:03:03.494812823Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1351,7 +1404,7 @@ entries:
     version: 4.5.0
   - apiVersion: v2
     appVersion: 2.25.0
-    created: "2021-03-22T14:48:25.552681936Z"
+    created: "2021-03-26T12:03:03.485623134Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1382,7 +1435,7 @@ entries:
     version: 4.4.3
   - apiVersion: v2
     appVersion: 2.24.0
-    created: "2021-03-22T14:48:25.540791491Z"
+    created: "2021-03-26T12:03:03.480331995Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1412,7 +1465,7 @@ entries:
     - https://helm.dask.org/daskhub-4.4.2.tgz
     version: 4.4.2
   - apiVersion: v2
-    created: "2021-03-22T14:48:25.535781529Z"
+    created: "2021-03-26T12:03:03.474880845Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -1441,4 +1494,4 @@ entries:
     urls:
     - https://helm.dask.org/daskhub-4.4.1.tgz
     version: 4.4.1
-generated: "2021-03-22T14:48:25.45918839Z"
+generated: "2021-03-26T12:03:03.395579661Z"
