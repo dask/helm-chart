@@ -16,7 +16,7 @@ spec:
       release: {{ .Release.Name | quote }}
       component: worker
   strategy:
-    type: RollingUpdate
+    type: {{ .Values.worker.strategy.type }}
   template:
     metadata:
       labels:
