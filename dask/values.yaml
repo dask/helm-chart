@@ -33,6 +33,20 @@ scheduler:
   nodeSelector: {}  # Node Selector.
   securityContext: {}  # Security Context.
   # serviceAccountName: ""
+  metrics:
+    enabled: false # Enable scheduler metrics. Pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on scheduler.
+    serviceMonitor:
+      enabled: false  # Enable scheduler servicemonitor.
+      namespace: "" # Deploy servicemonitor in different namespace, e.g. monitoring.
+      namespaceSelector: {} # Selector to select which namespaces the Endpoints objects are discovered from.
+      # Default: scrape .Release.Namespace only
+      # To scrape all, use the following:
+      # namespaceSelector:
+      #   any: true
+      interval: 30s # Interval at which metrics should be scraped.
+      jobLabel: "" # The label to use to retrieve the job name from.
+      targetLabels: [] # TargetLabels transfers labels on the Kubernetes Service onto the target.
+      metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
 
 webUI:
   name: webui  # Dask webui name.
@@ -69,7 +83,7 @@ worker:
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: numba xarray -c conda-forge
   #  - name: EXTRA_PIP_PACKAGES
-  #    value: s3fs dask-ml --upgrade
+  #    value: s3fs dask-ml prometheus-client --upgrade
   extraArgs: [] # Extra CLI arguments to be passed to the worker
     # - --preload
     # - worker-setup.py
@@ -96,9 +110,24 @@ worker:
   securityContext: {}  # Security Context.
   # serviceAccountName: ""
   # port: ""
+  portDashboard: 8790 # Worker dashboard and metrics port.
   #  this option overrides "--nthreads" on workers, which defaults to resources.limits.cpu / default_resources.limits.cpu
   #  use it if you need to limit the amount of threads used by multicore workers, or to make workers with non-whole-number cpu limits
   # threads_per_worker: 1
+  metrics:
+    enabled: false # Enable workers metrics. Pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on workers.
+    podMonitor:
+      enabled: false # Enable workers podmonitor
+      namespace: "" # Deploy podmonitor in different namespace, e.g. monitoring.
+      namespaceSelector: {} # Selector to select which namespaces the Endpoints objects are discovered from.
+      # Default: scrape .Release.Namespace only
+      # To scrape all, use the following:
+      # namespaceSelector:
+      #   any: true
+      interval: 30s # Interval at which metrics should be scraped.
+      jobLabel: "" # The label to use to retrieve the job name from.
+      podTargetLabels: [] # PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
+      metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
 
 jupyter:
   name: jupyter  # Jupyter name.

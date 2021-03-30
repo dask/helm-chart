@@ -52,6 +52,8 @@ spec:
             - {{ .Values.worker.resources.limits.memory | default .Values.worker.default_resources.memory | quote }}
           {{- end }}
             - --no-dashboard
+            - --dashboard-address
+            - {{ .Values.worker.portDashboard | quote }}
           {{- if .Values.worker.port }}
             - --worker-port
             - {{ .Values.worker.port | quote }}
@@ -60,7 +62,8 @@ spec:
             {{ toYaml .Values.worker.extraArgs | nindent 12 }}
           {{- end }}
           ports:
-            - containerPort: 8789
+            - containerPort: {{ .Values.worker.portDashboard }}
+              name: dashboard
           resources:
             {{- toYaml .Values.worker.resources | nindent 12 }}
           env:
