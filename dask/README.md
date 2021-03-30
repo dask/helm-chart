@@ -76,6 +76,14 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.affinity` | Container affinity. | `{}` |
 | `scheduler.nodeSelector` | Node selector. | `{}` |
 | `scheduler.securityContext` | Security context. | `{}` |
+| `scheduler.metrics.enabled` | Enable scheduler metrics. pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on scheduler. | `false` |
+| `scheduler.metrics.serviceMonitor.enabled` | Enable scheduler servicemonitor. | `false` |
+| `scheduler.metrics.serviceMonitor.namespace` | Deploy servicemonitor in different namespace, e.g. monitoring. | `""` |
+| `scheduler.metrics.serviceMonitor.namespaceSelector` | Selector to select which namespaces the endpoints objects are discovered from. | `{}` |
+| `scheduler.metrics.serviceMonitor.interval` | Interval at which metrics should be scraped. | `"30s"` |
+| `scheduler.metrics.serviceMonitor.jobLabel` | The label to use to retrieve the job name from. | `""` |
+| `scheduler.metrics.serviceMonitor.targetLabels` | Targetlabels transfers labels on the kubernetes service onto the target. | `[]` |
+| `scheduler.metrics.serviceMonitor.metricRelabelings` | Metricrelabelconfigs to apply to samples before ingestion. | `[]` |
 | `webUI.name` | Dask webui name. | `"webui"` |
 | `webUI.servicePort` | Webui service internal port. | `80` |
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
@@ -102,6 +110,15 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.affinity` | Container affinity. | `{}` |
 | `worker.nodeSelector` | Node selector. | `{}` |
 | `worker.securityContext` | Security context. | `{}` |
+| `worker.portDashboard` | Worker dashboard and metrics port. | `8790` |
+| `worker.metrics.enabled` | Enable workers metrics. pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on workers. | `false` |
+| `worker.metrics.podMonitor.enabled` | Enable workers podmonitor | `false` |
+| `worker.metrics.podMonitor.namespace` | Deploy podmonitor in different namespace, e.g. monitoring. | `""` |
+| `worker.metrics.podMonitor.namespaceSelector` | Selector to select which namespaces the endpoints objects are discovered from. | `{}` |
+| `worker.metrics.podMonitor.interval` | Interval at which metrics should be scraped. | `"30s"` |
+| `worker.metrics.podMonitor.jobLabel` | The label to use to retrieve the job name from. | `""` |
+| `worker.metrics.podMonitor.podTargetLabels` | Podtargetlabels transfers labels on the kubernetes pod onto the target. | `[]` |
+| `worker.metrics.podMonitor.metricRelabelings` | Metricrelabelconfigs to apply to samples before ingestion. | `[]` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled jupyter notebook. | `true` |
 | `jupyter.rbac` | Create rbac service account and role to allow jupyter pod to scale worker pods and access logs. | `true` |
