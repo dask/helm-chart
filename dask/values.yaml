@@ -43,6 +43,7 @@ scheduler:
       # To scrape all, use the following:
       # namespaceSelector:
       #   any: true
+      additionalLabels: {} # Additional labels to add to the ServiceMonitor metadata.
       interval: 30s # Interval at which metrics should be scraped.
       jobLabel: "" # The label to use to retrieve the job name from.
       targetLabels: [] # TargetLabels transfers labels on the Kubernetes Service onto the target.
@@ -124,6 +125,7 @@ worker:
       # To scrape all, use the following:
       # namespaceSelector:
       #   any: true
+      additionalLabels: {} # Additional labels to add to the PodMonitor metadata.
       interval: 30s # Interval at which metrics should be scraped.
       jobLabel: "" # The label to use to retrieve the job name from.
       podTargetLabels: [] # PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
