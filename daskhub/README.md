@@ -31,37 +31,27 @@ keys, which should not be checked into version control in plaintext.
 We need two random hex strings that will be used as keys, one for
 JupyterHub and one for Dask Gateway.
 
-Run the following command, and copy the output. This is our `token-1`.
+Run the following command, and copy the output. This is our `secret-token`.
 
 ```console
-openssl rand -hex 32  # generate token-1
+openssl rand -hex 32  # generate secret-token
 ```
 
-Run command again and copy the output. This is our `token-2`.
-
-```console
-openssl rand -hex 32  # generate token-2
-```
-
-Now substitute those two values for `<token-1>` and `<token-2>` below.
-Note that `<token-2>` is used twice, once for `jupyterhub.hub.services.dask-gateway.apiToken`, and a second time for `dask-gateway.gateway.auth.jupyterhub.apiToken`.
-
+Now substitute that value for `<secret-token>` below.
 
 ```yaml
 # file: secrets.yaml
 jupyterhub:
-  proxy:
-    secretToken: "<token-1>"
   hub:
     services:
       dask-gateway:
-        apiToken: "<token-2>"
+        apiToken: "<secret-token>"
 
 dask-gateway:
   gateway:
     auth:
       jupyterhub:
-        apiToken: "<token-2>"
+        apiToken: "<secret-token>"
 ```
 
 ## Install DaskHub
