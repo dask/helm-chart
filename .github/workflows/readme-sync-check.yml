@@ -47,6 +47,7 @@ jobs:
       - name: Check that daskhub README is up to date
         if: always()
         run: |
+          helm dependency update daskhub
           frigate gen daskhub > daskhub/README.md
           if git status --porcelain daskhub/README.md | grep .; then
               echo ""

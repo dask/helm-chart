@@ -1,12 +1,12 @@
 apiVersion: v2
 name: daskhub
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
-version: 0.0.1-set.by.chartpress
-appVersion: 2021.6.0
+version: 2021.6.25
+appVersion: 2021.6.25
 description: Multi-user JupyterHub and Dask deployment.
 dependencies:
   - name: jupyterhub
-    version: "0.11.1"
+    version: "1.0.1"
     repository: 'https://jupyterhub.github.io/helm-chart/'
     import-values:
       - child: rbac
