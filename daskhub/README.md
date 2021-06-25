@@ -12,6 +12,8 @@ and [Dask Gateway](https://gateway.dask.org/) helm charts.
 
 For single users, a simpler setup is supported by the `dask` helm chart.
 
+See [CHANGELOG](./CHANGELOG.md) for a information about changes in the `daskhub` helm chart.
+
 ## Chart Details
 
 This chart will deploy the following
