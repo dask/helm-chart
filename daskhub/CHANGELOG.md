@@ -2,7 +2,7 @@
 
 This document logs changes between versions of the `daskhub` helm chart.
 
-## 2021.6.2
+## 2021.6.1
 
 ### Version Updates
 
