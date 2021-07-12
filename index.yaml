@@ -2,6 +2,28 @@ apiVersion: v1
 entries:
   dask:
   - apiVersion: v1
+    appVersion: 2021.7.0
+    created: "2021-07-12T09:32:34.281724366Z"
+    description: Distributed computation in Python with task scheduling
+    digest: 24b503c8d05925f9511a38806e63ae26eaffa4a832c09d1d6c7301fd8c8d07e2
+    home: https://dask.org
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: df.rodriguez143@gmail.com
+      name: danielfrg
+    - email: mrocklin@gmail.com
+      name: mrocklin
+    - email: beberg@gmail.com
+      name: beberg
+    - email: jacob@tomlinson.email
+      name: jacobtomlinson
+    name: dask
+    sources:
+    - https://github.com/dask/dask
+    urls:
+    - https://helm.dask.org/dask-2021.7.0.tgz
+    version: 2021.7.0
+  - apiVersion: v1
     appVersion: 2021.6.2
     created: "2021-06-28T11:01:59.908325465Z"
     description: Distributed computation in Python with task scheduling
@@ -1238,6 +1260,37 @@ entries:
     version: 0.1.0
   daskhub:
   - apiVersion: v2
+    appVersion: 2021.7.0
+    created: "2021-07-12T09:32:34.289732032Z"
+    dependencies:
+    - import-values:
+      - child: rbac
+        parent: rbac
+      name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.0.1
+    - name: dask-gateway
+      repository: https://dask.org/dask-gateway-helm-repo/
+      version: 0.9.0
+    description: Multi-user JupyterHub and Dask deployment.
+    digest: e4d42766f5fc660cbb51138deb7bab27e2b370acf32e0f7c8d2294d3c6b2f870
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: jtomlinson@nvidia.com
+      name: Jacob Tomlinson (Nvidia)
+    - email: jhamman@ucar.edu
+      name: Joe Hamman (NCAR)
+    - email: guillaume.eynard-bontemps@cnes.fr
+      name: Guillaume Eynard-Bontemps (CNES)
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - email: tom.w.augspurger@gmail.com
+      name: Tom Augspurger
+    name: daskhub
+    urls:
+    - https://helm.dask.org/daskhub-2021.7.0.tgz
+    version: 2021.7.0
+  - apiVersion: v2
     appVersion: 2021.6.2
     created: "2021-06-28T11:01:59.914462916Z"
     dependencies:
@@ -1918,4 +1971,4 @@ entries:
     urls:
     - https://helm.dask.org/daskhub-4.4.1.tgz
     version: 4.4.1
-generated: "2021-06-28T11:01:59.907090854Z"
+generated: "2021-07-12T09:32:34.280321655Z"
