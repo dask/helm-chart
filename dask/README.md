@@ -311,4 +311,3 @@ Or manually run the steps below.
 - Push the tags `git push upstream main --tags`.
 - Travis CI will automatically build and release to the chart repository.
 
-
