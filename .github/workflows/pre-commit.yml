@@ -13,6 +13,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - run: |
-        helm dependencies update ./dask
-        helm dependencies update ./daskhub
+          helm dependencies update ./dask
+          helm dependencies update ./daskhub
       - uses: pre-commit/action@v2.0.0
