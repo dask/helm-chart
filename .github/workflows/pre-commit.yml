@@ -1,14 +1,6 @@
-# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
-# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+# See the CONTRIBUTING.md for more information on what pre-commit is testing
 #
-# Frigate is a tool for automatically generating documentation for Helm charts.
-# We use it to generate the README.md files in the Chart repos from a .frigate
-# jinja template file. The jinja template make use of values.yaml and Chart.yaml
-# content, so we monitor for changes to those as well as the generated output.
-#
-# ref: https://github.com/rapidsai/frigate
-#
-name: Ensure charts' README.md are updated
+name: Linting
 
 on:
   pull_request:
