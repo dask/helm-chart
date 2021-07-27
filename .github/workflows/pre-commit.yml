@@ -4,11 +4,6 @@ name: Linting
 
 on:
   pull_request:
-    paths:
-      - "*/.frigate"
-      - "*/README.md"
-      - "*/values.yaml"
-      - "*/Chart.yaml"
 
 jobs:
   checks:
