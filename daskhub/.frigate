@@ -154,4 +154,4 @@ When deploying, helm will create a Kubernetes ServiceAccount, Role, and RoleBind
 {%- endblock %}
 
 {% block credits -%}
-{%- endblock %}
+{%- endblock -%}

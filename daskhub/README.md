@@ -215,7 +215,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.extraVolumes` |  | `[]` |
 | `jupyterhub.hub.extraVolumeMounts` |  | `[]` |
 | `jupyterhub.hub.image.name` |  | `"jupyterhub/k8s-hub"` |
-| `jupyterhub.hub.image.tag` |  | `"1.0.1"` |
+| `jupyterhub.hub.image.tag` |  | `"1.1.1"` |
 | `jupyterhub.hub.image.pullPolicy` |  | `null` |
 | `jupyterhub.hub.image.pullSecrets` |  | `[]` |
 | `jupyterhub.hub.resources` |  | `{}` |
@@ -251,6 +251,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.readinessProbe.timeoutSeconds` |  | `1` |
 | `jupyterhub.hub.existingSecret` |  | `null` |
 | `jupyterhub.hub.serviceAccount.annotations` |  | `{}` |
+| `jupyterhub.hub.extraPodSpec` |  | `{}` |
 | `jupyterhub.rbac.enabled` |  | `true` |
 | `jupyterhub.proxy.secretToken` |  | `null` |
 | `jupyterhub.proxy.annotations` |  | `{}` |
@@ -269,7 +270,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.chp.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.chp.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.proxy.chp.image.name` |  | `"jupyterhub/configurable-http-proxy"` |
-| `jupyterhub.proxy.chp.image.tag` |  | `"4.4.0"` |
+| `jupyterhub.proxy.chp.image.tag` | https://github.com/jupyterhub/configurable-http-proxy/releases | `"4.5.0"` |
 | `jupyterhub.proxy.chp.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.chp.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.chp.extraCommandLineFlags` |  | `[]` |
@@ -294,11 +295,12 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.chp.pdb.enabled` |  | `false` |
 | `jupyterhub.proxy.chp.pdb.maxUnavailable` |  | `null` |
 | `jupyterhub.proxy.chp.pdb.minAvailable` |  | `1` |
+| `jupyterhub.proxy.chp.extraPodSpec` |  | `{}` |
 | `jupyterhub.proxy.traefik.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.proxy.traefik.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.traefik.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.proxy.traefik.image.name` |  | `"traefik"` |
-| `jupyterhub.proxy.traefik.image.tag` | ref: https://hub.docker.com/_/traefik?tab=tags | `"v2.4.9"` |
+| `jupyterhub.proxy.traefik.image.tag` | ref: https://hub.docker.com/_/traefik?tab=tags | `"v2.4.11"` |
 | `jupyterhub.proxy.traefik.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.traefik.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.traefik.hsts.includeSubdomains` |  | `false` |
@@ -323,11 +325,12 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.traefik.pdb.maxUnavailable` |  | `null` |
 | `jupyterhub.proxy.traefik.pdb.minAvailable` |  | `1` |
 | `jupyterhub.proxy.traefik.serviceAccount.annotations` |  | `{}` |
+| `jupyterhub.proxy.traefik.extraPodSpec` |  | `{}` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.proxy.secretSync.image.name` |  | `"jupyterhub/k8s-secret-sync"` |
-| `jupyterhub.proxy.secretSync.image.tag` |  | `"1.0.1"` |
+| `jupyterhub.proxy.secretSync.image.tag` |  | `"1.1.1"` |
 | `jupyterhub.proxy.secretSync.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.secretSync.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.secretSync.resources` |  | `{}` |
@@ -352,7 +355,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.singleuser.extraPodAntiAffinity.required` |  | `[]` |
 | `jupyterhub.singleuser.extraPodAntiAffinity.preferred` |  | `[]` |
 | `jupyterhub.singleuser.networkTools.image.name` |  | `"jupyterhub/k8s-network-tools"` |
-| `jupyterhub.singleuser.networkTools.image.tag` |  | `"1.0.1"` |
+| `jupyterhub.singleuser.networkTools.image.tag` |  | `"1.1.1"` |
 | `jupyterhub.singleuser.networkTools.image.pullPolicy` |  | `null` |
 | `jupyterhub.singleuser.networkTools.image.pullSecrets` |  | `[]` |
 | `jupyterhub.singleuser.cloudMetadata.blockWithIptables` |  | `true` |
@@ -406,7 +409,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.scheduling.userScheduler.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.scheduling.userScheduler.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.scheduling.userScheduler.image.name` |  | `"k8s.gcr.io/kube-scheduler"` |
-| `jupyterhub.scheduling.userScheduler.image.tag` | ref: https://github.com/kubernetes/sig-release/blob/HEAD/releases/patch-releases.md | `"v1.19.10"` |
+| `jupyterhub.scheduling.userScheduler.image.tag` | ref: https://github.com/kubernetes/website/blob/main/content/en/releases/patch-releases.md | `"v1.19.13"` |
 | `jupyterhub.scheduling.userScheduler.image.pullPolicy` |  | `null` |
 | `jupyterhub.scheduling.userScheduler.image.pullSecrets` |  | `[]` |
 | `jupyterhub.scheduling.userScheduler.nodeSelector` |  | `{}` |
@@ -416,11 +419,16 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.scheduling.userScheduler.pdb.minAvailable` |  | `null` |
 | `jupyterhub.scheduling.userScheduler.resources` |  | `{}` |
 | `jupyterhub.scheduling.userScheduler.serviceAccount.annotations` |  | `{}` |
+| `jupyterhub.scheduling.userScheduler.extraPodSpec` |  | `{}` |
 | `jupyterhub.scheduling.podPriority.enabled` |  | `false` |
 | `jupyterhub.scheduling.podPriority.globalDefault` |  | `false` |
 | `jupyterhub.scheduling.podPriority.defaultPriority` |  | `0` |
 | `jupyterhub.scheduling.podPriority.userPlaceholderPriority` |  | `-10` |
 | `jupyterhub.scheduling.userPlaceholder.enabled` |  | `true` |
+| `jupyterhub.scheduling.userPlaceholder.image.name` |  | `"k8s.gcr.io/pause"` |
+| `jupyterhub.scheduling.userPlaceholder.image.tag` |  | `"3.5"` |
+| `jupyterhub.scheduling.userPlaceholder.image.pullPolicy` |  | `null` |
+| `jupyterhub.scheduling.userPlaceholder.image.pullSecrets` |  | `[]` |
 | `jupyterhub.scheduling.userPlaceholder.replicas` |  | `0` |
 | `jupyterhub.scheduling.userPlaceholder.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.scheduling.userPlaceholder.containerSecurityContext.runAsGroup` | nobody group | `65534` |
@@ -439,7 +447,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.prePuller.hook.enabled` |  | `true` |
 | `jupyterhub.prePuller.hook.pullOnlyOnChanges` |  | `true` |
 | `jupyterhub.prePuller.hook.image.name` |  | `"jupyterhub/k8s-image-awaiter"` |
-| `jupyterhub.prePuller.hook.image.tag` |  | `"1.0.1"` |
+| `jupyterhub.prePuller.hook.image.tag` |  | `"1.1.1"` |
 | `jupyterhub.prePuller.hook.image.pullPolicy` |  | `null` |
 | `jupyterhub.prePuller.hook.image.pullSecrets` |  | `[]` |
 | `jupyterhub.prePuller.hook.containerSecurityContext.runAsUser` | nobody user | `65534` |
@@ -457,21 +465,22 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.prePuller.pause.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.prePuller.pause.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.prePuller.pause.image.name` |  | `"k8s.gcr.io/pause"` |
-| `jupyterhub.prePuller.pause.image.tag` | https://console.cloud.google.com/gcr/images/google-containers/GLOBAL/pause?gcrImageListsize=30 | `"3.2"` |
+| `jupyterhub.prePuller.pause.image.tag` |  | `"3.5"` |
 | `jupyterhub.prePuller.pause.image.pullPolicy` |  | `null` |
 | `jupyterhub.prePuller.pause.image.pullSecrets` |  | `[]` |
 | `jupyterhub.ingress.enabled` |  | `false` |
 | `jupyterhub.ingress.annotations` |  | `{}` |
 | `jupyterhub.ingress.hosts` |  | `[]` |
 | `jupyterhub.ingress.pathSuffix` |  | `null` |
+| `jupyterhub.ingress.pathType` |  | `"Prefix"` |
 | `jupyterhub.ingress.tls` |  | `[]` |
 | `jupyterhub.cull.enabled` |  | `true` |
-| `jupyterhub.cull.users` |  | `false` |
-| `jupyterhub.cull.removeNamedServers` |  | `false` |
-| `jupyterhub.cull.timeout` |  | `3600` |
-| `jupyterhub.cull.every` |  | `600` |
-| `jupyterhub.cull.concurrency` |  | `10` |
-| `jupyterhub.cull.maxAge` |  | `0` |
+| `jupyterhub.cull.users` | --cull-users | `false` |
+| `jupyterhub.cull.removeNamedServers` | --remove-named-servers | `false` |
+| `jupyterhub.cull.timeout` | --timeout | `3600` |
+| `jupyterhub.cull.every` | --cull-every | `600` |
+| `jupyterhub.cull.concurrency` | --concurrency | `10` |
+| `jupyterhub.cull.maxAge` | --max-age | `0` |
 | `jupyterhub.debug.enabled` |  | `false` |
 | `jupyterhub.global.safeToShowValues` |  | `false` |
 | `dask-gateway.gateway.replicas` |  | `1` |
@@ -558,7 +567,6 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.rbac.controller.serviceAccountName` |  | `null` |
 | `dask-gateway.rbac.gateway.serviceAccountName` |  | `null` |
 | `dask-gateway.rbac.traefik.serviceAccountName` |  | `null` |
-
 
 
 

@@ -1,0 +1,31 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+#
+# Frigate is a tool for automatically generating documentation for Helm charts.
+# We use it to generate the README.md files in the Chart repos from a .frigate
+# jinja template file. The jinja template make use of values.yaml and Chart.yaml
+# content, so we monitor for changes to those as well as the generated output.
+#
+# ref: https://github.com/rapidsai/frigate
+#
+name: Ensure charts' README.md are updated
+
+on:
+  pull_request:
+    paths:
+      - "*/.frigate"
+      - "*/README.md"
+      - "*/values.yaml"
+      - "*/Chart.yaml"
+
+jobs:
+  checks:
+    name: pre-commit hooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: |
+        helm dependencies update ./dask
+        helm dependencies update ./daskhub
+      - uses: pre-commit/action@v2.0.0
