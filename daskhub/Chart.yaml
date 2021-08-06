@@ -1,6 +1,6 @@
 apiVersion: v2
 name: daskhub
-icon: https://avatars3.githubusercontent.com/u/1.1.2925?v=3&s=200
+icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
 version: 0.0.1-set.by.chartpress
 appVersion: 2021.7.2
 description: Multi-user JupyterHub and Dask deployment.
