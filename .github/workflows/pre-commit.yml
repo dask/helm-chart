@@ -1,0 +1,18 @@
+# See the CONTRIBUTING.md for more information on what pre-commit is testing
+#
+name: Linting
+
+on:
+  pull_request:
+
+jobs:
+  checks:
+    name: pre-commit hooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: |
+          helm dependencies update ./dask
+          helm dependencies update ./daskhub
+      - uses: pre-commit/action@v2.0.0

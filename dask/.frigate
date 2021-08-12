@@ -223,4 +223,4 @@ Or manually run the steps below.
 {%- endblock %}
 
 {% block credits -%}
-{%- endblock %}
+{%- endblock -%}
