@@ -79,7 +79,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.metrics.enabled` | Enable scheduler metrics. Pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on scheduler. | `false` |
 | `scheduler.metrics.serviceMonitor.enabled` | Enable scheduler servicemonitor. | `false` |
 | `scheduler.metrics.serviceMonitor.namespace` | Deploy servicemonitor in different namespace, e.g. monitoring. | `""` |
-| `scheduler.metrics.serviceMonitor.namespaceSelector` | Selector to select which namespaces the endpoints objects are discovered from. | `{}` |
+| `scheduler.metrics.serviceMonitor.namespaceSelector` | Selector to select which namespaces the Endpoints objects are discovered from. | `{}` |
 | `scheduler.metrics.serviceMonitor.additionalLabels` | Additional labels to add to the ServiceMonitor metadata. | `{}` |
 | `scheduler.metrics.serviceMonitor.interval` | Interval at which metrics should be scraped. | `"30s"` |
 | `scheduler.metrics.serviceMonitor.jobLabel` | The label to use to retrieve the job name from. | `""` |
@@ -115,7 +115,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.metrics.enabled` | Enable workers metrics. Pip package [prometheus-client](https://pypi.org/project/prometheus-client/) should be present on workers. | `false` |
 | `worker.metrics.podMonitor.enabled` | Enable workers podmonitor | `false` |
 | `worker.metrics.podMonitor.namespace` | Deploy podmonitor in different namespace, e.g. monitoring. | `""` |
-| `worker.metrics.podMonitor.namespaceSelector` | Selector to select which namespaces the endpoints objects are discovered from. | `{}` |
+| `worker.metrics.podMonitor.namespaceSelector` | Selector to select which namespaces the Endpoints objects are discovered from. | `{}` |
 | `worker.metrics.podMonitor.additionalLabels` | Additional labels to add to the PodMonitor metadata. | `{}` |
 | `worker.metrics.podMonitor.interval` | Interval at which metrics should be scraped. | `"30s"` |
 | `worker.metrics.podMonitor.jobLabel` | The label to use to retrieve the job name from. | `""` |
