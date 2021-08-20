@@ -12,6 +12,9 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: {{ template "dask.chart" . }}
     component: worker
+    {{- if .Values.worker.metrics.podMonitor.additionalLabels }}
+    {{- toYaml .Values.worker.metrics.podMonitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   podMetricsEndpoints:
     - interval: {{ .Values.worker.metrics.podMonitor.interval }}

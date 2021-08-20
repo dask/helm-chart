@@ -12,6 +12,9 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: {{ template "dask.chart" . }}
     component: scheduler
+    {{- if .Values.scheduler.metrics.serviceMonitor.additionalLabels }}
+    {{- toYaml .Values.scheduler.metrics.serviceMonitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   endpoints:
     - interval: {{ .Values.scheduler.metrics.serviceMonitor.interval }}
