@@ -215,7 +215,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.extraVolumes` |  | `[]` |
 | `jupyterhub.hub.extraVolumeMounts` |  | `[]` |
 | `jupyterhub.hub.image.name` |  | `"jupyterhub/k8s-hub"` |
-| `jupyterhub.hub.image.tag` |  | `"1.1.2"` |
+| `jupyterhub.hub.image.tag` |  | `"1.1.3"` |
 | `jupyterhub.hub.image.pullPolicy` |  | `null` |
 | `jupyterhub.hub.image.pullSecrets` |  | `[]` |
 | `jupyterhub.hub.resources` |  | `{}` |
@@ -330,7 +330,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.secretSync.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.proxy.secretSync.image.name` |  | `"jupyterhub/k8s-secret-sync"` |
-| `jupyterhub.proxy.secretSync.image.tag` |  | `"1.1.2"` |
+| `jupyterhub.proxy.secretSync.image.tag` |  | `"1.1.3"` |
 | `jupyterhub.proxy.secretSync.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.secretSync.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.secretSync.resources` |  | `{}` |
@@ -355,7 +355,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.singleuser.extraPodAntiAffinity.required` |  | `[]` |
 | `jupyterhub.singleuser.extraPodAntiAffinity.preferred` |  | `[]` |
 | `jupyterhub.singleuser.networkTools.image.name` |  | `"jupyterhub/k8s-network-tools"` |
-| `jupyterhub.singleuser.networkTools.image.tag` |  | `"1.1.2"` |
+| `jupyterhub.singleuser.networkTools.image.tag` |  | `"1.1.3"` |
 | `jupyterhub.singleuser.networkTools.image.pullPolicy` |  | `null` |
 | `jupyterhub.singleuser.networkTools.image.pullSecrets` |  | `[]` |
 | `jupyterhub.singleuser.cloudMetadata.blockWithIptables` |  | `true` |
@@ -447,7 +447,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.prePuller.hook.enabled` |  | `true` |
 | `jupyterhub.prePuller.hook.pullOnlyOnChanges` |  | `true` |
 | `jupyterhub.prePuller.hook.image.name` |  | `"jupyterhub/k8s-image-awaiter"` |
-| `jupyterhub.prePuller.hook.image.tag` |  | `"1.1.2"` |
+| `jupyterhub.prePuller.hook.image.tag` |  | `"1.1.3"` |
 | `jupyterhub.prePuller.hook.image.pullPolicy` |  | `null` |
 | `jupyterhub.prePuller.hook.image.pullSecrets` |  | `[]` |
 | `jupyterhub.prePuller.hook.containerSecurityContext.runAsUser` | nobody user | `65534` |
