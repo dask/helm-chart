@@ -33,14 +33,10 @@ $ helm repo update
 {{ latest_chart.description }}
 
 ```console
-# With helm3
 $ helm install --version {{ latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
-
-# With helm2
-$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
 ```
 
-| Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} Dask | Date |
+| Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} App | Date |
 | - | - | - |{% for dep in latest_chart.dependencies %} - |{% endfor %}
 {% for chart in all_charts -%}
 {% unless chart.version contains "-" -%}
