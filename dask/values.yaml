@@ -125,11 +125,22 @@ worker:
       # To scrape all, use the following:
       # namespaceSelector:
       #   any: true
+      # metrics will apply to the additional worker groups as well
       additionalLabels: {} # Additional labels to add to the PodMonitor metadata.
       interval: 30s # Interval at which metrics should be scraped.
       jobLabel: "" # The label to use to retrieve the job name from.
       podTargetLabels: [] # PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
+
+additional_worker_groups: [] # Additional groups of workers to create
+# - name: high-mem-workers  # Dask worker group name.
+#   resources:
+#     limits:
+#       memory: 32G
+#     requests:
+#       memory: 32G
+# ... 
+# (defaults will be taken from the primary worker configuration)
 
 jupyter:
   name: jupyter  # Jupyter name.
