@@ -140,7 +140,7 @@ additional_worker_groups: [] # Additional groups of workers to create
 #     requests:
 #       memory: 32G
 # ... 
-# (defaults will be taken from the primary worker configuration)
+# (Defaults will be taken from the primary worker configuration)
 
 jupyter:
   name: jupyter  # Jupyter name.
