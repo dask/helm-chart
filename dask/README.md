@@ -70,7 +70,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.loadBalancerIP` | Some cloud providers allow you to specify the loadBalancerIP when using the `LoadBalancer` service type. If your cloud does not support it this option will be ignored. | `null` |
 | `scheduler.servicePort` | Scheduler service internal port. | `8786` |
 | `scheduler.serviceAnnotations` | Scheduler service annotations. | `{}` |
-| `scheduler.extraArgs` | Extra CLI arguments to be passed to the scheduler | `[]` |
+| `scheduler.extraArgs` |  | `[]` |
 | `scheduler.resources` | Scheduler pod resources. See `values.yaml` for example values. | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
@@ -90,7 +90,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
 | `webUI.ingress.tls` | Ingress should use TLS. | `false` |
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
-| `webUI.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `null` |
+| `webUI.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `{}` |
 | `worker.name` | Dask worker name. | `"worker"` |
 | `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
 | `worker.image.tag` | Container image tag. | `"2022.1.0"` |
@@ -103,7 +103,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.default_resources.cpu` | Default CPU (DEPRECATED use `resources`). | `1` |
 | `worker.default_resources.memory` | Default memory (DEPRECATED use `resources`). | `"4GiB"` |
 | `worker.env` | Environment variables. See `values.yaml` for example values. | `null` |
-| `worker.extraArgs` | Extra CLI arguments to be passed to the worker | `[]` |
+| `worker.extraArgs` |  | `[]` |
 | `worker.resources` | Worker pod resources. See `values.yaml` for example values. | `{}` |
 | `worker.mounts` | Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec | `{}` |
 | `worker.annotations` | Annotations | `{}` |
@@ -121,6 +121,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.metrics.podMonitor.jobLabel` | The label to use to retrieve the job name from. | `""` |
 | `worker.metrics.podMonitor.podTargetLabels` | PodTargetLabels transfers labels on the Kubernetes Pod onto the target. | `[]` |
 | `worker.metrics.podMonitor.metricRelabelings` | MetricRelabelConfigs to apply to samples before ingestion. | `[]` |
+| `additional_worker_groups` | Additional groups of workers to create. List of groups with same options as `worker`. | `[]` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled Jupyter notebook. | `true` |
 | `jupyter.rbac` | Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs. | `true` |
@@ -146,7 +147,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
 | `jupyter.ingress.tls` | Ingress should use TLS. | `false` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
-| `jupyter.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `null` |
+| `jupyter.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `{}` |
 
 #### Jupyter Password
 

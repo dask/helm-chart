@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "dask.fullname" $ }}-worker
+  name: {{ template "dask.fullname" $ }}-worker-{{ $worker.name }}
   labels:
     app: {{ template "dask.name" $ }}
     heritage: {{ $.Release.Service | quote }}
@@ -11,14 +11,14 @@ metadata:
     chart: {{ template "dask.chart" $ }}
     component: worker
 spec:
-  replicas: {{ if $worker.replicas }}{{ $worker.replicas }}{{ else }}{{ $.Values.worker.replicas }}{{ end }}
+  replicas: {{ $worker.replicas }}
   selector:
     matchLabels:
       app: {{ template "dask.name" $ }}
       release: {{ $.Release.Name | quote }}
       component: worker
   strategy:
-    type: {{ if $worker.strategy.type }}{{ $worker.strategy.type }}{{ else }}{{ $.Values.worker.strategy.type }}{{ end }}
+    type: {{ $worker.strategy.type }}
   template:
     metadata:
       labels:
@@ -28,139 +28,71 @@ spec:
       {{- if $worker.annotations }}
       annotations:
         {{- toYaml $worker.annotations | nindent 8 }}
-      {{- else}}
-      annotations:
-        {{- toYaml $.Values.worker.annotations | nindent 8 }}
       {{- end }}
     spec:
       imagePullSecrets:
-        {{- if $worker.image.pullSecrets }}{{- toYaml $worker.image.pullSecrets | nindent 8 }}{{ else }}{{- $.Values.worker.image.pullSecrets | nindent 8 }}{{ end }}
+        {{- toYaml $worker.image.pullSecrets | nindent 8 }}
       {{- if $worker.mounts.volumes }}
       volumes:
         {{- toYaml $worker.mounts.volumes | nindent 8}}
-      {{- else }}
-      volumes:
-        {{- toYaml $.Values.worker.mounts.volumes | nindent 8}}
       {{- end }}
       containers:
         - name: {{ template "dask.fullname" $ }}-worker
-          {{- if and $worker.image.repository $worker.image.tag }}
           image: "{{ $worker.image.repository }}:{{ $worker.image.tag }}"
-          {{- else if $worker.image.repository }}
-          image: "{{ $worker.image.repository }}:{{ $.Values.worker.image.tag }}"
-          {{- else if $worker.image.tag }}
-          image: "{{ $.Values.worker.image.repository }}:{{ $worker.image.tag }}"
-          {{- else }}
-          image: "{{ $.Values.worker.image.repository }}:{{ $.Values.worker.image.tag }}"
-          {{- end }}
-          imagePullPolicy: {{ if $worker.image.pullPolicy }}{{ $worker.image.pullPolicy }}{{ else }}{{ $.Values.worker.image.pullPolicy }}{{ end }}
+          imagePullPolicy: {{ $worker.image.pullPolicy }}
           args:
-            - {{ if $worker.image.dask_worker }}{{ $worker.image.dask_worker }}{{ else }}{{ $.Values.worker.image.dask_worker }}{{ end }}
+            - {{ $worker.image.dask_worker }}
           {{- if $worker.custom_scheduler_url }}
             - {{ $worker.custom_scheduler_url }}
-          {{- else if $worker.scheduler.servicePort }}
-            - {{ template "dask.fullname" $ }}-scheduler:{{ $worker.scheduler.servicePort }}
           {{- else }}
-            - {{ $.Values.worker.custom_scheduler_url }}
+            - {{ template "dask.fullname" $ }}-scheduler:{{ $.Values.scheduler.servicePort }}
           {{- end }}
           {{- if $worker.resources.limits }}
             - --nthreads
-            {{- if $worker.default_resources.cpu }}
             - {{ $worker.threads_per_worker | default $worker.resources.limits.cpu | default $worker.default_resources.cpu | quote }}
-            {{- else if $worker.resources.limits.cpu }}
-            - {{ $worker.threads_per_worker | default $worker.resources.limits.cpu | default $.Values.worker.default_resources.cpu | quote }}
-            {{- else if $worker.threads_per_worker }}
-            - {{ $worker.threads_per_worker | default $.Values.worker.resources.limits.cpu | default $.Values.worker.default_resources.cpu | quote }}
-            {{- else }}
-            - {{ $.Values.worker.threads_per_worker | default $.Values.worker.resources.limits.cpu | default $.Values.worker.default_resources.cpu | quote }}
-            {{- end }}
             - --memory-limit
-            {{- if $worker.default_resources.memory }}
             - {{ $worker.resources.limits.memory | default $worker.default_resources.memory | quote }}
-            {{- else if $worker.resources.limits.memory }}
-            - {{ $worker.resources.limits.memory | default $.Values.worker.default_resources.memory | quote }}
-            {{- else }}
-            - {{ $.Values.worker.resources.limits.memory | default $.Values.worker.default_resources.memory | quote }}
-            {{- end }}
           {{- end }}
             - --no-dashboard
             - --dashboard-address
-            - {{ if $worker.portDashboard }}{{ $worker.portDashboard  | quote }}{{ else }}{{ $.Values.worker.portDashboard | quote }}{{ end }}
+            - {{ $worker.portDashboard | quote }}
           {{- if $worker.port }}
             - --worker-port
             - {{ $worker.port | quote }}
-          {{- else }}
-            - --worker-port
-            - {{ $.Values.worker.port | quote }}
           {{- end }}
           {{- if $worker.extraArgs }}
             {{ toYaml $worker.extraArgs | nindent 12 }}
-          {{- else }}
-            {{ toYaml $.Values.worker.extraArgs | nindent 12 }}
           {{- end }}
           ports:
-            - containerPort: {{ if $worker.portDashboard }}{{ $worker.portDashboard  | quote }}{{ else }}{{ $.Values.worker.portDashboard | quote }}{{ end }}
+            - containerPort: {{ $worker.portDashboard }}
               name: dashboard
           resources:
-            {{ if $worker.resources }}{{- toYaml $worker.resources | nindent 12 }}{{ else }}{{- toYaml $.Values.worker.resources | nindent 12 }}{{ end }}
+            {{- toYaml $worker.resources | nindent 12 }}
           env:
-            {{ if $worker.env }}{{- toYaml $worker.env | nindent 12 }}{{ else }}{{- toYaml $.Values.worker.env | nindent 12 }}{{ end }}
+            {{- toYaml $worker.env | nindent 12 }}
 
           {{- if $worker.mounts.volumeMounts }}
           volumeMounts:
             {{- toYaml $worker.mounts.volumeMounts | nindent 12 }}
-          {{- else }}
-          volumeMounts:
-            {{- toYaml $.Values.worker.mounts.volumeMounts | nindent 12 }}
           {{- end }}
-    {{- if $worker.nodeSelector }}
     {{- with $worker.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- else }}
-    {{- with $.Values.worker.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- end }}
-    {{- if $worker.securityContext }}
     {{- with $worker.securityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- else}}
-    {{- with $.Values.worker.securityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- end }}
-    {{- if $worker.affinity }}
     {{- with $worker.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- else }}
-    {{- with $.Values.worker.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- end }}
-    {{- if $worker.tolerations }}
     {{- with $worker.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- else }}
-    {{- with $.Values.worker.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- end }}
     {{- if $worker.serviceAccountName }}
       serviceAccountName: {{ $worker.serviceAccountName | quote }}
-    {{- else }}
-      serviceAccountName: {{ $.Values.worker.serviceAccountName | quote }}
     {{- end }}
 ---
 {{- end }}
