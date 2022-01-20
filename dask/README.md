@@ -90,7 +90,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
 | `webUI.ingress.tls` | Ingress should use TLS. | `false` |
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
-| `webUI.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `{}` |
+| `webUI.ingress.annotations` |  | `{}` |
 | `worker.name` | Dask worker name. | `"worker"` |
 | `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
 | `worker.image.tag` | Container image tag. | `"2022.1.0"` |
@@ -147,7 +147,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
 | `jupyter.ingress.tls` | Ingress should use TLS. | `false` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
-| `jupyter.ingress.annotations` | Ingress annotations. See `values.yaml` for example values. | `{}` |
+| `jupyter.ingress.annotations` |  | `{}` |
 
 #### Jupyter Password
 

@@ -58,7 +58,8 @@ webUI:
     tls: false # Ingress should use TLS.
     # secretName: dask-scheduler-tls
     hostname: dask-ui.example.com # Ingress hostname.
-    annotations: {} # Ingress annotations. See `values.yaml` for example values.
+    annotations:
+      {} # Ingress annotations. See `values.yaml` for example values.
       # kubernetes.io/ingress.class: "nginx"
       # secretName: my-tls-cert
       # kubernetes.io/tls-acme: "true"
@@ -135,7 +136,10 @@ worker:
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
 
 additional_worker_groups: [] # Additional groups of workers to create. List of groups with same options as `worker`.
-# - name: high-mem-workers  # Dask worker group name.
+# - name: high-mem  # Dask worker group name.
+#   extraArgs:
+#     - --resources
+#     - "MEMORY=6e9"
 #   resources:
 #     limits:
 #       memory: 32G
@@ -200,7 +204,8 @@ jupyter:
     tls: false # Ingress should use TLS.
     # secretName: dask-jupyter-tls
     hostname: dask-jupyter.example.com # Ingress hostname.
-    annotations: {} # Ingress annotations. See `values.yaml` for example values.
+    annotations:
+      {} # Ingress annotations. See `values.yaml` for example values.
       # kuernetesbernetes.io/ingress.class: "nginx"
       # secretName: my-tls-cert
       # kub.io/tls-acme: "true"
