@@ -55,6 +55,8 @@ webUI:
   servicePort: 80 # webui service internal port.
   ingress:
     enabled: false # Enable ingress.
+    # ingressClassName: 
+    pathType: Prefix # set pathType in ingress
     tls: false # Ingress should use TLS.
     # secretName: dask-scheduler-tls
     hostname: dask-ui.example.com # Ingress hostname.
@@ -201,8 +203,10 @@ jupyter:
   serviceAccountName: "dask-jupyter" # Service account for use with RBAC
   ingress:
     enabled: false # Enable ingress.
+    # ingressClassName: 
     tls: false # Ingress should use TLS.
     # secretName: dask-jupyter-tls
+    pathType: Prefix # set pathType in ingress
     hostname: dask-jupyter.example.com # Ingress hostname.
     annotations:
       {} # Ingress annotations. See `values.yaml` for example values.

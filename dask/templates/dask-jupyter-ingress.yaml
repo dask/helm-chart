@@ -1,5 +1,9 @@
 {{- if .Values.jupyter.ingress.enabled -}}
-apiVersion: extensions/v1beta1
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+apiVersion: networking.k8s.io/v1
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ template "dask.fullname" . }}-jupyter
@@ -11,6 +15,9 @@ metadata:
   annotations:
 {{ toYaml .Values.jupyter.ingress.annotations | indent 4 }}
 spec:
+  {{- with .Values.jupyter.ingress.ingressClassName }}
+  ingressClassName: "{{ . }}"
+  {{- end }}
 {{- if .Values.jupyter.ingress.tls }}
   tls:
     - hosts:
@@ -23,7 +30,17 @@ spec:
     {{- end }}
     http:
       paths:
-      - backend:
-          serviceName: {{ template "dask.fullname" . }}-jupyter
-          servicePort: {{ .Values.jupyter.servicePort }}
+        - path: /
+          {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+          pathType: {{ .Values.jupyter.ingress.pathType }}
+          backend:
+            service:
+              name: {{ template "dask.fullname" . }}-jupyter
+              port:
+                number: {{ .Values.jupyter.servicePort }}
+          {{- else }}
+          backend:
+            serviceName: {{ template "dask.fullname" . }}-jupyter
+            servicePort: {{ .Values.jupyter.servicePort }}
+          {{- end }}
 {{- end -}}
