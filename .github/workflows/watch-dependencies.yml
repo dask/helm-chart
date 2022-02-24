@@ -67,7 +67,7 @@ jobs:
       - name: Create PR bumping both Helm charts' appVersion
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DASK_BOT_TOKEN }}
           commit-message: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
           title: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
           reviewers: "jacobtomlinson"
@@ -76,7 +76,6 @@ jobs:
             A new Dask Docker image version has been detected.
 
             Updated chart to use `${{ steps.latest_tag.outputs.tag }}`.
-
 
   check-jupyterhub-chart:
     if: github.repository == 'dask/helm-chart'
@@ -126,7 +125,6 @@ jobs:
             This PR upgrades the DaskHub chart to depend on jupyterhub version `${{ steps.remote_chart.outputs.tag }}`.
 
             See the [changelog](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/CHANGELOG.md) for more information.
-
 
   check-dask-gateway-chart:
     if: github.repository == 'dask/helm-chart'
