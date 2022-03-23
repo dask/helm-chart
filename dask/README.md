@@ -61,7 +61,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | ------------------------ | ----------------------- | -------------- |
 | `scheduler.name` | Dask scheduler name. | `"scheduler"` |
 | `scheduler.enabled` | Enable/disable scheduler. | `true` |
-| `scheduler.image.repository` | Container image repository. | `"daskdev/dask"` |
+| `scheduler.image.repository` | Container image repository. | `"ghcr.io/dask/dask"` |
 | `scheduler.image.tag` | Container image tag. | `"2022.3.0"` |
 | `scheduler.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `scheduler.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
@@ -92,7 +92,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
 | `webUI.ingress.annotations` |  | `{}` |
 | `worker.name` | Dask worker name. | `"worker"` |
-| `worker.image.repository` | Container image repository. | `"daskdev/dask"` |
+| `worker.image.repository` | Container image repository. | `"ghcr.io/dask/dask"` |
 | `worker.image.tag` | Container image tag. | `"2022.3.0"` |
 | `worker.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `worker.image.dask_worker` | Dask worker command. E.g `dask-cuda-worker` for GPU worker. | `"dask-worker"` |
@@ -125,7 +125,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled Jupyter notebook. | `true` |
 | `jupyter.rbac` | Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs. | `true` |
-| `jupyter.image.repository` | Container image repository. | `"daskdev/dask-notebook"` |
+| `jupyter.image.repository` | Container image repository. | `"ghcr.io/dask/dask-notebook"` |
 | `jupyter.image.tag` | Container image tag. | `"2022.3.0"` |
 | `jupyter.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
 | `jupyter.image.pullSecrets` | Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). | `null` |
@@ -208,7 +208,7 @@ helm install --name my-release --set jupyter.enabled=false dask/dask
 
 ### Customizing Python Environment
 
-The default `daskdev/dask` images have a standard Miniconda installation along
+The default `ghcr.io/dask/dask` images have a standard Miniconda installation along
 with some common packages like NumPy and Pandas. You can install custom packages
 with either Conda or Pip using optional environment variables. This happens
 when your container starts up.
