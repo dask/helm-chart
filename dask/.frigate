@@ -114,7 +114,7 @@ helm install --name my-release --set jupyter.enabled=false dask/dask
 
 ### Customizing Python Environment
 
-The default `daskdev/dask` images have a standard Miniconda installation along
+The default `ghcr.io/dask/dask` images have a standard Miniconda installation along
 with some common packages like NumPy and Pandas. You can install custom packages
 with either Conda or Pip using optional environment variables. This happens
 when your container starts up.
