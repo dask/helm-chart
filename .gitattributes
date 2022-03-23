@@ -1,2 +1,2 @@
-*.yaml linguist-language=YAML
+*.yaml linguist-language=YAML linguist-detectable
 ci/* -linguist-detectable
