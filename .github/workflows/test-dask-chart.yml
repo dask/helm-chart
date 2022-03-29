@@ -6,12 +6,24 @@
 name: Test dask chart
 
 on:
+  pull_request:
+    paths:
+      - "dask/**"
+      - "chartpress.yaml"
+      - "**/test-dask-chart.yml"
+      - "ci/common"
   push:
-    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+    paths:
+      - "dask/**"
+      - "chartpress.yaml"
+      - "**/test-dask-chart.yml"
+      - "ci/common"
     branches-ignore:
       - "upgrade-**"
-  pull_request:
-    paths: ["dask/**", "chartpress.yaml", "**/test-dask-chart.yml", "ci/common"]
+      - "dependabot/**"
+      - "pre-commit-ci-update-config"
+    tags:
+      - "**"
   workflow_dispatch:
 
 jobs:

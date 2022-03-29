@@ -6,12 +6,22 @@
 name: Test daskhub chart
 
 on:
+  pull_request:
+    paths:
+      - "daskhub/**"
+      - "chartpress.yaml"
+      - "**/test-daskhub-chart.yml"
+      - "ci/common"
   push:
-    paths: ["daskhub/**", "chartpress.yaml", "**/test-daskhub-chart.yml", "ci/common"]
+    paths:
+      - "daskhub/**"
+      - "chartpress.yaml"
+      - "**/test-daskhub-chart.yml"
+      - "ci/common"
     branches-ignore:
       - "upgrade-**"
-  pull_request:
-    paths: ["daskhub/**", "chartpress.yaml", "**/test-daskhub-chart.yml", "ci/common"]
+      - "dependabot/**"
+      - "pre-commit-ci-update-config"
   workflow_dispatch:
 
 jobs:
