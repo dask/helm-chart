@@ -88,6 +88,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.name` | Dask webui name. | `"webui"` |
 | `webUI.servicePort` | webui service internal port. | `80` |
 | `webUI.ingress.enabled` | Enable ingress. | `false` |
+| `webUI.ingress.pathType` | set pathType in ingress | `"Prefix"` |
 | `webUI.ingress.tls` | Ingress should use TLS. | `false` |
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
 | `webUI.ingress.annotations` |  | `{}` |
@@ -146,6 +147,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.serviceAccountName` | Service account for use with RBAC | `"dask-jupyter"` |
 | `jupyter.ingress.enabled` | Enable ingress. | `false` |
 | `jupyter.ingress.tls` | Ingress should use TLS. | `false` |
+| `jupyter.ingress.pathType` | set pathType in ingress | `"Prefix"` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
 | `jupyter.ingress.annotations` |  | `{}` |
 
