@@ -1,6 +1,9 @@
 {{- if and .Values.scheduler.enabled .Values.webUI.ingress.enabled -}}
----
-apiVersion: extensions/v1beta1
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+apiVersion: networking.k8s.io/v1
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ template "dask.fullname" . }}-scheduler
@@ -12,6 +15,9 @@ metadata:
   annotations:
 {{ toYaml .Values.webUI.ingress.annotations | indent 4 }}
 spec:
+  {{- with .Values.webUI.ingress.ingressClassName }}
+  ingressClassName: "{{ . }}"
+  {{- end }}
 {{- if .Values.webUI.ingress.tls }}
   tls:
     - hosts:
@@ -24,7 +30,17 @@ spec:
     {{- end }}
     http:
       paths:
-      - backend:
-          serviceName: {{ template "dask.fullname" . }}-scheduler
-          servicePort: {{ .Values.webUI.servicePort }}
+        - path: /
+          {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+          pathType: {{ .Values.webUI.ingress.pathType | default "ImplementationSpecific" }}
+          backend:
+            service:
+              name: {{ template "dask.fullname" . }}-scheduler
+              port:
+                number: {{ .Values.webUI.servicePort }}
+          {{- else }}
+          backend:
+            serviceName: {{ template "dask.fullname" . }}-scheduler
+            servicePort: {{ .Values.webUI.servicePort }}
+          {{- end }}
 {{- end -}}
