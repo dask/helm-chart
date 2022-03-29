@@ -1,5 +1,4 @@
-{{ if .Values.jupyter.enabled -}}
-
+{{- if .Values.jupyter.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -20,5 +19,4 @@ spec:
     release: {{ .Release.Name | quote }}
     component: jupyter
   type: {{ .Values.jupyter.serviceType }}
-
-{{ end }}
+{{- end }}

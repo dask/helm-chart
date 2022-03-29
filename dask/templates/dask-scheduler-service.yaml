@@ -1,5 +1,4 @@
-{{ if .Values.scheduler.enabled -}}
----
+{{- if .Values.scheduler.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,10 +9,10 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: {{ template "dask.chart" . }}
     component: scheduler
-{{- with .Values.scheduler.serviceAnnotations }}
+  {{- with .Values.scheduler.serviceAnnotations }}
   annotations:
-{{- toYaml . | nindent 4 }}
-{{- end }}
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
 spec:
   ports:
     - name: {{ template "dask.fullname" . }}-scheduler
@@ -27,7 +26,7 @@ spec:
     release: {{ .Release.Name | quote }}
     component: scheduler
   type: {{ .Values.scheduler.serviceType }}
-  {{- if .Values.scheduler.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.scheduler.loadBalancerIP }}
+  {{- with .Values.scheduler.loadBalancerIP }}
+  loadBalancerIP: {{ . }}
   {{- end }}
 {{ end }}
