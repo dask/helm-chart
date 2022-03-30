@@ -1,46 +1,46 @@
-{{ if and .Values.scheduler.metrics.enabled .Values.scheduler.metrics.serviceMonitor.enabled }}
+{{- if and .Values.scheduler.metrics.enabled .Values.scheduler.metrics.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ template "dask.fullname" . }}-scheduler-servicemonitor
-{{- if .Values.scheduler.metrics.serviceMonitor.namespace }}
-  namespace: {{ .Values.scheduler.metrics.serviceMonitor.namespace | quote }}
-{{- end }}
+  {{- with .Values.scheduler.metrics.serviceMonitor.namespace }}
+  namespace: {{ . | quote }}
+  {{- end }}
   labels:
     app: {{ template "dask.name" . }}
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
     chart: {{ template "dask.chart" . }}
     component: scheduler
-    {{- if .Values.scheduler.metrics.serviceMonitor.additionalLabels }}
-    {{- toYaml .Values.scheduler.metrics.serviceMonitor.additionalLabels | nindent 4 }}
+    {{- with .Values.scheduler.metrics.serviceMonitor.additionalLabels }}
+    {{- . | toYaml | nindent 4 }}
     {{- end }}
 spec:
   endpoints:
     - interval: {{ .Values.scheduler.metrics.serviceMonitor.interval }}
       port: {{ template "dask.fullname" . }}-webui
-    {{- if .Values.scheduler.metrics.serviceMonitor.metricRelabelings }}
-      metricRelabelings: {{ toYaml .Values.scheduler.metrics.serviceMonitor.metricRelabelings | nindent 8 }}
-    {{- end }}
-{{- if .Values.scheduler.metrics.serviceMonitor.namespaceSelector }}
-  namespaceSelector: {{ toYaml .Values.scheduler.metrics.serviceMonitor.namespaceSelector | nindent 4 }}
-{{ else }}
+      {{- with .Values.scheduler.metrics.serviceMonitor.metricRelabelings }}
+      metricRelabelings:
+        {{- . | toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.scheduler.metrics.serviceMonitor.namespaceSelector }}
+  namespaceSelector:
+    {{- .Values.scheduler.metrics.serviceMonitor.namespaceSelector | toYaml | nindent 4 }}
+  {{ else }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
-{{- end }}
-{{- if .Values.scheduler.metrics.serviceMonitor.jobLabel }}
-  jobLabel: {{ .Values.scheduler.metrics.serviceMonitor.jobLabel }}
-{{- end }}
-{{- if .Values.scheduler.metrics.serviceMonitor.targetLabels }}
-  targetLabels:
-  {{- range .Values.scheduler.metrics.serviceMonitor.targetLabels }}
-    - {{ . }}
   {{- end }}
-{{- end }}
+  {{- with .Values.scheduler.metrics.serviceMonitor.jobLabel }}
+  jobLabel: {{ . }}
+  {{- end }}
+  {{- with .Values.scheduler.metrics.serviceMonitor.targetLabels }}
+  targetLabels:
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ template "dask.name" . }}
       release: {{ .Release.Name | quote }}
       component: scheduler
-{{ end }}
+{{- end }}

@@ -1,5 +1,5 @@
 {{- if and .Values.scheduler.enabled .Values.webUI.ingress.enabled -}}
-{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" -}}
 apiVersion: networking.k8s.io/v1
 {{- else }}
 apiVersion: networking.k8s.io/v1beta1
@@ -12,35 +12,37 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+  {{- with .Values.webUI.ingress.annotations }}
   annotations:
-{{ toYaml .Values.webUI.ingress.annotations | indent 4 }}
+    {{ . | toYaml | indent 4 }}
+  {{- end }}
 spec:
   {{- with .Values.webUI.ingress.ingressClassName }}
   ingressClassName: "{{ . }}"
   {{- end }}
-{{- if .Values.webUI.ingress.tls }}
+  {{- if .Values.webUI.ingress.tls }}
   tls:
     - hosts:
-      - {{ .Values.webUI.ingress.hostname | quote }}
+        - {{ .Values.webUI.ingress.hostname | quote }}
       secretName: {{ .Values.webUI.ingress.secretName | default (printf "%s-scheduler-tls" (include "dask.fullname" .)) }}
-{{- end }}
+  {{- end }}
   rules:
-  - {{- if ne .Values.webUI.ingress.hostname "" }}
-    host: {{ .Values.webUI.ingress.hostname }}
-    {{- end }}
-    http:
-      paths:
-        - path: /
-          {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
-          pathType: {{ .Values.webUI.ingress.pathType | default "ImplementationSpecific" }}
-          backend:
-            service:
-              name: {{ template "dask.fullname" . }}-scheduler
-              port:
-                number: {{ .Values.webUI.servicePort }}
-          {{- else }}
-          backend:
-            serviceName: {{ template "dask.fullname" . }}-scheduler
-            servicePort: {{ .Values.webUI.servicePort }}
-          {{- end }}
-{{- end -}}
+    - http:
+        paths:
+          - path: /
+            {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+            pathType: {{ .Values.webUI.ingress.pathType }}
+            backend:
+              service:
+                name: {{ template "dask.fullname" . }}-scheduler
+                port:
+                  number: {{ .Values.webUI.servicePort }}
+            {{- else }}
+            backend:
+              serviceName: {{ template "dask.fullname" . }}-scheduler
+              servicePort: {{ .Values.webUI.servicePort }}
+            {{- end }}
+      {{- with .Values.webUI.ingress.hostname }}
+      host: {{ . }}
+      {{- end }}
+{{- end }}

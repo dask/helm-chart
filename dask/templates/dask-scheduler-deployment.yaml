@@ -1,5 +1,4 @@
-{{ if .Values.scheduler.enabled -}}
----
+{{- if .Values.scheduler.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,45 +25,53 @@ spec:
         release: {{ .Release.Name | quote }}
         component: scheduler
     spec:
+      {{- with .Values.scheduler.image.pullSecrets }}
       imagePullSecrets:
-        {{- toYaml .Values.scheduler.image.pullSecrets | nindent 8 }}
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ template "dask.fullname" . }}-scheduler
           image: "{{ .Values.scheduler.image.repository }}:{{ .Values.scheduler.image.tag }}"
-          imagePullPolicy: {{ .Values.scheduler.image.pullPolicy }}
+          {{- with .Values.scheduler.image.pullPolicy }}
+          imagePullPolicy: {{ . }}
+          {{- end }}
           args:
             - dask-scheduler
             - --port
             - "{{ .Values.scheduler.servicePort }}"
             - --bokeh-port
             - "8787"
-            {{- if .Values.scheduler.extraArgs }}
-              {{- toYaml .Values.scheduler.extraArgs | nindent 12 }}
+            {{- with .Values.scheduler.extraArgs }}
+            {{- . | toYaml | nindent 12 }}
             {{- end }}
           ports:
             - containerPort: 8786
             - containerPort: 8787
+          {{- with .Values.scheduler.resources }}
           resources:
-            {{- toYaml .Values.scheduler.resources | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.scheduler.env }}
           env:
-            {{- toYaml .Values.scheduler.env | nindent 12 }}
-    {{- with .Values.scheduler.nodeSelector }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+      {{- with .Values.scheduler.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.scheduler.securityContext }}
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
+      {{- with .Values.scheduler.securityContext }}
       securityContext:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.scheduler.affinity }}
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
+      {{- with .Values.scheduler.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.scheduler.tolerations }}
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
+      {{- with .Values.scheduler.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- if .Values.scheduler.serviceAccountName }}
-      serviceAccountName: {{ .Values.scheduler.serviceAccountName | quote }}
-    {{- end }}
-{{ end }}
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
+      {{- with .Values.scheduler.serviceAccountName }}
+      serviceAccountName: {{ . | quote }}
+      {{- end }}
+{{- end }}
