@@ -27,7 +27,7 @@ jobs:
     if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # ref: https://github.com/jacobtomlinson/gha-get-docker-hub-tags
       - name: Get latest tag of daskdev/dask image
@@ -81,7 +81,7 @@ jobs:
     if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # ref: https://github.com/oprypin/find-latest-tag
       - name: Find latest tag of dependency
@@ -130,7 +130,7 @@ jobs:
     if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # ref: https://github.com/oprypin/find-latest-tag
       - name: Find latest tag of dependency
