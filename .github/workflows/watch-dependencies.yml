@@ -70,9 +70,9 @@ jobs:
       - name: Create PR bumping both Helm charts' appVersion
         uses: peter-evans/create-pull-request@v4.0.2
         with:
-          token: ${{ secrets.DASK_BOT_TOKEN }}
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-dask-version
-          reviewers: jacobtomlinson
+          reviewers: jacobtomlinson,consideratio
           commit-message: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
           title: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
           body: >-
@@ -113,7 +113,7 @@ jobs:
       - name: Create a PR
         uses: peter-evans/create-pull-request@v4.0.2
         with:
-          token: ${{ secrets.DASK_BOT_TOKEN }}
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-singleuser-image
           labels: chart/daskhub
           reviewers: jacobtomlinson,consideratio
