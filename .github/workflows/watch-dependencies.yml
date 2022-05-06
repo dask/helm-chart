@@ -115,7 +115,7 @@ jobs:
       - name: Create a PR
         uses: peter-evans/create-pull-request@v4.0.2
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
           commit-message: Upgrade jupyterhub chart to ${{ steps.remote_chart.outputs.tag }}
           title: Upgrade jupyterhub chart to ${{ steps.remote_chart.outputs.tag }}
           reviewers: jacobtomlinson,consideratio
@@ -164,7 +164,7 @@ jobs:
       - name: Create a PR
         uses: peter-evans/create-pull-request@v4.0.2
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
           commit-message: Upgrade dask-gateway chart to ${{ steps.remote_chart.outputs.tag }}
           title: Upgrade dask-gateway chart to ${{ steps.remote_chart.outputs.tag }}
           reviewers: jacobtomlinson,consideratio
