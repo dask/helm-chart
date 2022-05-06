@@ -7,13 +7,13 @@ description: Multi-user JupyterHub and Dask deployment.
 dependencies:
   - name: jupyterhub
     version: "1.2.0"
-    repository: 'https://jupyterhub.github.io/helm-chart/'
+    repository: https://jupyterhub.github.io/helm-chart/
     import-values:
       - child: rbac
         parent: rbac
   - name: dask-gateway
     version: "0.9.0"
-    repository: 'https://dask.org/dask-gateway-helm-repo/'
+    repository: https://helm.dask.org/
 maintainers:
   - name: Jacob Tomlinson (Nvidia)
     email: jtomlinson@nvidia.com
