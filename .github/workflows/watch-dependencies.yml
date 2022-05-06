@@ -8,6 +8,9 @@
 #          action we use to get the latest tag that only supports dockerhub
 #          currently.
 #
+# - Watch the jupyterhub.singleuser.image.tag field of daskhub/values.yaml to
+#   match the latest pangeo/base-notebook image tag.
+#
 # - Watch the pinned chart dependencies in daskhub/Chart.yaml to match the
 #   latest stable version available.
 #
@@ -79,6 +82,50 @@ jobs:
             Updated the dask chart to use `${{ steps.latest_tag.outputs.tag }}`,
             and updated the dask and daskhub chart to declare appVersion `${{
             steps.latest_tag.outputs.tag }}`.
+
+  update-singleuser-image:
+    if: github.repository == 'dask/helm-chart'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get daskhub/values.yaml pinned tag of pangeo/base-notebook
+        id: local
+        run: |
+          local_tag=$(cat daskhub/values.yaml | yq e '.jupyterhub.singleuser.image.tag' -)
+          echo "::set-output name=tag::$local_tag"
+
+      # ref: https://github.com/jacobtomlinson/gha-get-docker-hub-tags
+      - name: Get latest tag of pangeo/base-notebook
+        id: latest
+        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
+        with:
+          org: pangeo
+          repo: base-notebook
+
+      - name: Update daskhub/values.yaml pinned tag
+        run: sed --in-place 's/${{ steps.local.outputs.tag }}/${{ steps.latest.outputs.tag }}/g' daskhub/values.yaml
+
+      - name: git diff
+        run: git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v4.0.2
+        with:
+          token: ${{ secrets.DASK_BOT_TOKEN }}
+          branch: update-singleuser-image
+          labels: chart/daskhub
+          reviewers: jacobtomlinson,consideratio
+          commit-message: Update daskhub's pangeo/base-notebook version to ${{ steps.latest.outputs.tag }}
+          title: Update daskhub's pangeo/base-notebook version to ${{ steps.latest.outputs.tag }}
+          body: >-
+            A new pangeo/base-notebook image version has been detected, version
+            `${{ steps.latest.outputs.tag }}`.
+
+
+            Updates daskhub to use this version by default for jupyterhub's user
+            environment.
 
   update-chart-dep:
     if: github.repository == 'dask/helm-chart'
