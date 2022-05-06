@@ -51,13 +51,13 @@ jobs:
 
       # ref: https://github.com/jacobtomlinson/gha-find-replace
       - name: Replace old appVersion with new in dask chart
-        uses: jacobtomlinson/gha-find-replace@0.1.2
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           include: "dask/"
           find: "${{ steps.dask_chart.outputs.appVersion }}"
           replace: "${{ steps.latest_tag.outputs.tag }}"
       - name: Replace old appVersion with new in daskhub chart
-        uses: jacobtomlinson/gha-find-replace@0.1.2
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           include: "daskhub/"
           find: "${{ steps.daskhub_chart.outputs.appVersion }}"
@@ -100,7 +100,7 @@ jobs:
 
       # ref: https://github.com/jacobtomlinson/gha-find-replace
       - name: Replace current with latest in Chart.yaml
-        uses: jacobtomlinson/gha-find-replace@0.1.2
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           include: "daskhub/Chart.yaml"
           find: "${{ steps.local_chart.outputs.dependencies_jupyterhub_version }}"
@@ -149,7 +149,7 @@ jobs:
 
       # ref: https://github.com/jacobtomlinson/gha-find-replace
       - name: Replace current with latest in Chart.yaml
-        uses: jacobtomlinson/gha-find-replace@0.1.2
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           include: "daskhub/Chart.yaml"
           find: "${{ steps.local_chart.outputs.dependencies_dask-gateway_version }}"
