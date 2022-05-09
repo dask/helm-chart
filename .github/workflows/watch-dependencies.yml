@@ -65,7 +65,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create PR bumping both Helm charts' appVersion
-        uses: peter-evans/create-pull-request@v4.0.2
+        uses: peter-evans/create-pull-request@v4.0.3
         with:
           token: ${{ secrets.DASK_BOT_TOKEN }}
           commit-message: "Update Dask version to ${{ steps.latest_tag.outputs.tag }}"
@@ -113,7 +113,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create a PR
-        uses: peter-evans/create-pull-request@v4.0.2
+        uses: peter-evans/create-pull-request@v4.0.3
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           commit-message: Upgrade jupyterhub chart to ${{ steps.remote_chart.outputs.tag }}
@@ -162,7 +162,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create a PR
-        uses: peter-evans/create-pull-request@v4.0.2
+        uses: peter-evans/create-pull-request@v4.0.3
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           commit-message: Upgrade dask-gateway chart to ${{ steps.remote_chart.outputs.tag }}
