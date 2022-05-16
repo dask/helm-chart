@@ -2,11 +2,7 @@
 # ref: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
 #
 # - Watch the appVersion field of dask/Chart.yaml and daskhub/Chart.yaml to
-#   match the latest daskdev/dask image tag.
-#
-#   FIXME: Use ghcr.io/dask/dask instead, which requires adjusting the github
-#          action we use to get the latest tag that only supports dockerhub
-#          currently.
+#   match the latest ghcr.io/dask/dask image tag.
 #
 # - Watch the jupyterhub.singleuser.image.tag field of daskhub/values.yaml to
 #   match the latest pangeo/base-notebook image tag.
@@ -29,13 +25,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # ref: https://github.com/jacobtomlinson/gha-get-docker-hub-tags
-      - name: Get latest tag of daskdev/dask image
-        id: latest_tag
-        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
-        with:
-          org: daskdev
-          repo: dask
+      - name: Get latest tag of ghcr.io/dask/dask
+        id: latest
+        env:
+          REGISTRY: ghcr.io
+          REPOSITORY: dask/dask
+        # The skopeo image helps us list tags consistently from different docker
+        # registries. We use jq to filter out tags of the x.y.z format with the
+        # optional v prefix, and then sort based on the numerical x, y, and z
+        # values. Finally, we pick the last value in the list.
+        #
+        # NOTE: This script is used twice in this file, always update both if
+        #       you update it at once place.
+        #
+        run: |
+          latest_tag=$(
+              docker run --rm quay.io/skopeo/stable list-tags docker://$REGISTRY/$REPOSITORY \
+            | jq -r '[.Tags[] | select(. | test("^v?\\d+\\.\\d+\\.\\d+$"))] | sort_by(split(".") | map(tonumber? // (.[1:] | tonumber))) | last'
+          )
+          echo "::set-output name=tag::$latest_tag"
 
       # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
       - name: Read appVersion of dask chart
@@ -76,7 +84,7 @@ jobs:
           commit-message: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
           title: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
           body: >-
-            A new daskdev/dask image version has been detected.
+            A new ghcr.io/dask/dask image version has been detected.
 
 
             Updated the dask chart to use `${{ steps.latest_tag.outputs.tag }}`,
