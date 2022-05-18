@@ -63,13 +63,13 @@ jobs:
         with:
           include: "dask/"
           find: "${{ steps.dask_chart.outputs.appVersion }}"
-          replace: "${{ steps.latest_tag.outputs.tag }}"
+          replace: "${{ steps.latest.outputs.tag }}"
       - name: Replace old appVersion with new in daskhub chart
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           include: "daskhub/"
           find: "${{ steps.daskhub_chart.outputs.appVersion }}"
-          replace: "${{ steps.latest_tag.outputs.tag }}"
+          replace: "${{ steps.latest.outputs.tag }}"
 
       - name: git diff
         run: git --no-pager diff --color=always
@@ -81,15 +81,15 @@ jobs:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-dask-version
           reviewers: jacobtomlinson,consideratio
-          commit-message: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
-          title: Update Dask version to ${{ steps.latest_tag.outputs.tag }}
+          commit-message: Update Dask version to ${{ steps.latest.outputs.tag }}
+          title: Update Dask version to ${{ steps.latest.outputs.tag }}
           body: >-
             A new ghcr.io/dask/dask image version has been detected.
 
 
-            Updated the dask chart to use `${{ steps.latest_tag.outputs.tag }}`,
+            Updated the dask chart to use `${{ steps.latest.outputs.tag }}`,
             and updated the dask and daskhub chart to declare appVersion `${{
-            steps.latest_tag.outputs.tag }}`.
+            steps.latest.outputs.tag }}`.
 
   update-singleuser-image:
     if: github.repository == 'dask/helm-chart'
