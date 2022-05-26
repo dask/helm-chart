@@ -61,13 +61,13 @@ jobs:
       - name: Replace old appVersion with new in dask chart
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          include: "dask/"
+          include: "**/dask/*"
           find: "${{ steps.dask_chart.outputs.appVersion }}"
           replace: "${{ steps.latest.outputs.tag }}"
       - name: Replace old appVersion with new in daskhub chart
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          include: "daskhub/"
+          include: "**/daskhub/*"
           find: "${{ steps.daskhub_chart.outputs.appVersion }}"
           replace: "${{ steps.latest.outputs.tag }}"
 
