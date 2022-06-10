@@ -1737,7 +1737,7 @@ entries:
     sources:
     - https://github.com/dask/dask-gateway/
     urls:
-    - https://dask.org/dask-gateway-helm-repo/dask-gateway-0.9.0.tgz
+    - https://helm.dask.org/dask-gateway-0.9.0.tgz
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.9.0
@@ -1763,7 +1763,7 @@ entries:
     sources:
     - https://github.com/dask/dask-gateway/
     urls:
-    - https://dask.org/dask-gateway-helm-repo/dask-gateway-0.8.0.tgz
+    - https://helm.dask.org/dask-gateway-0.8.0.tgz
     version: 0.8.0
   - apiVersion: v1
     appVersion: 0.7.1
@@ -1924,7 +1924,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: df4042e22e8d3f6c86bd019f60c6622d63b49a7e9302e2921714abab880ff834
@@ -1953,7 +1953,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 19e592006432c93d873cabefc4b2ab399c51f46cb283048c95a1d14ac817b96e
@@ -1982,7 +1982,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: b6a354a63f125a54b03c9594a276c1670009a0589c6b48b227aaf636c89bc33c
@@ -2011,7 +2011,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: a9c031fee7d7d91925471593797e0c2cefc4da4fc9400e066e06f21f23df4051
@@ -2040,7 +2040,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 5cdb1d6aa126184a5389685878ef9a97b8925067fd33e1ec0c313471586ff2df
@@ -2069,7 +2069,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 4faf16f314bc715585207a15f67d081052615b8c635c3131afbaa9aaf2976c82
@@ -2100,7 +2100,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 2daee670f4afdac3a5344c57ca971f437a4545ff41f7b85c56fd1e287e28a689
@@ -2131,7 +2131,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: c82ccd394abde00cc5c0ef2e7a3216541e92e075850847ec31f8797741218039
@@ -2162,7 +2162,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: ee20987a8fc6def2e9b8e1d32ac851360c7a2be36a8a1a4a10dfda41d9cfe64b
@@ -2193,7 +2193,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 9aa4aa7c734db21a5cb8143289538c01a31a28d5f5a83a385ea662af2048148c
@@ -2224,7 +2224,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 5f4574cf6422226f8deb7915ab9fd9e705285a205456ef375c40001932b3b61f
@@ -2255,7 +2255,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.2.0
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: d7806edb4f6e46dc17bc05ce640e32aeb1a4328540c74fb4b10b31943a0b51f7
@@ -2286,7 +2286,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.3
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: e954c04483a2147a89fe081d7558f9b8ad80f49c61a9897f0e4e935b1559f57b
@@ -2317,7 +2317,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.3
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 5a1f0f1892ad133900479ea5bb66e7d161b79dc6ccb7a953c0e6c2d2cc30d910
@@ -2348,7 +2348,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.2
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 72bbc0be294c6f18ddfa84492481f06aa83132119c206ed2bedbea6bdd3b22c6
@@ -2379,7 +2379,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.2
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 0a0d19186ad871be54ac5714ab5149462dded89c3e2cedd0b32febb6be924d46
@@ -2410,7 +2410,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 4a20c371cfdd9b76fdd595473944b736e04685e27c509a6deb14bbf0e52f8223
@@ -2441,7 +2441,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.1.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: b94bcab175546e8bfd88ac88f3072a7716600445731f66d8cd4b2a201ad91e2c
@@ -2472,7 +2472,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.0.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: de1d6ebc7357bccef972df3d28727e8b9fa7323ef1a045b46c6758a5770603f3
@@ -2503,7 +2503,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.0.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: e4d42766f5fc660cbb51138deb7bab27e2b370acf32e0f7c8d2294d3c6b2f870
@@ -2534,7 +2534,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 1.0.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: ba736205543f4163e85fd23ab0bf51197c4bd4e226cc9580ef9e55e031b2864b
@@ -2565,7 +2565,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 0707ebbab27f654bb191fca28db5a84ab8e7ebdf01a31808fdde18a79c39395f
@@ -2596,7 +2596,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: c64fb735436e7adf4a881ebd6790ddbf1f45865e33720dec8fb80baf23406cf7
@@ -2627,7 +2627,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 7be0cea71bbf9a8e36cd9b831600b8fb26b6a648723d1a080fdc933d5528f6f7
@@ -2658,7 +2658,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 073ba8b73b970f2fea1ce7f29dad268690639a20f9144c06393734c81797a638
@@ -2689,7 +2689,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 21801ca8c30bb2df6353dd19026e740dd6b2fb55075ec87a9b8aae889aa8693d
@@ -2720,7 +2720,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: f46489779cfeeb51786e3242743d6d8b21cea15eaf2b1867e4b938b42c7865e7
@@ -2751,7 +2751,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 892c6174e5de290404a8453427df3da020197392fc3e0bfcc244e79804793fe4
@@ -2782,7 +2782,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: aeec40805ab58cfab6b5f117d8ab97e58bb6a426086637e7f2f386a1e2c4a89e
@@ -2813,7 +2813,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 8e936a83439542ad4acfa71277b6884499ef3592e3f5294522b12558b72f0def
@@ -2844,7 +2844,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 965d4806874b956ea1d05c15d4af44c314d5e40e16de8b818f48e8fdc541be66
@@ -2875,7 +2875,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.11.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: c47d51a31c78404885a23ed04e2e5b7fb8e2994904670bc03d88d1fbc9cd3d56
@@ -2906,7 +2906,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.10.6
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: fae50818a3df9addaa1f1d5459e94813498c1744ac451c291176b6852e551ecc
@@ -2937,7 +2937,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.10.2
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: a4ccb9c2b0536914f14ab0cd9bb42864e4bacbeacf1a71bb981009cfadeb200b
@@ -2968,7 +2968,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.10.2
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.9.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 33a8914f206398e483db9a1ea9f7f96c34b63165bb9150ddc5339c635f7b5639
@@ -2999,7 +2999,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 984f9cc625f0d493a9469e9b0f22e23410890d84f04df8a4a544c4edba66ca47
@@ -3030,7 +3030,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: f8d0a4fda9e489982c2b873adbdfb32d6a2249033fd7d4bbfebf74f2676cd6cc
@@ -3061,7 +3061,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: c4791cda8ec2fc7d9839849d4c3bd24db4955157128012aca6f7faae093b70ae
@@ -3092,7 +3092,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 26fc52779eb224f047ae2279c41e4f516c32a1a1374d6501a81da52634a36c2b
@@ -3123,7 +3123,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: cfa6d8a1f4999ec50b01e060c9d0dc6a7cc57d24070647697290ce1bfa77c43f
@@ -3154,7 +3154,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: 9528585f12d87cbfcd2dd51943922ca2dcd4dc7019b2d5a74f34a87223057058
@@ -3184,7 +3184,7 @@ entries:
       repository: https://jupyterhub.github.io/helm-chart/
       version: 0.9.1
     - name: dask-gateway
-      repository: https://dask.org/dask-gateway-helm-repo/
+      repository: https://helm.dask.org/
       version: 0.8.0
     description: Multi-user JupyterHub and Dask deployment.
     digest: a7b98c8e4e4fab6f7a6001831513b37b65d635340a22dfcb2ff0a5d9536c1c3f
