@@ -160,7 +160,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `rbac.enabled` | Create and use roles and service accounts on an RBAC-enabled cluster. | `true` |
 | `jupyterhub.hub.extraConfig.00-add-dask-gateway-values` |  | `"# 1. Sets `DASK_GATEWAY__PROXY_ADDRESS` in the singleuser environment.\n# 2. Adds the URL for the Dask Gateway JupyterHub service.\nimport os\n\n# These are set by jupyterhub.\nrelease_name = os.environ[\"HELM_RELEASE_NAME\"]\nrelease_namespace = os.environ[\"POD_NAMESPACE\"]\n\nif \"PROXY_HTTP_SERVICE_HOST\" in os.environ:\n    # https is enabled, we want to use the internal http service.\n    gateway_address = \"http://{}:{}/services/dask-gateway/\".format(\n        os.environ[\"PROXY_HTTP_SERVICE_HOST\"],\n        os.environ[\"PROXY_HTTP_SERVICE_PORT\"],\n    )\n    print(\"Setting DASK_GATEWAY__ADDRESS {} from HTTP service\".format(gateway_address))\nelse:\n    gateway_address = \"http://proxy-public/services/dask-gateway\"\n    print(\"Setting DASK_GATEWAY__ADDRESS {}\".format(gateway_address))\n\n# Internal address to connect to the Dask Gateway.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__ADDRESS\", gateway_address)\n# Internal address for the Dask Gateway proxy.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__PROXY_ADDRESS\", \"gateway://traefik-{}-dask-gateway.{}:80\".format(release_name, release_namespace))\n# Relative address for the dashboard link.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__PUBLIC_ADDRESS\", \"/services/dask-gateway/\")\n# Use JupyterHub to authenticate with Dask Gateway.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__AUTH__TYPE\", \"jupyterhub\")\n\n# Adds Dask Gateway as a JupyterHub service to make the gateway available at\n# {HUB_URL}/services/dask-gateway\nservice_url = \"http://traefik-{}-dask-gateway.{}\".format(release_name, release_namespace)\nfor service in c.JupyterHub.services:\n    if service[\"name\"] == \"dask-gateway\":\n        if not service.get(\"url\", None):\n            print(\"Adding dask-gateway service URL\")\n            service.setdefault(\"url\", service_url)\n        break\nelse:\n    print(\"dask-gateway service not found. Did you set jupyterhub.hub.services.dask-gateway.apiToken?\")\n"` |
 | `jupyterhub.singleuser.image.name` | Image to use for singleuser environment. Must include dask-gateway. | `"pangeo/base-notebook"` |
-| `jupyterhub.singleuser.image.tag` |  | `"2022.05.18"` |
+| `jupyterhub.singleuser.image.tag` |  | `"2022.06.13"` |
 | `jupyterhub.singleuser.defaultUrl` | Use jupyterlab by defualt. | `"/lab"` |
 | `dask-gateway.enabled` | Enabling dask-gateway will install Dask Gateway as a dependency. | `true` |
 | `dask-gateway.gateway.prefix` | Users connect to the Gateway through the JupyterHub service. | `"/services/dask-gateway"` |
@@ -488,7 +488,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.gateway.resources` |  | `{}` |
 | `dask-gateway.gateway.loglevel` |  | `"INFO"` |
 | `dask-gateway.gateway.image.name` |  | `"ghcr.io/dask/dask-gateway-server"` |
-| `dask-gateway.gateway.image.tag` |  | `"2022.4.0"` |
+| `dask-gateway.gateway.image.tag` |  | `"2022.6.1"` |
 | `dask-gateway.gateway.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.gateway.imagePullSecrets` |  | `[]` |
 | `dask-gateway.gateway.service.annotations` |  | `{}` |
@@ -509,7 +509,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.gateway.readinessProbe.periodSeconds` |  | `10` |
 | `dask-gateway.gateway.readinessProbe.failureThreshold` |  | `3` |
 | `dask-gateway.gateway.backend.image.name` |  | `"ghcr.io/dask/dask-gateway"` |
-| `dask-gateway.gateway.backend.image.tag` |  | `"2022.4.0"` |
+| `dask-gateway.gateway.backend.image.tag` |  | `"2022.6.1"` |
 | `dask-gateway.gateway.backend.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.gateway.backend.namespace` |  | `null` |
 | `dask-gateway.gateway.backend.environment` |  | `{}` |
@@ -542,7 +542,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.controller.k8sApiRateLimit` |  | `50` |
 | `dask-gateway.controller.k8sApiRateLimitBurst` |  | `100` |
 | `dask-gateway.controller.image.name` |  | `"ghcr.io/dask/dask-gateway-server"` |
-| `dask-gateway.controller.image.tag` |  | `"2022.4.0"` |
+| `dask-gateway.controller.image.tag` |  | `"2022.6.1"` |
 | `dask-gateway.controller.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.controller.nodeSelector` |  | `{}` |
 | `dask-gateway.controller.affinity` |  | `{}` |
