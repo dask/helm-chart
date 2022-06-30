@@ -181,7 +181,7 @@ for the `HelmCluster` cluster manager for managing workers from within your Pyth
 
 ## Maintaining
 
-### Generating the README
+### Generating the README DUMMY CHANGE
 
 This repo uses [Frigate](https://frigate.readthedocs.io/en/master/index.html) to autogenerate the README. This makes it quick to keep the table
 of config options up to date.
