@@ -21,9 +21,11 @@
 #
 repos:
   # File generation: Helm chart README.md files are automatically updated based
-  #                  on Chart.yaml and values.yaml.
+  #                  on Chart.yaml (including frigate field long_description and
+  #                  footnote), values.yaml, .frigate templates for README.md
+  #                  files.
   - repo: https://github.com/rapidsai/frigate/
-    rev: v0.5.0
+    rev: v0.6.0
     hooks:
       - id: frigate
 
