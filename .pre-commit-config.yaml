@@ -8,12 +8,29 @@
 #   - Run on all files:   pre-commit run --all-files
 #   - Register git hooks: pre-commit install --install-hooks
 #
+# About pre-commit.ci
+#
+#   pre-commit.ci is a service that is enabled for this repo via
+#   https://github.com/organizations/dask/settings/installations to do the
+#   following:
+#
+#   1. Automatically keep the pinned versions in this file updated via PRs.
+#   2. Automatically run a pre-commit tests.
+#   3. Automatically add a commit with autoformatting changes to PRs if the
+#      author have forgot to run configured autoformatters.
+#
 repos:
+  # File generation: Helm chart README.md files are automatically updated based
+  #                  on Chart.yaml (including frigate field long_description and
+  #                  footnote), values.yaml, .frigate templates for README.md
+  #                  files.
   - repo: https://github.com/rapidsai/frigate/
-    rev: v0.5.0 #  pre-commit autoupdate  - to keep the version up to date
+    rev: v0.6.0
     hooks:
       - id: frigate
+
+  # Lint: `helm lint` is run on the Helm charts
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17 #  pre-commit autoupdate  - to keep the version up to date
+    rev: v0.1.17
     hooks:
       - id: helmlint
