@@ -28,9 +28,3 @@ repos:
     rev: v0.6.01
     hooks:
       - id: frigate
-
-  # Lint: `helm lint` is run on the Helm charts
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
-    hooks:
-      - id: helmlint
