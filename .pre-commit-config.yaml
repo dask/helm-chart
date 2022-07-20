@@ -25,7 +25,7 @@ repos:
   #                  footnote), values.yaml, .frigate templates for README.md
   #                  files.
   - repo: https://github.com/rapidsai/frigate/
-    rev: v0.7.0a
+    rev: v0.6.01
     hooks:
       - id: frigate
 
