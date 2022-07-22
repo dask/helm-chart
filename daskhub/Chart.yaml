@@ -7,7 +7,7 @@ description: Multi-user JupyterHub and Dask deployment.
 dependencies:
   - name: jupyterhub
     version: "1.2.0"
-    repository: https://jupyterhub.github.io/helm-chart/
+    repository: https://charts.bitnami.com/bitnami
     import-values:
       - child: rbac
         parent: rbac
