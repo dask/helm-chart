@@ -24,7 +24,7 @@ repos:
   #                  on Chart.yaml (including frigate field long_description and
   #                  footnote), values.yaml, .frigate templates for README.md
   #                  files.
-  - repo: https://github.com/rapidsai/frigate/
-    rev: v0.6.01
+  - repo: https://github.com/consideratio/frigate/
+    rev: branch-0.7
     hooks:
       - id: frigate
