@@ -60,6 +60,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `scheduler.name` | Dask scheduler name. | `"scheduler"` |
+| `scheduler.component` |  | `"scheduler"` |
 | `scheduler.enabled` | Enable/disable scheduler. | `true` |
 | `scheduler.image.repository` | Container image repository. | `"ghcr.io/dask/dask"` |
 | `scheduler.image.tag` | Container image tag. | `"2022.6.1"` |
@@ -93,6 +94,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `webUI.ingress.hostname` | Ingress hostname. | `"dask-ui.example.com"` |
 | `webUI.ingress.annotations` |  | `{}` |
 | `worker.name` | Dask worker name. | `"worker"` |
+| `worker.component` |  | `"worker"` |
 | `worker.image.repository` | Container image repository. | `"ghcr.io/dask/dask"` |
 | `worker.image.tag` | Container image tag. | `"2022.6.1"` |
 | `worker.image.pullPolicy` | Container image pull policy. | `"IfNotPresent"` |
@@ -124,6 +126,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `worker.metrics.podMonitor.metricRelabelings` | MetricRelabelConfigs to apply to samples before ingestion. | `[]` |
 | `additional_worker_groups` | Additional groups of workers to create. List of groups with same options as `worker`. | `[]` |
 | `jupyter.name` | Jupyter name. | `"jupyter"` |
+| `jupyter.component` |  | `"jupyter"` |
 | `jupyter.enabled` | Enable/disable the bundled Jupyter notebook. | `true` |
 | `jupyter.rbac` | Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs. | `true` |
 | `jupyter.image.repository` | Container image repository. | `"ghcr.io/dask/dask-notebook"` |
@@ -150,6 +153,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.ingress.pathType` | set pathType in ingress | `"Prefix"` |
 | `jupyter.ingress.hostname` | Ingress hostname. | `"dask-jupyter.example.com"` |
 | `jupyter.ingress.annotations` |  | `{}` |
+| `label.style` | helm|kubernetes | `"helm"` |
 
 #### Jupyter Password
 
