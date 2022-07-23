@@ -30,3 +30,50 @@ Create chart name and version as used by the chart label.
 {{- define "dask.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Common labels
+*/}}
+{{- define "dask.labels" -}}
+{{- $ := index . 1 }}
+{{- with index . 0 }}
+{{- if eq "kubernetes" $.Values.label.style }}
+helm.sh/chart: {{ include "dask.chart" $ }}
+{{- else }}
+chart: {{ include "dask.chart" $ }}
+{{- end }}
+{{- include "dask.selectorLabels" (list . $) }}
+{{- if $.Chart.AppVersion }}
+{{- if eq "kubernetes" $.Values.label.style }}
+app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}
+{{- else }}
+version: {{ $.Chart.AppVersion | quote }}
+{{- end }}
+{{- end }}
+{{- if eq "kubernetes" $.Values.label.style }}
+app.kubernetes.io/part-of: {{ include "dask.fullname" $ }}
+app.kubernetes.io/managed-by: {{ $.Release.Service }}
+app.kubernetes.io/created-by: {{ include "dask.chart" $ }}
+{{- else }}
+heritage: {{ $.Release.Service }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "dask.selectorLabels" -}}
+{{- $ := index . 1 }}
+{{- with index . 0 }}
+{{- if eq "kubernetes" $.Values.label.style }}
+app.kubernetes.io/name: {{ include "dask.name" $ }}-{{ .name }}
+app.kubernetes.io/instance: {{ include "dask.name" $ }}-{{ .name }}
+app.kubernetes.io/component: {{ .component }}
+{{- else }}
+app: {{ include "dask.name" $ }}
+release: {{ $.Release.Name | quote }}
+component: {{ .component }}
+{{- end }}
+{{- end }}
+{{- end }}

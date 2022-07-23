@@ -4,26 +4,18 @@ kind: Deployment
 metadata:
   name: {{ template "dask.fullname" . }}-jupyter
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: jupyter
+    {{- include "dask.labels" (list .Values.jupyter $) | nindent 4 }}
 spec:
   replicas: {{ .Values.jupyter.replicas }}
   selector:
     matchLabels:
-      app: {{ template "dask.name" . }}
-      release: {{ .Release.Name | quote }}
-      component: jupyter
+      {{- include "dask.selectorLabels" (list .Values.jupyter $) | nindent 6 }}
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: {{ template "dask.name" . }}
-        release: {{ .Release.Name | quote }}
-        component: jupyter
+        {{- include "dask.selectorLabels" (list .Values.jupyter $) | nindent 8 }}
     spec:
       {{- with .Values.jupyter.image.pullSecrets }}
       imagePullSecrets:

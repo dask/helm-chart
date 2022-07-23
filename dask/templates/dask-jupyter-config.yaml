@@ -4,11 +4,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "dask.fullname" . }}-jupyter-config
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: jupyter
+    {{- include "dask.labels" (list .Values.jupyter $) | nindent 4 }}
 data:
   jupyter_notebook_config.py: |
     c = get_config()
