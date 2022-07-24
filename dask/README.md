@@ -73,6 +73,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `scheduler.serviceAnnotations` | Scheduler service annotations. | `{}` |
 | `scheduler.extraArgs` |  | `[]` |
 | `scheduler.resources` | Scheduler pod resources. See `values.yaml` for example values. | `{}` |
+| `scheduler.annotations` | Annotations | `{}` |
 | `scheduler.tolerations` | Tolerations. | `[]` |
 | `scheduler.affinity` | Container affinity. | `{}` |
 | `scheduler.nodeSelector` | Node Selector. | `{}` |
@@ -143,6 +144,7 @@ The following table lists the configurable parameters of the Dask chart and thei
 | `jupyter.extraConfig` |  | `"# Extra Jupyter config goes here\n# E.g\n# c.NotebookApp.port = 8888"` |
 | `jupyter.resources` | Jupyter pod resources. See `values.yaml` for example values. | `{}` |
 | `jupyter.mounts` | Worker Pod volumes and volume mounts, mounts.volumes follows kuberentes api v1 Volumes spec. mounts.volumeMounts follows kubernetesapi v1 VolumeMount spec | `{}` |
+| `jupyter.annotations` | Annotations | `{}` |
 | `jupyter.tolerations` | Tolerations. | `[]` |
 | `jupyter.affinity` | Container affinity. | `{}` |
 | `jupyter.nodeSelector` | Node Selector. | `{}` |
