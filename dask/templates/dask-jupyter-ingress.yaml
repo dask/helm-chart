@@ -8,13 +8,10 @@ kind: Ingress
 metadata:
   name: {{ template "dask.fullname" . }}-jupyter
   labels:
-    app: {{ template "dask.fullname" . }}-jupyter
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    {{- include  "dask.labels" (list .Values.jupyter $) | nindent 4 }}
   {{- with .Values.jupyter.ingress.annotations }}
   annotations:
-    {{ . | toYaml | indent 4 }}
+    {{ . | toYaml | nindent 4 }}
   {{- end }}
 spec:
   {{- with .Values.jupyter.ingress.ingressClassName }}

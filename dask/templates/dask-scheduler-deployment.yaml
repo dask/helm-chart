@@ -4,26 +4,22 @@ kind: Deployment
 metadata:
   name: {{ template "dask.fullname" . }}-scheduler
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: scheduler
+    {{- include "dask.labels" (list .Values.scheduler $) | nindent 4 }}
 spec:
   replicas: {{ .Values.scheduler.replicas }}
   selector:
     matchLabels:
-      app: {{ template "dask.name" . }}
-      release: {{ .Release.Name | quote }}
-      component: scheduler
+      {{- include "dask.selectorLabels" (list .Values.scheduler $) | nindent 6 }}
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: {{ template "dask.name" . }}
-        release: {{ .Release.Name | quote }}
-        component: scheduler
+        {{- include "dask.selectorLabels" (list .Values.scheduler $) | nindent 8 }}
+      {{- with .Values.scheduler.annotations }}
+      annotations:
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.scheduler.image.pullSecrets }}
       imagePullSecrets:

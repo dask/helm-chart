@@ -4,11 +4,7 @@ kind: Service
 metadata:
   name: {{ template "dask.fullname" . }}-scheduler
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: scheduler
+    {{- include "dask.labels" (list .Values.scheduler $) | nindent 4 }}
   {{- with .Values.scheduler.serviceAnnotations }}
   annotations:
     {{- . | toYaml | nindent 4 }}
@@ -22,9 +18,7 @@ spec:
       port: {{ .Values.webUI.servicePort }}
       targetPort: 8787
   selector:
-    app: {{ template "dask.name" . }}
-    release: {{ .Release.Name | quote }}
-    component: scheduler
+    {{- include "dask.selectorLabels" (list .Values.scheduler $) | nindent 4 }}
   type: {{ .Values.scheduler.serviceType }}
   {{- with .Values.scheduler.loadBalancerIP }}
   loadBalancerIP: {{ . }}

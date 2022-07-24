@@ -8,13 +8,10 @@ kind: Ingress
 metadata:
   name: {{ template "dask.fullname" . }}-scheduler
   labels:
-    app: {{ template "dask.fullname" . }}-scheduler
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    {{- include "dask.labels" (list .Values.scheduler $) | nindent 4 }}
   {{- with .Values.webUI.ingress.annotations }}
   annotations:
-    {{ . | toYaml | indent 4 }}
+    {{ . | toYaml | nindent 4 }}
   {{- end }}
 spec:
   {{- with .Values.webUI.ingress.ingressClassName }}

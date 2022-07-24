@@ -7,11 +7,7 @@ metadata:
   namespace: {{ . | quote }}
   {{- end }}
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: scheduler
+    {{- include "dask.labels" (list .Values.scheduler $) | nindent 4 }}
     {{- with .Values.scheduler.metrics.serviceMonitor.additionalLabels }}
     {{- . | toYaml | nindent 4 }}
     {{- end }}
@@ -40,7 +36,5 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      app: {{ template "dask.name" . }}
-      release: {{ .Release.Name | quote }}
-      component: scheduler
+      {{- include "dask.selectorLabels" (list .Values.scheduler $) | nindent 6 }}
 {{- end }}

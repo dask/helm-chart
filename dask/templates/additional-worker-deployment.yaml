@@ -5,26 +5,18 @@ kind: Deployment
 metadata:
   name: {{ template "dask.fullname" $ }}-worker-{{ $worker.name }}
   labels:
-    app: {{ template "dask.name" $ }}
-    heritage: {{ $.Release.Service | quote }}
-    release: {{ $.Release.Name | quote }}
-    chart: {{ template "dask.chart" $ }}
-    component: worker
+    {{- include "dask.labels" (list $worker $) | nindent 4 }}
 spec:
   replicas: {{ $worker.replicas }}
   selector:
     matchLabels:
-      app: {{ template "dask.name" $ }}
-      release: {{ $.Release.Name | quote }}
-      component: worker
+      {{- include "dask.selectorLabels" (list $worker $) | nindent 6 }}
   strategy:
     type: {{ $worker.strategy.type }}
   template:
     metadata:
       labels:
-        app: {{ template "dask.name" $ }}
-        release: {{ $.Release.Name | quote }}
-        component: worker
+        {{- include "dask.selectorLabels" (list $worker $) | nindent 8 }}
       {{- with $worker.annotations }}
       annotations:
         {{- . | toYaml | nindent 8 }}

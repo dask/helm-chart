@@ -4,6 +4,7 @@
 
 scheduler:
   name: scheduler # Dask scheduler name.
+  component: scheduler
   enabled: true # Enable/disable scheduler.
   image:
     repository: "ghcr.io/dask/dask" # Container image repository.
@@ -29,6 +30,7 @@ scheduler:
   #  requests:
   #    cpu: 1.8
   #    memory: 6G
+  annotations: {} # Annotations
   tolerations: [] # Tolerations.
   affinity: {} # Container affinity.
   nodeSelector: {} # Node Selector.
@@ -55,7 +57,7 @@ webUI:
   servicePort: 80 # webui service internal port.
   ingress:
     enabled: false # Enable ingress.
-    # ingressClassName: 
+    # ingressClassName:
     pathType: Prefix # set pathType in ingress
     tls: false # Ingress should use TLS.
     # secretName: dask-scheduler-tls
@@ -68,6 +70,7 @@ webUI:
 
 worker:
   name: worker # Dask worker name.
+  component: worker
   image:
     repository: "ghcr.io/dask/dask" # Container image repository.
     tag: "2022.6.1" # Container image tag.
@@ -152,6 +155,7 @@ additional_worker_groups: [] # Additional groups of workers to create. List of g
 
 jupyter:
   name: jupyter # Jupyter name.
+  component: jupyter
   enabled: true # Enable/disable the bundled Jupyter notebook.
   rbac: true # Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs.
   image:
@@ -196,6 +200,7 @@ jupyter:
   #  volumeMounts:
   #    - name: data
   #      mountPath: /data
+  annotations: {} # Annotations
   tolerations: [] # Tolerations.
   affinity: {} # Container affinity.
   nodeSelector: {} # Node Selector.
@@ -203,7 +208,7 @@ jupyter:
   serviceAccountName: "dask-jupyter" # Service account for use with RBAC
   ingress:
     enabled: false # Enable ingress.
-    # ingressClassName: 
+    # ingressClassName:
     tls: false # Ingress should use TLS.
     # secretName: dask-jupyter-tls
     pathType: Prefix # set pathType in ingress
@@ -213,3 +218,6 @@ jupyter:
       # kuernetesbernetes.io/ingress.class: "nginx"
       # secretName: my-tls-cert
       # kub.io/tls-acme: "true"
+
+label:
+  style: helm # helm|kubernetes

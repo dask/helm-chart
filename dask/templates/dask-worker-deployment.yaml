@@ -3,26 +3,18 @@ kind: Deployment
 metadata:
   name: {{ template "dask.fullname" . }}-worker
   labels:
-    app: {{ template "dask.name" . }}
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: {{ template "dask.chart" . }}
-    component: worker
+    {{- include "dask.labels" (list .Values.worker $) | nindent 4 }}
 spec:
   replicas: {{ .Values.worker.replicas }}
   selector:
     matchLabels:
-      app: {{ template "dask.name" . }}
-      release: {{ .Release.Name | quote }}
-      component: worker
+      {{- include "dask.selectorLabels" (list .Values.worker $) | nindent 6 }}
   strategy:
     type: {{ .Values.worker.strategy.type }}
   template:
     metadata:
       labels:
-        app: {{ template "dask.name" . }}
-        release: {{ .Release.Name | quote }}
-        component: worker
+        {{- include "dask.selectorLabels" (list .Values.worker $) | nindent 8 }}
       {{- with .Values.worker.annotations }}
       annotations:
         {{- . | toYaml | nindent 8 }}
