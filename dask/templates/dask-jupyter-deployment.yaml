@@ -16,6 +16,10 @@ spec:
     metadata:
       labels:
         {{- include "dask.selectorLabels" (list .Values.jupyter $) | nindent 8 }}
+      {{- with .Values.jupyter.annotations }}
+      annotations:
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.jupyter.image.pullSecrets }}
       imagePullSecrets:

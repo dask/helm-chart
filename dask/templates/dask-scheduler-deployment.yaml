@@ -16,6 +16,10 @@ spec:
     metadata:
       labels:
         {{- include "dask.selectorLabels" (list .Values.scheduler $) | nindent 8 }}
+      {{- with .Values.scheduler.annotations }}
+      annotations:
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.scheduler.image.pullSecrets }}
       imagePullSecrets:

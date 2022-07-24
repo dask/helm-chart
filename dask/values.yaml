@@ -30,6 +30,7 @@ scheduler:
   #  requests:
   #    cpu: 1.8
   #    memory: 6G
+  annotations: {} # Annotations
   tolerations: [] # Tolerations.
   affinity: {} # Container affinity.
   nodeSelector: {} # Node Selector.
@@ -199,6 +200,7 @@ jupyter:
   #  volumeMounts:
   #    - name: data
   #      mountPath: /data
+  annotations: {} # Annotations
   tolerations: [] # Tolerations.
   affinity: {} # Container affinity.
   nodeSelector: {} # Node Selector.
