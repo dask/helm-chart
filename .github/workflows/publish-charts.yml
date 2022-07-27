@@ -18,6 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install frigate
+        run: pip install frigate
+
+      - name: Generate charts' README.md files from .frigate files
+        run: frigate hook
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
