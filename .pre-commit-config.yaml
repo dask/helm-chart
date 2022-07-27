@@ -19,9 +19,4 @@
 #   3. Automatically add a commit with autoformatting changes to PRs if the
 #      author have forgot to run configured autoformatters.
 #
-repos:
-  # Lint: `helm lint` is run on the Helm charts
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
-    hooks:
-      - id: helmlint
+repos: []
