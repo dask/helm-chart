@@ -19,18 +19,4 @@
 #   3. Automatically add a commit with autoformatting changes to PRs if the
 #      author have forgot to run configured autoformatters.
 #
-repos:
-  # File generation: Helm chart README.md files are automatically updated based
-  #                  on Chart.yaml (including frigate field long_description and
-  #                  footnote), values.yaml, .frigate templates for README.md
-  #                  files.
-  - repo: https://github.com/rapidsai/frigate/
-    rev: v0.6.01
-    hooks:
-      - id: frigate
-
-  # Lint: `helm lint` is run on the Helm charts
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
-    hooks:
-      - id: helmlint
+repos: []
