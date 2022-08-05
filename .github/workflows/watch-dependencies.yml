@@ -126,6 +126,22 @@ jobs:
           )
           echo "::set-output name=tag::$latest_tag"
 
+          # FIXME: Apparently for some reason, sometimes we end up with a blank
+          #        output from the previous step to acquire the latest tag of
+          #        relevance from a container registry.
+          #
+          #        In this step, we make the job fail if that is the case instead of
+          #        opening a PR, and we emit some debugging information along with
+          #        it.
+          #
+          if [ -z "$latest_tag" ]; then
+              echo "For some reason latest_tag was found to be a blank string."
+              echo "--- Debugging info: output of docker run ---"
+              docker run --rm quay.io/skopeo/stable list-tags docker://$REGISTRY/$REPOSITORY
+              echo "--- Now failing the job instead of opening a PR with a faulty version update."
+              exit 1
+          fi
+
       - name: Update daskhub/values.yaml pinned tag
         run: sed --in-place 's/${{ steps.local.outputs.tag }}/${{ steps.latest.outputs.tag }}/g' daskhub/values.yaml
 
