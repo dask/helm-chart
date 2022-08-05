@@ -1,14 +1,14 @@
 # This is a GitHub workflow defining a set of jobs with a set of steps.
 # ref: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
 #
-# - Watch the appVersion field of dask/Chart.yaml and daskhub/Chart.yaml to
-#   match the latest ghcr.io/dask/dask image tag.
+# - Watch the latest ghcr.io/dask/dask image tag and update its reference in
+#   dask/values.yaml and dask/Chart.yaml (appVersion) if needed.
 #
-# - Watch the jupyterhub.singleuser.image.tag field of daskhub/values.yaml to
-#   match the latest pangeo/base-notebook image tag.
+# - Watch the latest pangeo/base-notebook image tag and update its reference
+#   daskhub/values.yaml under jupyterhub.singleuser.image.tag if needed.
 #
-# - Watch the pinned chart dependencies in daskhub/Chart.yaml to match the
-#   latest stable version available.
+# - Watch the pinned chart dependencies (jupyterhub, dask-gateway) in
+#   daskhub/Chart.yaml to match the latest stable version available.
 #
 name: Watch dependencies
 
@@ -56,20 +56,13 @@ jobs:
       #
       # - dask/Chart.yaml's appVersion
       # - dask/values.yaml images' tag
-      # - dask/README.md
-      # - daskhub/Chart.yaml's appVersion
-      #
-      # FIXME: Maybe we shouldn't set the daskhub chart's appVersion to the dask
-      #        image's version as we do here. Maybe one could set it to a
-      #        combination of the jupyterhub and dask-gateway Helm charts'
-      #        versions.
       #
       # ref: https://github.com/jacobtomlinson/gha-find-replace
       - name: Replace old ghcr.io/dask/dask tag with new
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           # matches the dask and daskhub folders root files
-          include: "dask*/*"
+          include: "dask/Chart.yaml|dask/values.yaml"
           find: '"${{ steps.dask_chart.outputs.appVersion }}"'
           replace: '"${{ steps.latest.outputs.tag }}"'
           regex: false
@@ -78,7 +71,7 @@ jobs:
         run: git --no-pager diff --color=always
 
       # ref: https://github.com/peter-evans/create-pull-request
-      - name: Create PR bumping both Helm charts' appVersion
+      - name: Create a PR
         uses: peter-evans/create-pull-request@v4.0.4
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
