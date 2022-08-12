@@ -45,29 +45,14 @@ jobs:
           )
           echo "::set-output name=tag::$latest_tag"
 
-      # ref: https://github.com/jacobtomlinson/gha-read-helm-chart
-      - name: Read dask/Chart.yaml
-        id: dask_chart
-        uses: jacobtomlinson/gha-read-helm-chart@0.1.3
-        with:
-          path: dask
+      - name: Get dask/Chart.yaml's tag of ghcr.io/dask/dask (in appVersion)
+        id: local
+        run: |
+          local_tag=$(cat dask/Chart.yaml | yq e '.appVersion' -)
+          echo "::set-output name=tag::$local_tag"
 
-      # Currently we update:
-      #
-      # - dask/Chart.yaml's appVersion
-      # - dask/values.yaml images' tag
-      #
-      # ref: https://github.com/jacobtomlinson/gha-find-replace
-      - name: Replace old ghcr.io/dask/dask tag with new
-        uses: jacobtomlinson/gha-find-replace@2.0.0
-        with:
-          # include: the syntax for file globbing is described in
-          # https://github.com/gobwas/glob#performance
-          #
-          include: "{dask/Chart.yaml|dask/values.yaml}"
-          find: '"${{ steps.dask_chart.outputs.appVersion }}"'
-          replace: '"${{ steps.latest.outputs.tag }}"'
-          regex: false
+      - name: Update dask/Chart.yaml and dask/values.yaml pinned tag
+        run: sed --in-place 's/"${{ steps.local.outputs.tag }}"/"${{ steps.latest.outputs.tag }}"/g' dask/Chart.yaml dask/values.yaml
 
       - name: git diff
         run: git --no-pager diff --color=always
