@@ -61,8 +61,10 @@ jobs:
       - name: Replace old ghcr.io/dask/dask tag with new
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          # matches the dask and daskhub folders root files
-          include: "dask/Chart.yaml|dask/values.yaml"
+          # include: the syntax for file globbing is described in
+          # https://github.com/gobwas/glob#performance
+          #
+          include: "{dask/Chart.yaml|dask/values.yaml}"
           find: '"${{ steps.dask_chart.outputs.appVersion }}"'
           replace: '"${{ steps.latest.outputs.tag }}"'
           regex: false
