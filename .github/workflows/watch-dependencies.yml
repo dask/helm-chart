@@ -67,12 +67,11 @@ jobs:
           commit-message: Update Dask version to ${{ steps.latest.outputs.tag }}
           title: Update Dask version to ${{ steps.latest.outputs.tag }}
           body: >-
-            A new ghcr.io/dask/dask image version has been detected.
+            A new ghcr.io/dask/dask image version has been detected, version
+            `${{ steps.latest.outputs.tag }}`.
 
-
-            Updated the dask chart to use `${{ steps.latest.outputs.tag }}`,
-            and updated the dask and daskhub chart to declare appVersion `${{
-            steps.latest.outputs.tag }}`.
+            Updates dask the helm chart to use this version by default for
+            workers, schedulers, and the optional jupyter server.
 
   update-singleuser-image:
     if: github.repository == 'dask/helm-chart'
