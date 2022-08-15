@@ -1,6 +1,5 @@
 .frigate
 dev-values.yaml
-README.md
 CHANGELOG.md
 
 # Patterns to ignore when building packages.
