@@ -14,7 +14,7 @@ metadata:
     heritage: "{{ .Release.Service }}"
   {{- with .Values.webUI.ingress.annotations }}
   annotations:
-    {{ . | toYaml | indent 4 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   {{- with .Values.webUI.ingress.ingressClassName }}
