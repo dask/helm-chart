@@ -3,7 +3,7 @@ Thank you for installing {{ .Chart.Name | upper }}, released at name: {{ .Releas
 To learn more about the release, try:
 
   $ helm status {{ .Release.Name }}  # information about running pods and this message
-  $ helm get {{ .Release.Name }}     # get full Kubernetes specification
+  $ helm get all {{ .Release.Name }}     # get full Kubernetes specification
 
 This release includes a Dask scheduler, {{ .Values.worker.replicas }} Dask workers, and {{ .Values.jupyter.replicas }} Jupyter servers.
 
