@@ -23,48 +23,15 @@ This chart will deploy the following
   configured proxy Dask Gateway requests and set Dask Gateway-related
   environment variables.
 
-## Prepare Configuration File
-
-In this step, we'll prepare a YAML configuration file with the fields
-required by the DaskHub helm chart. It will contain some secret
-keys, which should not be checked into version control in plaintext.
-
-We need two random hex strings that will be used as keys, one for
-JupyterHub and one for Dask Gateway.
-
-Run the following command, and copy the output. This is our `secret-token`.
-
-```console
-openssl rand -hex 32  # generate secret-token
-```
-
-Now substitute that value for `<secret-token>` below.
-
-```yaml
-# file: secrets.yaml
-jupyterhub:
-  hub:
-    services:
-      dask-gateway:
-        apiToken: "<secret-token>"
-
-dask-gateway:
-  gateway:
-    auth:
-      jupyterhub:
-        apiToken: "<secret-token>"
-```
-
 ## Install DaskHub
 
-This example installs into the namespace `dhub`. Make sure you're
-in the same directory as the `secrets.yaml` file.
+This example installs into the namespace `dhub`. Create and pass chart
+configuration via `config.yaml`.
 
 ```console
 $ helm upgrade --wait --install --render-subchart-notes \
     dhub dask/daskhub \
     --namespace=dhub \
-    --values=secrets.yaml \
     --values=config.yaml
 ```
 
