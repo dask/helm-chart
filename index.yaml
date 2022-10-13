@@ -1788,6 +1788,20 @@ entries:
     version: 0.1.0
   dask-gateway:
   - apiVersion: v2
+    appVersion: 2022.10.0
+    created: "2022-10-13T13:41:46.021117748Z"
+    description: A multi-tenant server for deploying and managing Dask clusters
+    digest: 0748e6212add55c3b5744fe127484aa56e3a995627f4850af0f512d4427455e6
+    home: https://gateway.dask.org/
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    kubeVersion: '>=1.20.0-0'
+    name: dask-gateway
+    sources:
+    - https://github.com/dask/dask-gateway/
+    urls:
+    - https://helm.dask.org/dask-gateway-2022.10.0.tgz
+    version: 2022.10.0
+  - apiVersion: v2
     appVersion: 2022.6.1
     created: "2022-06-13T20:50:12.151188131Z"
     description: A multi-tenant server for deploying and managing Dask clusters
@@ -3436,4 +3450,4 @@ entries:
     urls:
     - https://helm.dask.org/daskhub-4.4.1.tgz
     version: 4.4.1
-generated: "2022-10-06T15:10:15.577650728Z"
+generated: "2022-10-13T13:41:46.019355673Z"
