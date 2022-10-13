@@ -75,9 +75,9 @@ it as a Gateway option.
 ```yaml
 # config.yaml
 jupyterhub:
- singleuser:
-   extraEnv:
-     DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: '{JUPYTER_IMAGE_SPEC}'
+  singleuser:
+    extraEnv:
+      DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: '{JUPYTER_IMAGE_SPEC}'
 
 dask-gateway:
   gateway:
@@ -91,7 +91,7 @@ dask-gateway:
                 "image": options.image,
             }
         c.Backend.cluster_options = Options(
-            String("image", default="pangeo/base-notebook:2020.07.28", label="Image"),
+            String("image", default="pangeo/base-notebook:2022.09.21", label="Image"),
             handler=option_handler,
         )
 ```
