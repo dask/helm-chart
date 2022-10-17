@@ -26,7 +26,7 @@ on:
 
 jobs:
   test-install-chart:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     strategy:
       # Keep running even if one variation of the job fail
@@ -44,18 +44,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install helm and update chart dependencies
-        run: |
-          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-          helm dependencies update ./daskhub
+
+      - name: Update chart dependencies
+        run: helm dependencies update ./daskhub
 
       - name: Lint chart's templates
-        run: |
-          helm lint ./daskhub --strict --values daskhub/dev-values.yaml
+        run: helm lint ./daskhub --strict
 
       - name: Validate chart's templates can render
-        run: |
-          helm template ./daskhub --values daskhub/dev-values.yaml 1>/dev/null
+        run: helm template ./daskhub 1>/dev/null
 
       # Starts a k8s cluster with NetworkPolicy enforcement and installs kubectl
       #
@@ -75,11 +72,11 @@ jobs:
       #
       # - name: Validate charts' rendered templates are valid k8s resources
       #   run: |
-      #     helm template ./daskhub --validate --values daskhub/dev-values.yaml 1>/dev/null
+      #     helm template ./daskhub --validate 1>/dev/null
 
       - name: Install chart and await readiness
         run: |
-          helm install daskhub ./daskhub --values daskhub/dev-values.yaml
+          helm install daskhub ./daskhub
 
           . ci/common
           full_namespace_await

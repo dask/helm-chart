@@ -21,7 +21,7 @@ on:
 jobs:
   check-dask-image:
     if: github.repository == 'dask/helm-chart'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
@@ -75,7 +75,7 @@ jobs:
 
   update-singleuser-image:
     if: github.repository == 'dask/helm-chart'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
@@ -147,7 +147,7 @@ jobs:
 
   update-chart-dep:
     if: github.repository == 'dask/helm-chart'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: false
