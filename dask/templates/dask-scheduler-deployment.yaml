@@ -37,10 +37,8 @@ spec:
           {{- end }}
           args:
             - dask-scheduler
-            - --port
-            - "{{ .Values.scheduler.servicePort }}"
-            - --bokeh-port
-            - "8787"
+            - --port={{ .Values.scheduler.servicePort }}
+            - --dashboard-address=:8787
             {{- with .Values.scheduler.extraArgs }}
             {{- . | toYaml | nindent 12 }}
             {{- end }}
