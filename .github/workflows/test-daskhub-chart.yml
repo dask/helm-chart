@@ -1,5 +1,5 @@
 # This is a GitHub workflow defining a set of jobs with a set of steps. ref:
-# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 #
 # NOTE: Changes to this name must be followed by updates to the README.me
 #       badges.
