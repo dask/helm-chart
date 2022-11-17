@@ -51,7 +51,7 @@ To create a Dask cluster users can create a `dask_gateway.GatewayCluster`.
 
 ```python
 >>> from dask_gateway import GatewayCluster
->>> cluster = gateway.new_cluster()
+>>> cluster = GatewayCluster()
 >>> client = cluster.get_client()
 ```
 
