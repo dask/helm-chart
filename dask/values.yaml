@@ -55,7 +55,7 @@ webUI:
   servicePort: 80 # webui service internal port.
   ingress:
     enabled: false # Enable ingress.
-    # ingressClassName: 
+    # ingressClassName:
     pathType: Prefix # set pathType in ingress
     tls: false # Ingress should use TLS.
     # secretName: dask-scheduler-tls
@@ -168,6 +168,7 @@ jupyter:
   servicePort: 80 # Jupyter service internal port.
   # This hash corresponds to the password 'dask'
   password: "sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c" # Password hash. Default hash corresponds to the password `dask`.
+  password_hint: "dask" # This is only used in the help text, don't forget to update the hash too.
   env: # Environment variables. See `values.yaml` for example values.
   #  - name: EXTRA_CONDA_PACKAGES
   #    value: "numba xarray -c conda-forge"
@@ -203,7 +204,7 @@ jupyter:
   serviceAccountName: "dask-jupyter" # Service account for use with RBAC
   ingress:
     enabled: false # Enable ingress.
-    # ingressClassName: 
+    # ingressClassName:
     tls: false # Ingress should use TLS.
     # secretName: dask-jupyter-tls
     pathType: Prefix # set pathType in ingress
