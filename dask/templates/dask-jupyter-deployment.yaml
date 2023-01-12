@@ -10,7 +10,7 @@ metadata:
     chart: {{ template "dask.chart" . }}
     component: jupyter
 spec:
-  replicas: {{ .Values.jupyter.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: {{ template "dask.name" . }}
