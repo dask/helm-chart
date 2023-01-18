@@ -56,7 +56,7 @@ spec:
             - --no-dashboard
             - --dashboard-address
             - {{ .Values.worker.portDashboard | quote }}
-            {{- with .Values.worker.port }}
+            {{- with .Values.worker.workerPort }}
             - --worker-port
             - {{ . | quote }}
             {{- end }}
@@ -78,6 +78,21 @@ spec:
           volumeMounts:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
+          {{- with .Values.worker.probes }}
+          livenessProbe:
+            httpGet:
+                path: /status
+                port: {{ .Values.worker.portDashboard }} 
+            # TODO: test nanny port and worker port
+            {{- .liveness | toYaml | nindent 12 }}
+          readinessProbe:
+            httpGet:
+                path: /status
+                port: {{ .Values.worker.portDashboard }} 
+            # TODO: test nanny port and worker port
+            {{- .readiness | toYaml | nindent 12 }}
+          {{- end }}
+ 
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | nindent 8 }}
