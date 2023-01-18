@@ -49,8 +49,20 @@ scheduler:
       jobLabel: "" # The label to use to retrieve the job name from.
       targetLabels: [] # TargetLabels transfers labels on the Kubernetes Service onto the target.
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
-  livenessProbe: {}
-  readinessProbe: {}
+  livenessProbe:
+    {} # Enables scheduler liveness probe.
+    # httpGet:
+    #   path: /status
+    #   port: 8787
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
+  readinessProbe:
+    {} # Enables scheduler readiness probe.
+    # httpGet:
+    #   path: /status
+    #   port: 8787
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
 
 webUI:
   name: webui # Dask webui name.
@@ -138,8 +150,18 @@ worker:
       jobLabel: "" # The label to use to retrieve the job name from.
       podTargetLabels: [] # PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
-  livenessProbe: {}
-  readinessProbe: {}
+  livenessProbe:
+    {} # Enables worker pod liveness probe
+    # tcpSocket:
+    #   port: <worker port>
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
+  readinessProbe:
+    {} # Enables worker pod readiness probe
+    # tcpSocket:
+    #   port: <worker port>
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
 
 additional_worker_groups: [] # Additional groups of workers to create. List of groups with same options as `worker`.
 # - name: high-mem  # Dask worker group name.
@@ -216,5 +238,17 @@ jupyter:
       # kuernetesbernetes.io/ingress.class: "nginx"
       # secretName: my-tls-cert
       # kub.io/tls-acme: "true"
-  livenessProbe: {}
-  readinessProbe: {}
+  livenessProbe:
+    {} # Enables jupyter server liveness probe.
+    # httpGet:
+    #   path: /login
+    #   port: 8888
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
+  readinessProbe:
+    {} # Enables jupyter server readiness probe.
+    # httpGet:
+    #   path: /login
+    #   port: 8888
+    # initialDelaySeconds: 3
+    # periodSeconds: 10
