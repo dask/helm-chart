@@ -117,7 +117,8 @@ worker:
   nodeSelector: {} # Node Selector.
   securityContext: {} # Security Context.
   # serviceAccountName: ""
-  workerPort: 8790 # tcp port for the workers
+  # port: ""
+  portDashboard: 8790 # Worker dashboard and metrics port.
   #  this option overrides "--nthreads" on workers, which defaults to resources.limits.cpu / default_resources.limits.cpu
   #  use it if you need to limit the amount of threads used by multicore workers, or to make workers with non-whole-number cpu limits
   # threads_per_worker: 1

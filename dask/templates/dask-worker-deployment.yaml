@@ -54,13 +54,17 @@ spec:
             - {{ .Values.worker.resources.limits.memory | default .Values.worker.default_resources.memory | quote }}
             {{- end }}
             - --no-dashboard
+            - --dashboard-address
+            - {{ .Values.worker.portDashboard | quote }}
+            {{- with .Values.worker.port }}
             - --worker-port
-            - {{ .Values.worker.workerPort | quote }}
+            - {{ . | quote }}
+            {{- end }}
             {{- with .Values.worker.extraArgs }}
             {{ . | toYaml | nindent 12 }}
             {{- end }}
           ports:
-            - containerPort: {{ .Values.worker.workerPort }}
+            - containerPort: {{ .Values.worker.portDashboard }}
               name: dashboard
           {{- with .Values.worker.resources }}
           resources:
