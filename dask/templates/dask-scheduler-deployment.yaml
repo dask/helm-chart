@@ -58,15 +58,11 @@ spec:
             httpGet:
                 path: /status
                 port: 8787
-            tcpSocket:
-                port: 8786
             {{- .liveness | toYaml | nindent 12 }}
           readinessProbe:
             httpGet:
                 path: /status
                 port: 8787
-            tcpSocket:
-                port: 8786
             {{- .readiness | toYaml | nindent 12 }}
           {{- end }}
         

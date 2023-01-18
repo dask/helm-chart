@@ -54,17 +54,13 @@ spec:
             - {{ .Values.worker.resources.limits.memory | default .Values.worker.default_resources.memory | quote }}
             {{- end }}
             - --no-dashboard
-            - --dashboard-address
-            - {{ .Values.worker.portDashboard | quote }}
-            {{- with .Values.worker.workerPort }}
             - --worker-port
-            - {{ . | quote }}
-            {{- end }}
+            - {{ .Values.worker.workerPort | quote }}
             {{- with .Values.worker.extraArgs }}
             {{ . | toYaml | nindent 12 }}
             {{- end }}
           ports:
-            - containerPort: {{ .Values.worker.portDashboard }}
+            - containerPort: {{ .Values.worker.workerPort }}
               name: dashboard
           {{- with .Values.worker.resources }}
           resources:
@@ -78,20 +74,14 @@ spec:
           volumeMounts:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
-          {{- with .Values.worker.probes }}
           livenessProbe:
-            httpGet:
-                path: /status
-                port: {{ .Values.worker.portDashboard }} 
-            # TODO: test nanny port and worker port
-            {{- .liveness | toYaml | nindent 12 }}
+            tcpSocket:
+                port: {{ .Values.worker.workerPort }}
+            {{- .Values.worker.probes.liveness | toYaml | nindent 12 }}
           readinessProbe:
-            httpGet:
-                path: /status
-                port: {{ .Values.worker.portDashboard }} 
-            # TODO: test nanny port and worker port
-            {{- .readiness | toYaml | nindent 12 }}
-          {{- end }}
+            tcpSocket:
+                port: {{ .Values.worker.workerPort }}
+            {{- .Values.worker.probes.readiness | toYaml | nindent 12 }}
  
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:
