@@ -53,17 +53,13 @@ spec:
           env:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
-          {{- with .Values.scheduler.probes}}
+          {{- with .Values.scheduler.livenessProbe }}
           livenessProbe:
-            httpGet:
-                path: /status
-                port: 8787
-            {{- .liveness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.scheduler.readinessProbe }}
           readinessProbe:
-            httpGet:
-                path: /status
-                port: 8787
-            {{- .readiness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
           {{- end }}
         
       {{- with .Values.scheduler.nodeSelector }}

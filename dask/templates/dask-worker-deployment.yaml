@@ -74,14 +74,14 @@ spec:
           volumeMounts:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
+          {{ with .Values.worker.livenessProbe }}
           livenessProbe:
-            tcpSocket:
-                port: {{ .Values.worker.workerPort }}
-            {{- .Values.worker.probes.liveness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{ with .Values.worker.readinessProbe }}
           readinessProbe:
-            tcpSocket:
-                port: {{ .Values.worker.workerPort }}
-            {{- .Values.worker.probes.readiness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
  
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:

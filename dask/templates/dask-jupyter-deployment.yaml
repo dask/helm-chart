@@ -59,17 +59,13 @@ spec:
             {{- with .Values.jupyter.env }}
             {{- . | toYaml | nindent 12 }}
             {{- end }}
-          {{- with .Values.jupyter.probes}}
+          {{- with .Values.jupyter.livenessProbe}}
           livenessProbe:
-            httpGet:
-                path: /login
-                port: 8888
-            {{- .liveness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.jupyter.readinessProbe }}
           readinessProbe:
-            httpGet:
-                path: /login
-                port: 8888 
-            {{- .readiness | toYaml | nindent 12 }}
+            {{- . | toYaml | nindent 12 }}
           {{- end }}
       volumes:
         {{- with .Values.jupyter.mounts.volumes }}

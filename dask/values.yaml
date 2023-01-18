@@ -49,13 +49,8 @@ scheduler:
       jobLabel: "" # The label to use to retrieve the job name from.
       targetLabels: [] # TargetLabels transfers labels on the Kubernetes Service onto the target.
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
-  probes:
-    liveness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
-    readiness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
+  livenessProbe: {}
+  readinessProbe: {}
 
 webUI:
   name: webui # Dask webui name.
@@ -142,13 +137,8 @@ worker:
       jobLabel: "" # The label to use to retrieve the job name from.
       podTargetLabels: [] # PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
-  probes:
-    liveness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
-    readiness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
+  livenessProbe: {}
+  readinessProbe: {}
 
 additional_worker_groups: [] # Additional groups of workers to create. List of groups with same options as `worker`.
 # - name: high-mem  # Dask worker group name.
@@ -225,10 +215,5 @@ jupyter:
       # kuernetesbernetes.io/ingress.class: "nginx"
       # secretName: my-tls-cert
       # kub.io/tls-acme: "true"
-  probes:
-    liveness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
-    readiness:
-      initialDelaySeconds: 3
-      periodSeconds: 10
+  livenessProbe: {}
+  readinessProbe: {}
