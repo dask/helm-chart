@@ -52,7 +52,7 @@ scheduler:
   livenessProbe:
     {} # Enables scheduler liveness probe.
     # httpGet:
-    #   path: /status
+    #   path: /health
     #   port: 8787
     # initialDelaySeconds: 3
     # periodSeconds: 10
@@ -152,14 +152,16 @@ worker:
       metricRelabelings: [] # MetricRelabelConfigs to apply to samples before ingestion.
   livenessProbe:
     {} # Enables worker pod liveness probe
-    # tcpSocket:
-    #   port: <worker port>
+    # httpGet:
+    #   path: /health
+    #   port: 8790 # The same as portDashboard
     # initialDelaySeconds: 3
     # periodSeconds: 10
   readinessProbe:
     {} # Enables worker pod readiness probe
-    # tcpSocket:
-    #   port: <worker port>
+    # httpGet:
+    #   path: /status
+    #   port: 8790 # The same as portDashboard
     # initialDelaySeconds: 3
     # periodSeconds: 10
 
