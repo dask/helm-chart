@@ -53,6 +53,15 @@ spec:
           env:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
+          {{- with .Values.scheduler.livenessProbe }}
+          livenessProbe:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.scheduler.readinessProbe }}
+          readinessProbe:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+        
       {{- with .Values.scheduler.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | nindent 8 }}

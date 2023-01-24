@@ -59,6 +59,14 @@ spec:
             {{- with .Values.jupyter.env }}
             {{- . | toYaml | nindent 12 }}
             {{- end }}
+          {{- with .Values.jupyter.livenessProbe}}
+          livenessProbe:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- with .Values.jupyter.readinessProbe }}
+          readinessProbe:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
       volumes:
         {{- with .Values.jupyter.mounts.volumes }}
         {{- . | toYaml | nindent 8}}
