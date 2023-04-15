@@ -7,7 +7,7 @@ scheduler:
   enabled: true # Enable/disable scheduler.
   image:
     repository: "ghcr.io/dask/dask" # Container image repository.
-    tag: "2023.3.2" # Container image tag.
+    tag: "2023.4.0" # Container image tag.
     pullPolicy: IfNotPresent # Container image pull policy.
     pullSecrets: # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
     #  - name: regcred
@@ -84,7 +84,7 @@ worker:
   name: worker # Dask worker name.
   image:
     repository: "ghcr.io/dask/dask" # Container image repository.
-    tag: "2023.3.2" # Container image tag.
+    tag: "2023.4.0" # Container image tag.
     pullPolicy: IfNotPresent # Container image pull policy.
     dask_worker: "dask-worker" # Dask worker command. E.g `dask-cuda-worker` for GPU worker.
     pullSecrets: # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
@@ -184,7 +184,7 @@ jupyter:
   rbac: true # Create RBAC service account and role to allow Jupyter pod to scale worker pods and access logs.
   image:
     repository: "ghcr.io/dask/dask-notebook" # Container image repository.
-    tag: "2023.3.2" # Container image tag.
+    tag: "2023.4.0" # Container image tag.
     pullPolicy: IfNotPresent # Container image pull policy.
     pullSecrets: # Container image [pull secrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
     #  - name: regcred
