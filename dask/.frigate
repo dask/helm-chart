@@ -200,7 +200,7 @@ Releases of the Helm chart are automatically pushed to the `gh-pages` branch by 
 
 Before releasing you may want to ensure the chart is up to date with the latest Docker images and Dask versions:
 
-- Update the image tags in `dask/values.yaml` to reflect the [latest release of the Dask Docker images](https://github.com/dask/dask-docker/releases).
+- Update the image tags in `dask/values.yaml` to reflect the [latest release of the Dask Docker images](https://github.com/dask/dask-docker/tags).
 - Update the `appVersion` value in `dask/Chart.yaml` to also reflect this version.
 
 Then to perform a release you need to create and push a new tag.
