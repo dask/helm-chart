@@ -3,11 +3,11 @@ name: daskhub
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
 version: 0.0.1-set.by.chartpress
 # appVersion is set to be a combination of the dependencies
-appVersion: "jh3.0.3-dg2023.9.0"
+appVersion: "jh3.1.0-dg2023.9.0"
 description: Multi-user JupyterHub and Dask deployment.
 dependencies:
   - name: jupyterhub
-    version: "3.0.3"
+    version: "3.1.0"
     repository: https://jupyterhub.github.io/helm-chart/
     import-values:
       - child: rbac
