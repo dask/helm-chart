@@ -23,7 +23,7 @@ jobs:
     if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get latest tag of ghcr.io/dask/dask
         id: latest
@@ -77,7 +77,7 @@ jobs:
     if: github.repository == 'dask/helm-chart'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get daskhub/values.yaml pinned tag of pangeo/base-notebook
         id: local
@@ -166,7 +166,7 @@ jobs:
             chart_dep_changelog_url: https://gateway.dask.org/changelog.html
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get Chart.yaml pinned version of ${{ matrix.chart_dep_name }} chart
         id: local
