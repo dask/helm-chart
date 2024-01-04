@@ -15,8 +15,10 @@ spec:
       app: {{ template "dask.name" . }}
       release: {{ .Release.Name | quote }}
       component: worker
+  {{- with .Values.worker.strategy }}
   strategy:
-    type: {{ .Values.worker.strategy.type }}
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:
