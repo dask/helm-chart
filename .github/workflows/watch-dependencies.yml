@@ -59,7 +59,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create a PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-dask-version
@@ -129,7 +129,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create a PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-singleuser-image
@@ -189,7 +189,7 @@ jobs:
 
       # ref: https://github.com/peter-evans/create-pull-request
       - name: Create a PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           token: "${{ secrets.DASK_BOT_TOKEN }}"
           branch: update-chart-dep-${{ matrix.chart_dep_name }}
