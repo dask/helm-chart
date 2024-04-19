@@ -2128,6 +2128,21 @@ entries:
   dask-kubernetes-operator:
   - apiVersion: v2
     appVersion: 2022.4.1
+    created: "2024-04-19T12:39:11.511983564Z"
+    description: A helm chart for managing the deployment of the dask kubernetes operator
+      and CRDs
+    digest: e083b0a8cae587d9fddba075810c80e3251ff89e5244e603fd15a2799840acc3
+    home: https://kubernetes.dask.org/
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    name: dask-kubernetes-operator
+    sources:
+    - https://github.com/dask/dask-kubernetes/
+    type: application
+    urls:
+    - https://helm.dask.org/dask-kubernetes-operator-2024.4.1.tgz
+    version: 2024.4.1
+  - apiVersion: v2
+    appVersion: 2022.4.1
     created: "2024-04-02T13:11:30.061714512Z"
     description: A helm chart for managing the deployment of the dask kubernetes operator
       and CRDs
@@ -4114,4 +4129,4 @@ entries:
     urls:
     - https://helm.dask.org/daskhub-4.4.1.tgz
     version: 4.4.1
-generated: "2024-04-02T13:11:30.059524235Z"
+generated: "2024-04-19T12:39:11.509633437Z"
