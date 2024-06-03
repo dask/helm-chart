@@ -57,7 +57,7 @@ jupyterhub:
   singleuser:
     image:
       name: pangeo/base-notebook # Image to use for singleuser environment. Must include dask-gateway.
-      tag: "2024.05.21"
+      tag: "2024.06.02"
     defaultUrl: "/lab" # Use jupyterlab by default.
 
 dask-gateway:
