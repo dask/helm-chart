@@ -18,6 +18,14 @@ scheduler:
   loadBalancerIP: null # Some cloud providers allow you to specify the loadBalancerIP when using the `LoadBalancer` service type. If your cloud does not support it this option will be ignored.
   servicePort: 8786 # Scheduler service internal port.
   serviceAnnotations: {} # Scheduler service annotations.
+  env: # Environment variables. See `values.yaml` for example values.
+  #  - name: EXTRA_APT_PACKAGES
+  #    value: build-essential openssl
+  #  - name: EXTRA_CONDA_PACKAGES
+  #    value: numba xarray -c conda-forge
+  #  - name: EXTRA_PIP_PACKAGES
+  #    value: s3fs dask-ml prometheus-client --upgrade
+
   extraArgs:
     [] # Extra CLI arguments to be passed to the scheduler
     # - --preload
