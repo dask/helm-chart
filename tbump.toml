@@ -1,0 +1,26 @@
+# tbump is used to simplify and standardize the release process when updating
+# the version, making a git commit and tag, and pushing changes.
+#
+# For details see RELEASE.md.
+#
+# ref: https://github.com/your-tools/tbump#readme
+#
+[version]
+current = "2024.1.1"
+regex = '''
+  (?P<major>\d+)
+  \.
+  (?P<minor>\d+)
+  \.
+  (?P<patch>\d+)
+'''
+
+[git]
+message_template = "Version {new_version}"
+tag_template = "{new_version}"
+
+# Configuring tbump.toml below is a hack to ensure tbump can be used even though
+# no other file needs updating as chartpress does it based on the git tag when
+# packaging the charts.
+[[file]]
+src = "tbump.toml"
