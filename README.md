@@ -6,12 +6,22 @@
 [![DaskHub chart version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].version&color=277A9F&logo=helm)](https://helm.dask.org/)
 [![Dask version](https://img.shields.io/badge/dynamic/yaml?url=https://helm.dask.org/index.yaml&label=daskhub&query=$.entries.daskhub[:1].appVersion&color=D67548&logo=python&logoColor=white)](https://dask.org/)
 
-# Dask Helm Charts
+# Helm Charts
 
-This repository contains Dask's two helm charts.
+This repository contains two Helm charts.
 
 - [dask](./dask/README.md): Install Dask on Kubernetes for a single user with Jupyter and [dask-kubernetes](https://github.com/dask/dask-kubernetes).
 - [daskhub](./daskhub/README.md): Install Dask on Kubernetes for multiple users with JupyterHub and [dask-gateway](https://github.com/dask/dask-gateway).
+
+## Helm Chart Repository
+
+This repository also contains a `gh-pages` branch that using GitHub Pages is
+built into the website available at https://helm.dask.org. This website is human
+readable but also readable by `helm` as a Helm chart repository thanks to a
+`index.yaml` file.
+
+The Helm chart repository also publishes Helm charts not maintained in this
+repository, specifically `dask-gateway` and `dask-kubernetes-operator`.
 
 ## Single-user Quickstart
 
