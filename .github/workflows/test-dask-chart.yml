@@ -46,7 +46,7 @@ jobs:
           - k3s-channel: latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Lint chart's templates
         run: helm lint ./dask --strict --values dask/dev-values.yaml
