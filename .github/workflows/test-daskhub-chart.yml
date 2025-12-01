@@ -43,7 +43,7 @@ jobs:
           - k3s-channel: latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Update chart dependencies
         run: helm dependencies update ./daskhub
