@@ -36,7 +36,8 @@ spec:
           imagePullPolicy: {{ . }}
           {{- end }}
           args:
-            - dask-scheduler
+            - dask
+            - scheduler
             - --port={{ .Values.scheduler.servicePort }}
             - --dashboard-address=:8787
             {{- with .Values.scheduler.extraArgs }}
@@ -61,7 +62,7 @@ spec:
           readinessProbe:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
-        
+
       {{- with .Values.scheduler.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | nindent 8 }}

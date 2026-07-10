@@ -43,7 +43,9 @@ spec:
           image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
           imagePullPolicy: {{ .Values.worker.image.pullPolicy }}
           args:
-            - {{ .Values.worker.image.dask_worker }}
+            {{- with .Values.worker.image.dask_worker }}
+            {{- (kindIs "string" . | ternary (list .) .) | toYaml | nindent 12 }}
+            {{- end }}
             {{- if .Values.worker.custom_scheduler_url }}
             - {{ .Values.worker.custom_scheduler_url }}
             {{- else }}
@@ -88,7 +90,7 @@ spec:
           readinessProbe:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
- 
+
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | nindent 8 }}

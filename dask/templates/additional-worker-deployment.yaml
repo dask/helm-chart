@@ -45,7 +45,9 @@ spec:
           imagePullPolicy: {{ . }}
           {{- end }}
           args:
-            - {{ $worker.image.dask_worker }}
+            {{- with $worker.image.dask_worker }}
+            {{- (kindIs "string" . | ternary (list .) .) | toYaml | nindent 12 }}
+            {{- end }}
             {{- if $worker.custom_scheduler_url }}
             - {{ $worker.custom_scheduler_url }}
             {{- else }}
